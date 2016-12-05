@@ -52,9 +52,14 @@
     <Compile Include="CalculateNorm.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="Diary.cs" />
+    <Compile Include="DiaryItem.cs" />
     <Compile Include="Migrations\201612051136391_Initial.cs" />
     <Compile Include="Migrations\201612051136391_Initial.Designer.cs">
       <DependentUpon>201612051136391_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612051844355_Change_1.cs" />
+    <Compile Include="Migrations\201612051844355_Change_1.Designer.cs">
+      <DependentUpon>201612051844355_Change_1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PersonInfo.cs" />
@@ -69,6 +74,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201612051136391_Initial.resx">
       <DependentUpon>201612051136391_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612051844355_Change_1.resx">
+      <DependentUpon>201612051844355_Change_1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -9,7 +9,7 @@ namespace FitnessDietApp.Data.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(FitnessDietApp.Data.Context context)

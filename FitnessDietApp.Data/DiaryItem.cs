@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace FitnessDietApp.Data
 {
-    public class Diary
+    public class DiaryItem
     {
         public int Id { get; set; }
-        public DateTime Date { get; set; }        
-        public List<DiaryItem> DiaryItems { get; set; }
+        public Products Product { get; set; }
+        public int Quantity { get; set; }
+                
     }
 }

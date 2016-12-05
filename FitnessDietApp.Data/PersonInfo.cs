@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace FitnessDietApp.Data
 {
-    class PersonInfo
+    public class PersonInfo
     {
         public int Id { get; set; }
         public int Gender { get; set; }
         public int Age { get; set; }
-        public int Height { get; set; }
-        public double Weight { get; set; }
+        public int Height { get; set; } //см
+        public double Weight { get; set; } //кг
         public int Lifestyle { get; set; }
     }
 }
