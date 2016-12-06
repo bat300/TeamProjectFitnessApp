@@ -57,9 +57,9 @@
     <Compile Include="Migrations\201612051136391_Initial.Designer.cs">
       <DependentUpon>201612051136391_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612051844355_Change_1.cs" />
-    <Compile Include="Migrations\201612051844355_Change_1.Designer.cs">
-      <DependentUpon>201612051844355_Change_1.cs</DependentUpon>
+    <Compile Include="Migrations\201612061753307_MissingProteins-IgnoreChanges.cs" />
+    <Compile Include="Migrations\201612061753307_MissingProteins-IgnoreChanges.Designer.cs">
+      <DependentUpon>201612061753307_MissingProteins-IgnoreChanges.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PersonInfo.cs" />
@@ -75,8 +75,8 @@
     <EmbeddedResource Include="Migrations\201612051136391_Initial.resx">
       <DependentUpon>201612051136391_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612051844355_Change_1.resx">
-      <DependentUpon>201612051844355_Change_1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612061753307_MissingProteins-IgnoreChanges.resx">
+      <DependentUpon>201612061753307_MissingProteins-IgnoreChanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -17,6 +17,7 @@ namespace FitnessDietApp.Data
 
         public Context() : base("localsql")
         {
+
         }
     }
 }

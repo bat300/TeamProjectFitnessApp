@@ -13,6 +13,6 @@ namespace FitnessDietApp.Data
         public double Proteins { get; set; }
         public double Fat { get; set; }
         public double Carbohydrates { get; set; }
-        public int Сalories { get; set; }        
+        public double Сalories { get; set; }        
     }
 }

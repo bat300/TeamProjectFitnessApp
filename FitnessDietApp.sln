@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessDietApp.UI", "Fitnes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessDietApp.Data", "FitnessDietApp.Data\FitnessDietApp.Data.csproj", "{6475D13A-CD24-43FF-9355-639578017EF5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BFFC93BA-5DEF-4350-B215-2814334CB5AC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{ED6555D4-4968-4B5A-8AEB-85DE0C959318}"
 	ProjectSection(SolutionItems) = preProject
-		products.csv = products.csv
+		productsInfo.csv = productsInfo.csv
 	EndProjectSection
 EndProject
 Global

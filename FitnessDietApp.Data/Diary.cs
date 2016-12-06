@@ -11,5 +11,6 @@ namespace FitnessDietApp.Data
         public int Id { get; set; }
         public DateTime Date { get; set; }        
         public List<DiaryItem> DiaryItems { get; set; }
+        public PersonNorm PersonNorm { get; set; }
     }
 }

@@ -1,8 +1,10 @@
 namespace FitnessDietApp.Data.Migrations
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.IO;
     using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<FitnessDietApp.Data.Context>
@@ -10,22 +12,41 @@ namespace FitnessDietApp.Data.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            ContextKey = "FitnessDietApp.Data.Context";
         }
 
-        protected override void Seed(FitnessDietApp.Data.Context context)
+        protected override void Seed(Context context)
         {
-            //  This method will be called after migrating to the latest version.
+            context.Database.Delete();
+            context.Database.Create();
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            Dictionary<string, Products> products = new Dictionary<string, Products>();
+
+            using (var reader = new StreamReader("productsInfo.csv"))
+            {
+                string line;
+                while (!reader.EndOfStream)
+                {
+                    line = reader.ReadLine();
+                    var values = line.Split(';');
+                    if (values.Length == 5)
+                    {
+                        if (!products.Keys.Contains(values[0]))
+                            products[values[0]] = new Products()
+                            {
+                                Name = values[0],
+                                Proteins = double.Parse(values[2]),
+                                Fat = double.Parse(values[3]),
+                                Carbohydrates = double.Parse(values[4]),
+                                Ñalories = double.Parse(values[1])
+                            };
+                    }
+                }
+                context.Products.AddRange(products.Values);
+
+                context.SaveChanges();
+                base.Seed(context);
+            }
         }
     }
 }

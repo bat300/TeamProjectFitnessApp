@@ -7,13 +7,13 @@ namespace FitnessDietApp.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Change_1 : IMigrationMetadata
+    public sealed partial class MissingProteinsIgnoreChanges : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Change_1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(MissingProteinsIgnoreChanges));
         
         string IMigrationMetadata.Id
         {
-            get { return "201612051844355_Change_1"; }
+            get { return "201612061753307_MissingProteins-IgnoreChanges"; }
         }
         
         string IMigrationMetadata.Source

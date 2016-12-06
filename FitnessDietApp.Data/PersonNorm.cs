@@ -8,13 +8,15 @@ namespace FitnessDietApp.Data
 {
     public class PersonNorm
     {
-        public int Id { get; set; }
-        public DateTime DateOfBegin { get; set; }
-        public DateTime DateOfChange { get; set; }
-        public double Proteins { get; set; }
-        public double Fat { get; set; }
-        public double Carbohydrates { get; set; }
-        public int Сalories { get; set; }
+        public int Id { get; set; }   
+        public double ProteinsLow { get; set; }
+        public double ProteinsUp { get; set; }
+        public double FatLow { get; set; }
+        public double FatUp { get; set; }
+        public double CarbohydratesLow { get; set; }
+        public double CarbohydratesUp { get; set; }
+        public double CaloriesLow { get; set; }
+        public double CaloriesUp { get; set; }
         public PersonInfo Parametrs { get; set; }
     }
 }

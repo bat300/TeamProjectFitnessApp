@@ -3,7 +3,7 @@ namespace FitnessDietApp.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Change_1 : DbMigration
+    public partial class MissingProteinsIgnoreChanges : DbMigration
     {
         public override void Up()
         {
@@ -26,10 +26,20 @@ namespace FitnessDietApp.Data.Migrations
                 .Index(t => t.Product_Id)
                 .Index(t => t.Diary_Id);
             
-            AddColumn("dbo.PersonNorms", "Proteins", c => c.Double(nullable: false));
-            AddColumn("dbo.PersonNorms", "Fat", c => c.Double(nullable: false));
-            AddColumn("dbo.PersonNorms", "Carbohydrates", c => c.Double(nullable: false));
-            AddColumn("dbo.PersonNorms", "Сalories", c => c.Int(nullable: false));
+            AddColumn("dbo.Diaries", "PersonNorm_Id", c => c.Int());
+            AddColumn("dbo.PersonNorms", "ProteinsLow", c => c.Double(nullable: false));
+            AddColumn("dbo.PersonNorms", "ProteinsUp", c => c.Double(nullable: false));
+            AddColumn("dbo.PersonNorms", "FatLow", c => c.Double(nullable: false));
+            AddColumn("dbo.PersonNorms", "FatUp", c => c.Double(nullable: false));
+            AddColumn("dbo.PersonNorms", "CarbohydratesLow", c => c.Double(nullable: false));
+            AddColumn("dbo.PersonNorms", "CarbohydratesUp", c => c.Double(nullable: false));
+            AddColumn("dbo.PersonNorms", "CaloriesLow", c => c.Double(nullable: false));
+            AddColumn("dbo.PersonNorms", "CaloriesUp", c => c.Double(nullable: false));
+            AlterColumn("dbo.Products", "Сalories", c => c.Double(nullable: false));
+            CreateIndex("dbo.Diaries", "PersonNorm_Id");
+            AddForeignKey("dbo.Diaries", "PersonNorm_Id", "dbo.PersonNorms", "Id");
+            DropColumn("dbo.PersonNorms", "DateOfBegin");
+            DropColumn("dbo.PersonNorms", "DateOfChange");
             DropTable("dbo.ProductsDiaries");
         }
         
@@ -44,14 +54,24 @@ namespace FitnessDietApp.Data.Migrations
                     })
                 .PrimaryKey(t => new { t.Products_Id, t.Diary_Id });
             
+            AddColumn("dbo.PersonNorms", "DateOfChange", c => c.DateTime(nullable: false));
+            AddColumn("dbo.PersonNorms", "DateOfBegin", c => c.DateTime(nullable: false));
+            DropForeignKey("dbo.Diaries", "PersonNorm_Id", "dbo.PersonNorms");
             DropForeignKey("dbo.DiaryItems", "Diary_Id", "dbo.Diaries");
             DropForeignKey("dbo.DiaryItems", "Product_Id", "dbo.Products");
             DropIndex("dbo.DiaryItems", new[] { "Diary_Id" });
             DropIndex("dbo.DiaryItems", new[] { "Product_Id" });
-            DropColumn("dbo.PersonNorms", "Сalories");
-            DropColumn("dbo.PersonNorms", "Carbohydrates");
-            DropColumn("dbo.PersonNorms", "Fat");
-            DropColumn("dbo.PersonNorms", "Proteins");
+            DropIndex("dbo.Diaries", new[] { "PersonNorm_Id" });
+            AlterColumn("dbo.Products", "Сalories", c => c.Int(nullable: false));
+            DropColumn("dbo.PersonNorms", "CaloriesUp");
+            DropColumn("dbo.PersonNorms", "CaloriesLow");
+            DropColumn("dbo.PersonNorms", "CarbohydratesUp");
+            DropColumn("dbo.PersonNorms", "CarbohydratesLow");
+            DropColumn("dbo.PersonNorms", "FatUp");
+            DropColumn("dbo.PersonNorms", "FatLow");
+            DropColumn("dbo.PersonNorms", "ProteinsUp");
+            DropColumn("dbo.PersonNorms", "ProteinsLow");
+            DropColumn("dbo.Diaries", "PersonNorm_Id");
             DropTable("dbo.DiaryItems");
             CreateIndex("dbo.ProductsDiaries", "Diary_Id");
             CreateIndex("dbo.ProductsDiaries", "Products_Id");
