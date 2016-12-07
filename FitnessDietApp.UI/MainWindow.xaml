@@ -89,7 +89,7 @@
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
-                </DataGrid.Columns>
+                </DataGrid.Columns> 
             </DataGrid>
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
@@ -101,12 +101,15 @@
             </Grid>
         </Grid>
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="322*"/>
-                <ColumnDefinition Width="195*"/>
-            </Grid.ColumnDefinitions>
-            <Image x:Name="image" HorizontalAlignment="Left" Height="209" Margin="31,18,0,0" VerticalAlignment="Top" Width="450" Grid.ColumnSpan="2"/>
-
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Label Content="Дневник питания" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Grid>
     </Grid>
 </Window>
