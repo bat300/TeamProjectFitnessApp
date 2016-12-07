@@ -50,7 +50,7 @@
             </StackPanel>
             <Button Content="Перейти к дневнику питания" Margin="100,10" Name="GoToTheDiary"/>
         </StackPanel>
-        <Grid>
+        <Grid Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="50"/>
@@ -89,7 +89,7 @@
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
-                </DataGrid.Columns> 
+                </DataGrid.Columns>
             </DataGrid>
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
@@ -99,6 +99,10 @@
                 <Button Content="Показать дневник с рассчетом КБЖУ" Margin="5"/>
                 <Button Content="Анализ дневника питания" Grid.Column="1" Margin="5"/>
             </Grid>
+        </Grid>
+        <Grid>
+            <Image x:Name="image" HorizontalAlignment="Left" Height="209" Margin="31,18,0,0" VerticalAlignment="Top" Width="450"/>
+
         </Grid>
     </Grid>
 </Window>
