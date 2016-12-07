@@ -53,6 +53,7 @@
     <Compile Include="Context.cs" />
     <Compile Include="Diary.cs" />
     <Compile Include="DiaryItem.cs" />
+    <Compile Include="InfoProDaySummarising.cs" />
     <Compile Include="Migrations\201612051136391_Initial.cs" />
     <Compile Include="Migrations\201612051136391_Initial.Designer.cs">
       <DependentUpon>201612051136391_Initial.cs</DependentUpon>
@@ -69,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
