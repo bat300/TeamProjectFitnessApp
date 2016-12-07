@@ -14,6 +14,7 @@ namespace FitnessDietApp.Data
         public DbSet<DiaryItem> DiaryItems { get; set; }
         public DbSet<PersonInfo> PersonInfo { get; set; }
         public DbSet<PersonNorm> PersonNorms { get; set; }
+        public DbSet<InfoProDaySummarising> InfoProDaySummarisings { get; set; }
 
         public Context() : base("localsql")
         {
