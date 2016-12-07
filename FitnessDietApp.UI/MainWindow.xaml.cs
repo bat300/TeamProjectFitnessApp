@@ -24,7 +24,7 @@ namespace FitnessDietApp.UI
     {
        public MainWindow()
         {
-            InitializeComponent();            
+            //InitializeComponent();            
         }
     }
 }

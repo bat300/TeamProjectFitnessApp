@@ -17,6 +17,9 @@ namespace FitnessDietApp.Data.Migrations
 
         protected override void Seed(Context context)
         {
+            context.Database.ExecuteSqlCommand(TransactionalBehavior.DoNotEnsureTransaction, "ALTER DATABASE " + context.Database.Connection.Database + " SET SINGLE_USER WITH ROLLBACK IMMEDIATE");
+            context.Database.ExecuteSqlCommand(TransactionalBehavior.DoNotEnsureTransaction, "ALTER DATABASE " + context.Database.Connection.Database + " SET MULTI_USER");
+
             context.Database.Delete();
             context.Database.Create();
 

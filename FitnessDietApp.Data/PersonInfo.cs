@@ -14,5 +14,6 @@ namespace FitnessDietApp.Data
         public int Height { get; set; } //см
         public double Weight { get; set; } //кг
         public int Lifestyle { get; set; }
+
     }
 }

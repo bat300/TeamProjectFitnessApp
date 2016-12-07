@@ -8,5 +8,43 @@ namespace FitnessDietApp.Data
 {
     class CalculateNorm
     {
+        public void CalculateNorms(PersonInfo personInfo, PersonNorm personNorm)
+        {
+            if (personInfo.Gender == 1) // female            
+                personNorm.Calories = (655 + (9.6 * personInfo.Weight) + (1.8 * personInfo.Height) - (4.7 * personInfo.Age));
+            else //male
+                personNorm.Calories = (66 + (13.7 * personInfo.Weight) + (5 * personInfo.Height) - (6.8 * personInfo.Age));
+
+
+            switch (personInfo.Lifestyle)
+            {
+                case 1: //низкая активность
+                    personNorm.Calories = personNorm.Calories * 1.20;
+                    break;
+                case 2: // малая активность
+                    personNorm.Calories = personNorm.Calories * 1.38;
+                    break;
+                case 3: // средняя
+                    personNorm.Calories = personNorm.Calories * 1.55;
+                    break;
+                case 4: // высокая
+                    personNorm.Calories = personNorm.Calories * 1.73;
+                    break;
+            }
+
+            personNorm.CaloriesLow = personNorm.Calories - 250;
+            personNorm.CaloriesUp = personNorm.Calories + 100;
+
+            personNorm.ProteinsLow = personNorm.CaloriesLow * 0.3 / 4;
+            personNorm.ProteinsUp = personNorm.CaloriesUp * 0.35 / 4;
+
+            personNorm.FatLow = personNorm.CaloriesLow * 0.15 / 9;
+            personNorm.FatUp = personNorm.CaloriesUp * 0.2 / 9;
+
+            personNorm.CarbohydratesLow = personNorm.CaloriesLow * 0.45 / 4;
+            personNorm.CarbohydratesUp = personNorm.CaloriesUp * 0.5 / 4;
+
+        }
     }
 }
+
