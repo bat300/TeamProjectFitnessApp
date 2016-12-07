@@ -101,7 +101,11 @@
             </Grid>
         </Grid>
         <Grid>
-            <Image x:Name="image" HorizontalAlignment="Left" Height="209" Margin="31,18,0,0" VerticalAlignment="Top" Width="450"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="322*"/>
+                <ColumnDefinition Width="195*"/>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="image" HorizontalAlignment="Left" Height="209" Margin="31,18,0,0" VerticalAlignment="Top" Width="450" Grid.ColumnSpan="2"/>
 
         </Grid>
     </Grid>

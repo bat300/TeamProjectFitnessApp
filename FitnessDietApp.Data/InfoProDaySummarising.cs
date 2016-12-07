@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FitnessDietApp.Data
 {
-    class InfoProDaySummarising
+    public class InfoProDaySummarising
     {
         private double proteinsProDay;
         private double fatsProDay;
