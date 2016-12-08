@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace FitnessDietApp.Data
 {
     public delegate void Recomendation(string Message);
-    class Analysing
+    public class Analysing
     {
         public event Recomendation RecomendationMessage;
         public void Recomendations()//продумать рекомендации и выводы!

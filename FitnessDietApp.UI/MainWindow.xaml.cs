@@ -26,11 +26,14 @@ namespace FitnessDietApp.UI
         public MainWindow()
         {
             //InitializeComponent();
+
+            Context context = Factory.Default.GetContext();
+
             double Max = 0;
             double Width = 0;
-            using (Context cont = new Context())
+            using (context)
             {
-                foreach (var item in cont.InfoProDaySummarisings)
+                foreach (var item in context.InfoProDaySummarisings)
                 {
                     if (item.CarbohydratesProDay > Max)
                     {
@@ -77,7 +80,7 @@ namespace FitnessDietApp.UI
                         int i = 0;
                         double last = 0;
                         GeoGroup = new GeometryGroup();
-                        foreach (var item in cont.InfoProDaySummarisings)
+                        foreach (var item in context.InfoProDaySummarisings)
                         {
                             if (i != 0)
                             {
@@ -97,7 +100,7 @@ namespace FitnessDietApp.UI
                         int i = 0;
                         double last = 0;
                         GeoGroup = new GeometryGroup();
-                        foreach (var item in cont.InfoProDaySummarisings)
+                        foreach (var item in context.InfoProDaySummarisings)
                         {
                             if (i != 0)
                             {
@@ -117,7 +120,7 @@ namespace FitnessDietApp.UI
                         int i = 0;
                         double last = 0;
                         GeoGroup = new GeometryGroup();
-                        foreach (var item in cont.InfoProDaySummarisings)
+                        foreach (var item in context.InfoProDaySummarisings)
                         {
                             if (i != 0)
                             {
@@ -133,7 +136,7 @@ namespace FitnessDietApp.UI
                     {
                         GeoGroup = new GeometryGroup();
                         int i = 0;
-                        foreach (var item in cont.InfoProDaySummarisings)
+                        foreach (var item in context.InfoProDaySummarisings)
                         {
                             GeoDrawing.Brush = Brushes.Red;
                             GeoDrawing.Pen = new Pen(Brushes.Red, 5);
@@ -164,7 +167,7 @@ namespace FitnessDietApp.UI
                     {
                         GeoGroup = new GeometryGroup();
                         int i = 0;
-                        foreach (var item in cont.InfoProDaySummarisings)
+                        foreach (var item in context.InfoProDaySummarisings)
                         {
                             GeoDrawing.Brush = Brushes.Yellow;
                             GeoDrawing.Pen = new Pen(Brushes.Orange, 5);
