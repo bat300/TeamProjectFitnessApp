@@ -6,7 +6,7 @@
         xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
         xmlns:local="clr-namespace:FitnessDietApp.UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
     <Grid>
         <Grid Visibility="Hidden">
             <Grid.RowDefinitions>
@@ -20,7 +20,7 @@
         </Grid>
         <StackPanel Visibility="Hidden">
             <Label Content="Введите ваши параметры" HorizontalAlignment="Center" />
-            <Grid Loaded="Grid_Loaded">
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition/>

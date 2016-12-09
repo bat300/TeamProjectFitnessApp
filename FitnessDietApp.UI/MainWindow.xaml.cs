@@ -30,7 +30,7 @@ namespace FitnessDietApp.UI
 
         }
 
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Context context = Factory.Default.GetContext();
 
