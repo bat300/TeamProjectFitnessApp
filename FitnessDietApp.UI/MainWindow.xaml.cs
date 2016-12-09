@@ -25,8 +25,13 @@ namespace FitnessDietApp.UI
     {
         public MainWindow()
         {
-            //InitializeComponent();
+            InitializeComponent();
 
+
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
             Context context = Factory.Default.GetContext();
 
             double Max = 0;
@@ -239,8 +244,8 @@ namespace FitnessDietApp.UI
 
                 image.Source = new DrawingImage(CallsDrawingGroup);
             }
-            }
         }
     }
+}
 
 

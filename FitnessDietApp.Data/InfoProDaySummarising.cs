@@ -8,6 +8,7 @@ namespace FitnessDietApp.Data
 {
     public class InfoProDaySummarising
     {
+        public int Id { get; set; }
         private double proteinsProDay;
         private double fatsProDay;
         private double carbohydratesProDay;

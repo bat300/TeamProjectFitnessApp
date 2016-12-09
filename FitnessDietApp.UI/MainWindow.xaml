@@ -1,4 +1,4 @@
-﻿<Window x:Class="FitnessDiet.UI.MainWindow"
+﻿<Window x:Class="FitnessDietApp.UI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -20,7 +20,7 @@
         </Grid>
         <StackPanel Visibility="Hidden">
             <Label Content="Введите ваши параметры" HorizontalAlignment="Center" />
-            <Grid>
+            <Grid Loaded="Grid_Loaded">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition/>
@@ -99,6 +99,9 @@
                 <Button Content="Показать дневник с рассчетом КБЖУ" Margin="5"/>
                 <Button Content="Анализ дневника питания" Grid.Column="1" Margin="5"/>
             </Grid>
+        </Grid>
+        <Grid Visibility="Hidden">
+            <Image x:Name="image" HorizontalAlignment="Left" Height="209" Margin="31,18,0,0" VerticalAlignment="Top" Width="450"/>
         </Grid>
     </Grid>
 </Window>
