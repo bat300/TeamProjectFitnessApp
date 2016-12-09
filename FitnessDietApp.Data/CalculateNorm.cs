@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FitnessDietApp.Data
 {
-    class CalculateNorm
+    public class CalculateNorm
     {
         public void CalculateNorms(PersonInfo personInfo, PersonNorm personNorm)
         {
