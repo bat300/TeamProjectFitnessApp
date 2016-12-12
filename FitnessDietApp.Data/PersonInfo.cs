@@ -3,6 +3,7 @@
 namespace FitnessDietApp.Data
 {
     [Table("PersonInfo")]
+    //ggg
     public class PersonInfo
     {        
         public int Id { get; set; }
