@@ -77,6 +77,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="PageOfAnalysis.xaml.cs">
+      <DependentUpon>PageOfAnalysis.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageWithDiary.xaml.cs">
+      <DependentUpon>PageWithDiary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageWithPersonalData.xaml.cs">
+      <DependentUpon>PageWithPersonalData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageWithRation.xaml.cs">
+      <DependentUpon>PageWithRation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StartPage.xaml.cs">
+      <DependentUpon>StartPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -89,6 +104,26 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PageOfAnalysis.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageWithDiary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageWithPersonalData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PageWithRation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

@@ -1,0 +1,61 @@
+﻿<Page x:Class="FitnessDietApp.UI.PageWithRation"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FitnessDietApp.UI"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="PageWithRation">
+
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Label Content="Введите ваш рацион" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Grid Grid.Row="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Название продукта (выберите)" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+            <Label Content="Введите вес порции (г)" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" />
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="15,0" Height="20" TextAlignment="Center" Name="ProductWeight"/>
+        </Grid>
+        <Button Content="Добавить!" Grid.Row="2" Width="150" Height="30" Name="AddProductToTheTable"/>
+        <DataGrid Grid.Row="3" Name="ChosenProductsGrid">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Дата"  Width="90">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader"  >
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Ваши добавленные продукты" Width="*">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader"  >
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Показать дневник с рассчетом КБЖУ" Margin="5"/>
+            <Button Content="Анализ дневника питания" Grid.Column="1" Margin="5"/>
+        </Grid>
+    </Grid>
+</Page>
