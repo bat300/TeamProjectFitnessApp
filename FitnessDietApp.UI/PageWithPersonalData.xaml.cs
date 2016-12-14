@@ -33,7 +33,7 @@ namespace FitnessDietApp.UI
             Person.Age = int.Parse(Age.Text);
             Person.Weight = double.Parse(Weight.Text);
             Person.Height = int.Parse(Height.Text);
-            Person.Gender = ;
+            //Person.Gender = ;
         }
     }
 }
