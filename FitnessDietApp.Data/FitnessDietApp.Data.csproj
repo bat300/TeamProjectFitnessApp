@@ -68,6 +68,10 @@
     <Compile Include="Migrations\201612062105502_Initial-IgnoreChanges.Designer.cs">
       <DependentUpon>201612062105502_Initial-IgnoreChanges.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612141928288_DeletingAnalisysFromDB.cs" />
+    <Compile Include="Migrations\201612141928288_DeletingAnalisysFromDB.Designer.cs">
+      <DependentUpon>201612141928288_DeletingAnalisysFromDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PersonInfo.cs" />
     <Compile Include="PersonNorm.cs" />
@@ -88,6 +92,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612062105502_Initial-IgnoreChanges.resx">
       <DependentUpon>201612062105502_Initial-IgnoreChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612141928288_DeletingAnalisysFromDB.resx">
+      <DependentUpon>201612141928288_DeletingAnalisysFromDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
