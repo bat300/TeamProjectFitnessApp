@@ -11,50 +11,59 @@ namespace FitnessDietApp.Data
     {
         public event Recomendation RecomendationMessage;
         Factory factory;
-        public void Recomendations(DateTime date)//продумать рекомендации и выводы!
+        public void Recomendations(DateTime date)
         {
             double AveragePersentageOfFat=0;
             double AveragePersentageOfProteins=0;
             double AveragePersentageOfCarbohydrates=0;
             double AveragePersentageOfCallories = 0;
             int NumberOfDays = 0;
+            InfoProDaySummarising inf = new InfoProDaySummarising();
             using (var cont = factory.GetContext())
             {
-                foreach (var item in cont.InfoProDaySummarisings)
-                {
-                    if (item.DaysDiary.Date>=date)
+                foreach (var item in cont.Diary)
                     {
-                        if (item.DeviationOfCarbohydratesProDay>0)
+                    double CarbohydratesProDay = inf.CarbohydratesPerDay(item.DiaryItems);
+                    double DeviationOfCarbohydratesProDay = inf.DeviationOfCarbohydratesPerDay(CarbohydratesProDay, item.PersonNorm);
+                    double FatsProDay = inf.FatsPerDay(item.DiaryItems);
+                    double DeviationOfFatsProDay = inf.DeviationOfFatsPerDay(FatsProDay, item.PersonNorm);
+                    double ProteinsProDay = inf.ProteinsPerDay(item.DiaryItems);
+                    double DeviationOfProteinsProDay = inf.DeviationOfProteinsPerDay(ProteinsProDay, item.PersonNorm);
+                    double CalloriesProDay = inf.CalloriesPerDay(item.DiaryItems);
+                    double DeviationOfCalloriesProDay = inf.DeviationOfCalloriesPerDay(CalloriesProDay,item.PersonNorm);
+                    if (item.Date>=date)
+                    {
+                        if (DeviationOfCarbohydratesProDay>0)
                         {
-                            AveragePersentageOfCarbohydrates += item.DeviationOfCarbohydratesProDay / item.DaysDiary.PersonNorm.CarbohydratesUp;
+                            AveragePersentageOfCarbohydrates += DeviationOfCarbohydratesProDay / item.PersonNorm.CarbohydratesUp;
                         }
                         else
                         {
-                            AveragePersentageOfCarbohydrates += item.DeviationOfCarbohydratesProDay / item.DaysDiary.PersonNorm.CarbohydratesLow;
+                            AveragePersentageOfCarbohydrates += DeviationOfCarbohydratesProDay / item.PersonNorm.CarbohydratesLow;
                         }
-                        if (item.DeviationOfFatsProDay > 0)
+                        if (DeviationOfFatsProDay > 0)
                         {
-                            AveragePersentageOfFat += item.DeviationOfFatsProDay / item.DaysDiary.PersonNorm.FatUp;
-                        }
-                        else
-                        {
-                            AveragePersentageOfFat += item.DeviationOfFatsProDay / item.DaysDiary.PersonNorm.FatLow;
-                        }
-                        if (item.DeviationOfProteinsProDay > 0)
-                        {
-                            AveragePersentageOfProteins += item.DeviationOfProteinsProDay / item.DaysDiary.PersonNorm.ProteinsUp;
+                            AveragePersentageOfFat += DeviationOfFatsProDay / item.PersonNorm.FatUp;
                         }
                         else
                         {
-                            AveragePersentageOfProteins += item.DeviationOfProteinsProDay / item.DaysDiary.PersonNorm.ProteinsLow;
+                            AveragePersentageOfFat += DeviationOfFatsProDay / item.PersonNorm.FatLow;
                         }
-                        if (item.DeviationOfCalloriesProDay > 0)
+                        if (DeviationOfProteinsProDay > 0)
                         {
-                            AveragePersentageOfCallories += item.DeviationOfCalloriesProDay / item.DaysDiary.PersonNorm.CaloriesUp;
+                            AveragePersentageOfProteins += DeviationOfProteinsProDay / item.PersonNorm.ProteinsUp;
                         }
                         else
                         {
-                            AveragePersentageOfCallories += item.DeviationOfCalloriesProDay / item.DaysDiary.PersonNorm.CaloriesLow;
+                            AveragePersentageOfProteins += DeviationOfProteinsProDay / item.PersonNorm.ProteinsLow;
+                        }
+                        if (DeviationOfCalloriesProDay > 0)
+                        {
+                            AveragePersentageOfCallories += DeviationOfCalloriesProDay / item.PersonNorm.CaloriesUp;
+                        }
+                        else
+                        {
+                            AveragePersentageOfCallories += DeviationOfCalloriesProDay / item.PersonNorm.CaloriesLow;
                         }
                         NumberOfDays += 1;
                     }
