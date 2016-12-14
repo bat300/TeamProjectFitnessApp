@@ -7,7 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="PageOfAnalysis">
-    <Grid >
-        <Image x:Name="image" HorizontalAlignment="Left" Height="184" Margin="25,38,0,0" VerticalAlignment="Top" Width="248"/>
+    <Grid Margin="0,0,0,-11" >
+        <Image x:Name="image" HorizontalAlignment="Left" Height="184" Margin="26,31,0,0" VerticalAlignment="Top" Width="248"/>
+        <Label Content="Analisys" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Forte" Margin="116,0,124,274"/>
+        <ListBox x:Name="listBoxForRecommendations" HorizontalAlignment="Left" Height="60" Margin="26,229,0,0" VerticalAlignment="Top" Width="248"/>
     </Grid>
 </Page>
