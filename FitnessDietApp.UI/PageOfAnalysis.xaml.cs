@@ -24,13 +24,10 @@ namespace FitnessDietApp.UI
     {
         public PageOfAnalysis()
         {
-            /*InitializeComponent();
-
-            Context context = Factory.Default.GetContext();
-
+            InitializeComponent();
             double Max = 0;
             double Width = 0;
-            using (context)
+            using (Context context = Factory.Default.GetContext())
             {
                 foreach (var item in context.InfoProDaySummarisings)
                 {
@@ -55,7 +52,7 @@ namespace FitnessDietApp.UI
                 double Width2 = (Width - 1) / Width;
                 double Hight = Math.Round(Max) + 1;
                 DrawingGroup CallsDrawingGroup = new DrawingGroup();
-                for (int Stages = 0; Stages < 7; Stages++)
+                for (int Stages = 0; Stages < 8; Stages++)
                 {
                     GeometryDrawing GeoDrawing = new GeometryDrawing();
                     GeometryGroup GeoGroup = new GeometryGroup();
@@ -211,7 +208,7 @@ namespace FitnessDietApp.UI
                             GeoGroup.Children.Add(Geo);
                         }
                     }
-                    //Сетка?????????????????????????????????????????????????????????????????????????????
+                    //Сетка
                     if (Stages == 7)
                     {
                         GeoDrawing.Brush = Brushes.Beige;
@@ -231,13 +228,13 @@ namespace FitnessDietApp.UI
                             GeoGroup.Children.Add(LGeo);
                         }
                     }
-                    //??????????????????????????????????????????????????????????????????????????????????
+                    
                     GeoDrawing.Geometry = GeoGroup;
                     CallsDrawingGroup.Children.Add(GeoDrawing);
                 }
 
                 image.Source = new DrawingImage(CallsDrawingGroup);
-            }*/
+            }
         }
     }
 }

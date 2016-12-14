@@ -63,14 +63,53 @@ namespace FitnessDietApp.Data
                 AveragePersentageOfCarbohydrates = AveragePersentageOfCarbohydrates / NumberOfDays;
                 AveragePersentageOfFat = AveragePersentageOfFat / NumberOfDays;
                 AveragePersentageOfProteins = AveragePersentageOfProteins / NumberOfDays;
+                StringBuilder Message = new StringBuilder();
+                Message.Append(String.Format("Средние отклонения от нормы БЖУ: Белки {0}%, Жиры {1}%, Углеводы {2} %, Каллории {3}%. /n",AveragePersentageOfProteins,AveragePersentageOfFat,AveragePersentageOfCarbohydrates, AveragePersentageOfCallories));
                 if ((AveragePersentageOfProteins>0)&&(AveragePersentageOfFat>0)&&(AveragePersentageOfCarbohydrates>0))//Доделать!
                 {
-                    var Message = String.Format("");
-                    RecomendationMessage(Message);
+
+                     Message.Append("Рекомендуется уменьшить количество потребляемой пищи.");
+                    RecomendationMessage(Message.ToString());
                 }
                 else
                 {
-                    RecomendationMessage("Сообщение");
+                    if ((AveragePersentageOfProteins < 0) && (AveragePersentageOfFat < 0) && (AveragePersentageOfCarbohydrates < 0))
+                    {
+                         Message.Append("Рекомендуется увеличить количество потребляемой пищи.");
+                        RecomendationMessage(Message.ToString());
+                    }
+                    
+                    else
+                        if ((AveragePersentageOfProteins == 0) && (AveragePersentageOfFat == 0) && (AveragePersentageOfCarbohydrates == 0))
+                    {
+                         Message.Append("Так держать! Вы на пути к поставленной цели!");
+                        RecomendationMessage(Message.ToString());
+                    }
+                    else
+                        if ((AveragePersentageOfProteins == 0) || (AveragePersentageOfFat == 0) || (AveragePersentageOfCarbohydrates == 0))
+                    {
+                         Message.Append("Вы движетесь в правильном направлении! Рекомендуется скорректировать потребление ");
+                        if (AveragePersentageOfCarbohydrates!=0)
+                        {
+                            Message.Append( "углеводов,");
+                        }
+                        if (AveragePersentageOfFat!=0)
+                        {
+                            Message.Append( " жиров,");
+                        }
+                        if (AveragePersentageOfProteins!=0)
+                        {
+                            Message.Append( " углеводов,");
+                        }
+                        Message.Remove(Message.Length, 1);
+                        Message.Append( ".");
+                        RecomendationMessage(Message.ToString());
+                    }
+                    else
+                    {
+                        Message.Append("Рекомендуется скорректировать весь рацион в соответствии с нормами КБЖУ");
+                        RecomendationMessage(Message.ToString());
+                    } 
                 }
             }
         }

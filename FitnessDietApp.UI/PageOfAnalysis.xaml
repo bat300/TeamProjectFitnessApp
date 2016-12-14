@@ -8,6 +8,6 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="PageOfAnalysis">
     <Grid >
-        <Image x:Name="image" HorizontalAlignment="Left" Height="209" Margin="31,18,0,0" VerticalAlignment="Top" Width="450"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="184" Margin="25,38,0,0" VerticalAlignment="Top" Width="248"/>
     </Grid>
 </Page>
