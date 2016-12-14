@@ -18,7 +18,8 @@ namespace FitnessDietApp.Data
             double AveragePersentageOfCarbohydrates=0;
             double AveragePersentageOfCallories = 0;
             int NumberOfDays = 0;
-            InfoProDaySummarising inf = new InfoProDaySummarising();
+            //InfoProDaySummarising inf = new InfoProDaySummarising();
+            InfoProDaySummarising inf = factory.GetInfoProDaySummarising();
             using (var cont = factory.GetContext())
             {
                 foreach (var item in cont.Diary)
