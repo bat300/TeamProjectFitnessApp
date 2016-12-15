@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FitnessDietApp.Data;
 
 namespace FitnessDietApp.UI
 {
@@ -20,14 +21,30 @@ namespace FitnessDietApp.UI
     /// </summary>
     public partial class PageWithRation : Page
     {
+        List<ProductInfo> ChoosenProductsList = new List<ProductInfo>();
+        public List<string> ProductNames { get; private set; }
         public PageWithRation()
         {
             InitializeComponent();
+            using (var context = new Context())
+            {
+                ProductNames = (from product in context.Products.ToList() select product.Name).ToList();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void AddProductToTheTable_Click(object sender, RoutedEventArgs e)
+        {
+            //ChosenProductsGrid.Items.Add(new { Date=DateTime.Now.Date.ToString("dd.MM.yy"), Name=ProductName.Text });
+            ChoosenProductsList.Add(new ProductInfo(DateTime.Now.Date.ToString("dd.MM.yy"), ProductName.Text, double.Parse(ProductWeight.Text)));
+            ChosenProductsGrid.Items.Add(ChoosenProductsList.Last());
+            //ChosenProductsGrid.Items.Refresh();
+            ProductName.Text = "";
+            ProductWeight.Text = "";
         }
     }
 }

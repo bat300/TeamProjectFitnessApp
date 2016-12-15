@@ -72,7 +72,7 @@ namespace FitnessDietApp.UI
                         GeoDrawing.Pen = new Pen(Brushes.Black, 3);
 
                         RectangleGeometry Background = new RectangleGeometry();
-                        Background.Rect = new Rect(0, 0, (Math.Round(Max) + 1) * Width2, Math.Round(Max) + 1);
+                        //Background.Rect = new Rect(0, 0, (Math.Round(Max) + 1) * Width2, Math.Round(Max) + 1);
                         GeoGroup.Children.Add(Background);
                     }
                     //График протеинов

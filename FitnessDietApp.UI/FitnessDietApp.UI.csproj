@@ -89,6 +89,7 @@
     <Compile Include="PageWithRation.xaml.cs">
       <DependentUpon>PageWithRation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProductInfo.cs" />
     <Compile Include="StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
     </Compile>

@@ -56,22 +56,6 @@
     <Compile Include="DiaryItem.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="InfoProDaySummarising.cs" />
-    <Compile Include="Migrations\201612051136391_Initial.cs" />
-    <Compile Include="Migrations\201612051136391_Initial.Designer.cs">
-      <DependentUpon>201612051136391_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612061753307_MissingProteins-IgnoreChanges.cs" />
-    <Compile Include="Migrations\201612061753307_MissingProteins-IgnoreChanges.Designer.cs">
-      <DependentUpon>201612061753307_MissingProteins-IgnoreChanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612062105502_Initial-IgnoreChanges.cs" />
-    <Compile Include="Migrations\201612062105502_Initial-IgnoreChanges.Designer.cs">
-      <DependentUpon>201612062105502_Initial-IgnoreChanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612141928288_DeletingAnalisysFromDB.cs" />
-    <Compile Include="Migrations\201612141928288_DeletingAnalisysFromDB.Designer.cs">
-      <DependentUpon>201612141928288_DeletingAnalisysFromDB.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PersonInfo.cs" />
     <Compile Include="PersonNorm.cs" />
@@ -82,20 +66,6 @@
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612051136391_Initial.resx">
-      <DependentUpon>201612051136391_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612061753307_MissingProteins-IgnoreChanges.resx">
-      <DependentUpon>201612061753307_MissingProteins-IgnoreChanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612062105502_Initial-IgnoreChanges.resx">
-      <DependentUpon>201612062105502_Initial-IgnoreChanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612141928288_DeletingAnalisysFromDB.resx">
-      <DependentUpon>201612141928288_DeletingAnalisysFromDB.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

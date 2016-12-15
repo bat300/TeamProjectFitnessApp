@@ -26,7 +26,7 @@
             <Label Grid.Column="0" Grid.Row="2" Content="Вес в (кг)" HorizontalAlignment="Right"/>
             <Label Grid.Column="0" Grid.Row="3" Content="Рост (в см)"  HorizontalAlignment="Right"/>
             <Label Grid.Column="0" Grid.Row="4" Content="Образ жизни" HorizontalAlignment="Right"/>
-            <ComboBox Grid.Column="1" Name="ChooseGender"/>
+            <ComboBox Grid.Column="1" Name="ChooseGender" SelectionChanged="ChooseGender_SelectionChanged"/>
             <TextBox Grid.Column="1" Grid.Row="1" Name="Age" TextAlignment="Center"/>
             <TextBox Grid.Column="1" Grid.Row="2" Name="Weight" TextAlignment="Center"/>
             <TextBox Grid.Column="1" Grid.Row="3" Name="Height" TextAlignment="Center"/>
@@ -35,8 +35,8 @@
         <Button Content="Рассчитать!" Margin="10" Width="70" Name="Count" Click="Count_Click" />
         <StackPanel Orientation="Horizontal">
             <Label Content="Ваша идеальная норма: "/>
-            <Label Content="lfjnf" Margin="10,0,0,0"/>
+            <Label Name="Norma" Margin="10,0,0,0"/>
         </StackPanel>
-        <Button Content="Перейти к дневнику питания" Margin="100,10" Name="GoToTheDiary"/>
+        <Button Content="Перейти к дневнику питания" Margin="100,10" Name="GoToTheDiary" Click="GoToTheDiary_Click"/>
     </StackPanel>
 </Page>

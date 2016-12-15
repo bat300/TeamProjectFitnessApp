@@ -25,5 +25,10 @@ namespace FitnessDietApp.UI
         {
             InitializeComponent();
         }
+
+        private void ChooseNewUser_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

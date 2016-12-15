@@ -22,10 +22,11 @@ namespace FitnessDietApp.Data.Migrations
 
             //context.Database.Delete();
             //context.Database.Create();
+            //System.Diagnostics.Debugger.Launch();
 
             Dictionary<string, Products> products = new Dictionary<string, Products>();
 
-            using (var reader = new StreamReader("productsInfo.csv"))
+            using (var reader = new StreamReader(@"C:\Users\Tanya\Desktop\Новая папка (4)\productsInfo.csv"))
             {
                 string line;
                 while (!reader.EndOfStream)
