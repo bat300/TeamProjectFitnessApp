@@ -56,7 +56,7 @@ namespace FitnessDietApp.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Введены некорректные данные.");
+                MessageBox.Show("Введены некорректные данные");
             }
         }
 
