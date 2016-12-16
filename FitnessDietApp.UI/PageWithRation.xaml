@@ -30,6 +30,7 @@
             </Grid.ColumnDefinitions>
             <Label Content="Название продукта (выберите)" VerticalAlignment="Center" HorizontalAlignment="Center"  />
             <Label Content="Введите вес порции (г)" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" />
+
             <toolkit:AutoCompleteBox Grid.Column="0" Grid.Row="1" Name="ProductName" ItemsSource="{Binding ProductNames, ElementName=rati}" VerticalAlignment="Center"/>
             <TextBox Grid.Row="1" Grid.Column="1" Margin="15,0" Height="20" TextAlignment="Center" Name="ProductWeight"/>
         </Grid>
