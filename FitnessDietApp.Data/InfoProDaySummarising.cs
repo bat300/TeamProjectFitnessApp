@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FitnessDietApp.Data
 {
-    public class InfoProDaySummarising
+    public class InfoProDaySummarising//ИНТЕРФЕЙС ПОДСЧЁТА
     {
         //public int Id { get; set; }
         //private double proteinsProDay;
