@@ -15,9 +15,8 @@ namespace FitnessDietApp.Data
         public enum PersonsGender  { Male, Female, Error }
         public enum StylesOfLife { NoSport, LightSport, RegularSport, EveryDaySport}
 
-
-         public static PersonsGender GetGenderFromString(string stringGender) {
-
+        public static PersonsGender GetGenderFromString(string stringGender)
+        {
              PersonsGender gender = PersonsGender.Female;
              switch (stringGender)
              {
@@ -56,6 +55,7 @@ namespace FitnessDietApp.Data
             }
             return lifestyle;
         }
+
         public int Id { get; set; }
         public PersonsGender Gender { get; set; }
         public int Age { get; set; }

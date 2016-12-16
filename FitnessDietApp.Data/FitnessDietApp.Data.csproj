@@ -52,10 +52,13 @@
     <Compile Include="Analysing.cs" />
     <Compile Include="CalculateNorm.cs" />
     <Compile Include="Context.cs" />
+    <Compile Include="DeviationsCalculating.cs" />
     <Compile Include="Diary.cs" />
     <Compile Include="DiaryItem.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="InfoProDaySummarising.cs" />
+    <Compile Include="Interfaces\ICalculateNorm.cs" />
+    <Compile Include="Interfaces\IDeviationsCalculating.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PersonInfo.cs" />
     <Compile Include="PersonNorm.cs" />
@@ -64,7 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

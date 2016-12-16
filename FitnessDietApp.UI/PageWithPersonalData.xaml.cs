@@ -37,7 +37,9 @@ namespace FitnessDietApp.UI
         PersonNorm norm = new PersonNorm();
         bool canContinue = false;
        
-        private void Count_Click(object sender, RoutedEventArgs e)
+        private void Count_Click(object sender, RoutedEventArgs e)////Не хватает добавления в бд информации 
+            //о человеке через класс PersonInfo,элемент которого должен добавляться в DBSet с соответсвующим названием
+            //или я не заметила его??
         { 
             try
             {

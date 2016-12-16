@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FitnessDietApp.Data.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,64 +23,25 @@ namespace FitnessDietApp.Data
             }
         }
 
-        private Products _products;
-        private PersonNorm _personNorm;
-        private PersonInfo _personInfo;
-        private InfoProDaySummarising _infoProDaySummarising;
-        private DiaryItem _diaryItem;
-        private Diary _diary;
-        private Context _context;
-        private CalculateNorm _calculateNorm;
+        private ICalculateNorm _calculateNorm;
+        private IDeviationsCalculating _ideviationsCalculating;  
+                  
         private Analysing _analysing;
-
-        public Products GetProducts()
+        
+        public ICalculateNorm GetCalculateNorm()
         {
-            if (_products == null)
-                _products = new Products();
-            return _products;
-        }
-
-        public PersonNorm GetPersonNorm()
+            if (_calculateNorm == null)
+                _calculateNorm = new CalculateNorm();
+            return _calculateNorm;
+        }       
+               
+                
+        public IDeviationsCalculating GetDeviationsCalculating()
         {
-            if (_personNorm == null)
-                _personNorm = new PersonNorm();
-            return _personNorm;
-        }
-
-        public PersonInfo GetPersonInfo()
-        {
-            if (_personInfo == null)
-                _personInfo = new PersonInfo();
-            return _personInfo;
-        }
-
-        public InfoProDaySummarising GetInfoProDaySummarising()
-        {
-            if (_infoProDaySummarising == null)
-                _infoProDaySummarising = new InfoProDaySummarising();
-            return _infoProDaySummarising;
-        }
-
-        public DiaryItem GetDiaryItem()
-        {
-            if (_diaryItem == null)
-                _diaryItem = new DiaryItem();
-            return _diaryItem;
-        }
-
-        public Diary GetDiary()
-        {
-            if (_diary == null)
-                _diary = new Diary();
-            return _diary;
-        }
-
-        public Context GetContext()
-        {
-            if (_context == null)
-                _context = new Context();
-            return _context;
-        }
+            if (_ideviationsCalculating == null)
+                _ideviationsCalculating = new DeviationsCalculating();
+            return _ideviationsCalculating;
+        }       
 
         public Analysing GetAnalysing()
         {

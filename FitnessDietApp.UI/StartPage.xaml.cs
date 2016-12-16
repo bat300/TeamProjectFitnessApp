@@ -19,7 +19,7 @@ namespace FitnessDietApp.UI
     /// <summary>
     /// Логика взаимодействия для StartPage.xaml
     /// </summary>
-    public partial class StartPage : Page
+    public partial class StartPage : Page//При выборе нового пользователя DbSet Diary очищается
     {
         public StartPage()
         {
