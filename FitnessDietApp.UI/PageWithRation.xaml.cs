@@ -22,6 +22,8 @@ namespace FitnessDietApp.UI
     public partial class PageWithRation : Page
         //в UI когда пользователь пишет продукт и количество, создаёшь объект Diary Item ; 
     //потом создаёшь объект класса Diary с этим DiaryItem! Если такой продукт в этот день уже есть, прибавляешь количество.
+    //Если ни одной записи в дневнике нет, нельзя показать анализ, выводить сообщение мб или сделать кнопку доступной 
+    //после первого добавления продукта
     {
         List<ProductInfo> ChoosenProductsList = new List<ProductInfo>();
         public List<string> ProductNames { get; private set; }

@@ -21,7 +21,8 @@ namespace FitnessDietApp.UI
     public partial class PageWithDiary : Page//в textbox написать все промежутки кбжу
         //белки, жиры, углеводы, калории за день расчитываются в методах класса InfoProDaySummarising
         //для вывода в любом случае нужно писать цикл по элементам DBSet Diary, для каждого элемента нужно использовать 
-        //эти методы 
+        //эти методы (а все методы для рассчитывания отклонений находятся в классе DeviationsCalculating, 
+        //его экземпляр нужно создавать через интерфейс и Factory
     {
         public PageWithDiary()
         {
