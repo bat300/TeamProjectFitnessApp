@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FitnessDietApp.Data;
+using System.Collections.ObjectModel;
 
 namespace FitnessDietApp.UI
 {
@@ -25,29 +26,29 @@ namespace FitnessDietApp.UI
     //Если ни одной записи в дневнике нет, нельзя показать анализ, выводить сообщение мб или сделать кнопку доступной 
     //после первого добавления продукта
     {
-        List<ProductInfo> ChoosenProductsList = new List<ProductInfo>();
-        public List<string> ProductNames { get; private set; }
+        public ObservableCollection<ProductInfo> ChoosenProductsList = new ObservableCollection<ProductInfo>();
+
+        public ObservableCollection<string> ProductNames { get; private set; }
+
         public PageWithRation()
         {
             InitializeComponent();
             using (var context = new Context())
             {
-                ProductNames = (from product in context.Products.ToList() select product.Name).ToList();
+                ProductNames = new ObservableCollection<string>(from product in context.Products.ToList() select product.Name);
             }
+
+            ChosenProductsGrid.ItemsSource = ChoosenProductsList;
+            ProductName.ItemsSource = ProductNames;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void AddProductToTheTable_Click(object sender, RoutedEventArgs e)
         {
-            //ChosenProductsGrid.Items.Add(new { Date=DateTime.Now.Date.ToString("dd.MM.yy"), Name=ProductName.Text });
-            ChoosenProductsList.Add(new ProductInfo(DateTime.Now.Date.ToString("dd.MM.yy"), ProductName.Text,
-                double.Parse(ProductWeight.Text)));
-            ChosenProductsGrid.Items.Add(ChoosenProductsList.Last());
-            //ChosenProductsGrid.Items.Refresh();
+            ChoosenProductsList.Add(new ProductInfo(DateTime.Now.Date.ToString("dd.MM.yy"), ProductName.Text, double.Parse(ProductWeight.Text)));
             ProductName.Text = "";
             ProductWeight.Text = "";
         }

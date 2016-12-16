@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FitnessDietApp.UI
 {
-    class ProductInfo
+    public class ProductInfo
     {
         public ProductInfo(string date, string productName, double weight)
         {
