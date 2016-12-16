@@ -40,6 +40,8 @@ namespace FitnessDietApp.UI
         private void Count_Click(object sender, RoutedEventArgs e)////Не хватает добавления в бд информации 
             //о человеке через класс PersonInfo,элемент которого должен добавляться в DBSet с соответсвующим названием
             //или я не заметила его??
+            //при расчёте кбжу(метод из класса CalculateNorm) нам нужно создавать экземпляр класса PersonNorm (пустой)
+            //в результате метода он изменится. Его же надо добавить в DbSet PersonNorm.
         { 
             try
             {
