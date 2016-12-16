@@ -20,21 +20,22 @@ namespace FitnessDietApp.Data
             double AveragePersentageOfCarbohydrates = 0;
             double AveragePersentageOfCallories = 0;
             int NumberOfDays = 0;
-            //InfoProDaySummarising inf = new InfoProDaySummarising();
-            IInfoProDaySummarising inf = Factory.Default.GetInfoProDaySummarising();
+            InfoProDaySummarising inf = new InfoProDaySummarising();
+            // IDeviationsCalculating dev = new DeviationsCalculating();
+            IDeviationsCalculating dev = Factory.Default.GetDeviationsCalculating();
 
             using (var cont = new Context())
             {
                 foreach (var item in cont.Diary)
                 {
                     double CarbohydratesProDay = inf.CarbohydratesPerDay(item.DiaryItems);
-                    double DeviationOfCarbohydratesProDay = inf.DeviationOfCarbohydratesPerDay(CarbohydratesProDay, item.PersonNorm);
+                    double DeviationOfCarbohydratesProDay = dev.DeviationOfCarbohydratesPerDay(CarbohydratesProDay, item.PersonNorm);
                     double FatsProDay = inf.FatsPerDay(item.DiaryItems);
-                    double DeviationOfFatsProDay = inf.DeviationOfFatsPerDay(FatsProDay, item.PersonNorm);
+                    double DeviationOfFatsProDay = dev.DeviationOfFatsPerDay(FatsProDay, item.PersonNorm);
                     double ProteinsProDay = inf.ProteinsPerDay(item.DiaryItems);
-                    double DeviationOfProteinsProDay = inf.DeviationOfProteinsPerDay(ProteinsProDay, item.PersonNorm);
+                    double DeviationOfProteinsProDay = dev.DeviationOfProteinsPerDay(ProteinsProDay, item.PersonNorm);
                     double CalloriesProDay = inf.CalloriesPerDay(item.DiaryItems);
-                    double DeviationOfCalloriesProDay = inf.DeviationOfCalloriesPerDay(CalloriesProDay, item.PersonNorm);
+                    double DeviationOfCalloriesProDay = dev.DeviationOfCalloriesPerDay(CalloriesProDay, item.PersonNorm);
 
                     if (item.Date >= date)
                     {

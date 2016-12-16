@@ -52,12 +52,13 @@
     <Compile Include="Analysing.cs" />
     <Compile Include="CalculateNorm.cs" />
     <Compile Include="Context.cs" />
+    <Compile Include="DeviationsCalculating.cs" />
     <Compile Include="Diary.cs" />
     <Compile Include="DiaryItem.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="InfoProDaySummarising.cs" />
     <Compile Include="Interfaces\ICalculateNorm.cs" />
-    <Compile Include="Interfaces\IInfoProDaySummarising.cs" />
+    <Compile Include="Interfaces\IDeviationsCalculating.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PersonInfo.cs" />
     <Compile Include="PersonNorm.cs" />

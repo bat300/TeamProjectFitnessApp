@@ -1,4 +1,5 @@
 ﻿using FitnessDietApp.Data;
+using FitnessDietApp.Data.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -61,6 +62,7 @@ namespace FitnessDietApp.UI
                 double Width2 = (Width - 1) / Width;
                 double Hight = Math.Round(Max) + 1;
                 DrawingGroup CallsDrawingGroup = new DrawingGroup();
+                IDeviationsCalculating dev = Factory.Default.GetDeviationsCalculating();
                 for (int Stages = 0; Stages < 10; Stages++)
                 {
                     GeometryDrawing GeoDrawing = new GeometryDrawing();
@@ -147,13 +149,13 @@ namespace FitnessDietApp.UI
                         foreach (var item in context.Diary)
                         {
                             double CarbohydratesProDay = inf.CarbohydratesPerDay(item.DiaryItems);
-                            double DeviationOfCarbohydratesProDay = inf.DeviationOfCarbohydratesPerDay(CarbohydratesProDay, item.PersonNorm);
+                            double DeviationOfCarbohydratesProDay = dev.DeviationOfCarbohydratesPerDay(CarbohydratesProDay, item.PersonNorm);
                             double FatsProDay = inf.FatsPerDay(item.DiaryItems);
-                            double DeviationOfFatsProDay = inf.DeviationOfFatsPerDay(FatsProDay, item.PersonNorm);
+                            double DeviationOfFatsProDay = dev.DeviationOfFatsPerDay(FatsProDay, item.PersonNorm);
                             double ProteinsProDay = inf.ProteinsPerDay(item.DiaryItems);
-                            double DeviationOfProteinsProDay = inf.DeviationOfProteinsPerDay(ProteinsProDay, item.PersonNorm);
+                            double DeviationOfProteinsProDay = dev.DeviationOfProteinsPerDay(ProteinsProDay, item.PersonNorm);
                             double CalloriesProDay = inf.CalloriesPerDay(item.DiaryItems);
-                            double DeviationOfCalloriesProDay = inf.DeviationOfCalloriesPerDay(CalloriesProDay, item.PersonNorm);
+                            double DeviationOfCalloriesProDay = dev.DeviationOfCalloriesPerDay(CalloriesProDay, item.PersonNorm);
                             GeoDrawing.Brush = Brushes.Red;
                             GeoDrawing.Pen = new Pen(Brushes.Red, 8);
                             if (DeviationOfProteinsProDay > 0)
@@ -191,13 +193,13 @@ namespace FitnessDietApp.UI
                         foreach (var item in context.Diary)
                         {
                             double CarbohydratesProDay = inf.CarbohydratesPerDay(item.DiaryItems);
-                            double DeviationOfCarbohydratesProDay = inf.DeviationOfCarbohydratesPerDay(CarbohydratesProDay, item.PersonNorm);
+                            double DeviationOfCarbohydratesProDay = dev.DeviationOfCarbohydratesPerDay(CarbohydratesProDay, item.PersonNorm);
                             double FatsProDay = inf.FatsPerDay(item.DiaryItems);
-                            double DeviationOfFatsProDay = inf.DeviationOfFatsPerDay(FatsProDay, item.PersonNorm);
+                            double DeviationOfFatsProDay = dev.DeviationOfFatsPerDay(FatsProDay, item.PersonNorm);
                             double ProteinsProDay = inf.ProteinsPerDay(item.DiaryItems);
-                            double DeviationOfProteinsProDay = inf.DeviationOfProteinsPerDay(ProteinsProDay, item.PersonNorm);
+                            double DeviationOfProteinsProDay = dev.DeviationOfProteinsPerDay(ProteinsProDay, item.PersonNorm);
                             double CalloriesProDay = inf.CalloriesPerDay(item.DiaryItems);
-                            double DeviationOfCalloriesProDay = inf.DeviationOfCalloriesPerDay(CalloriesProDay, item.PersonNorm);
+                            double DeviationOfCalloriesProDay = dev.DeviationOfCalloriesPerDay(CalloriesProDay, item.PersonNorm);
                             GeoDrawing.Brush = Brushes.Orange;
                             GeoDrawing.Pen = new Pen(Brushes.Orange, 8);
                             if (DeviationOfProteinsProDay < 0)
