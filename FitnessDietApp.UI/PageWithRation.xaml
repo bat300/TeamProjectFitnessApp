@@ -7,7 +7,6 @@
       xmlns:local="clr-namespace:FitnessDietApp.UI"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      x:Name="rati"
       Title="PageWithRation">
 
     <Grid >
@@ -31,10 +30,11 @@
             <Label Content="Название продукта (выберите)" VerticalAlignment="Center" HorizontalAlignment="Center"  />
             <Label Content="Введите вес порции (г)" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" />
 
-            <toolkit:AutoCompleteBox Grid.Column="0" Grid.Row="1" Name="ProductName" ItemsSource="{Binding ProductNames, ElementName=rati}" VerticalAlignment="Center"/>
+            <toolkit:AutoCompleteBox Grid.Column="0" Grid.Row="1" Name="ProductName" VerticalAlignment="Center"/>
             <TextBox Grid.Row="1" Grid.Column="1" Margin="15,0" Height="20" TextAlignment="Center" Name="ProductWeight"/>
         </Grid>
         <Button Content="Добавить!" Grid.Row="2" Width="150" Height="30" Name="AddProductToTheTable" Click="AddProductToTheTable_Click"/>
+        
         <DataGrid Grid.Row="3" Name="ChosenProductsGrid">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Дата"  Width="90" Binding="{Binding Date}">
@@ -53,6 +53,7 @@
                 </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
+        
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
