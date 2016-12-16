@@ -49,14 +49,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Analysing.cs" />
-    <Compile Include="CalculateNorm.cs" />
+    <Compile Include="Calculations\Analysing.cs" />
+    <Compile Include="Calculations\CalculateNorm.cs" />
     <Compile Include="Context.cs" />
-    <Compile Include="DeviationsCalculating.cs" />
+    <Compile Include="Calculations\DeviationsCalculating.cs" />
     <Compile Include="Diary.cs" />
     <Compile Include="DiaryItem.cs" />
     <Compile Include="Factory.cs" />
-    <Compile Include="InfoProDaySummarising.cs" />
+    <Compile Include="Calculations\InfoProDaySummarising.cs" />
     <Compile Include="Interfaces\IAnalysing.cs" />
     <Compile Include="Interfaces\ICalculateNorm.cs" />
     <Compile Include="Interfaces\IDeviationsCalculating.cs" />
