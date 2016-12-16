@@ -27,9 +27,9 @@ namespace FitnessDietApp.UI
             InitializeComponent();
             double Max = 0;
             double Width = 0;
-            using (Context context = Factory.Default.GetContext())
+            using (Context context = new Context())
             {
-                InfoProDaySummarising inf = Factory.Default.GetInfoProDaySummarising();
+                InfoProDaySummarising inf = new InfoProDaySummarising();
                 foreach (var item in context.Diary)
                 {
                     double CarbohydratesProDay = inf.CarbohydratesPerDay(item.DiaryItems);

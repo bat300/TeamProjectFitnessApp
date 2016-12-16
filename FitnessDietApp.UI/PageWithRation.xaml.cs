@@ -20,6 +20,8 @@ namespace FitnessDietApp.UI
     /// Логика взаимодействия для PageWithRation.xaml
     /// </summary>
     public partial class PageWithRation : Page
+        //в UI когда пользователь пишет продукт и количество, создаёшь объект Diary Item ; 
+    //потом создаёшь объект класса Diary с этим DiaryItem! Если такой продукт в этот день уже есть, прибавляешь количество.
     {
         List<ProductInfo> ChoosenProductsList = new List<ProductInfo>();
         public List<string> ProductNames { get; private set; }
