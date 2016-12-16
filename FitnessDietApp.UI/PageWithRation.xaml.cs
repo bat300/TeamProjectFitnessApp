@@ -30,6 +30,7 @@ namespace FitnessDietApp.UI
 
         public ObservableCollection<string> ProductNames { get; private set; }
 
+        bool canContinue = false;
         public PageWithRation()
         {
             InitializeComponent();
@@ -48,9 +49,17 @@ namespace FitnessDietApp.UI
 
         private void AddProductToTheTable_Click(object sender, RoutedEventArgs e)
         {
-            ChoosenProductsList.Add(new ProductInfo(DateTime.Now.Date.ToString("dd.MM.yy"), ProductName.Text, double.Parse(ProductWeight.Text)));
-            ProductName.Text = "";
-            ProductWeight.Text = "";
+            try
+            {
+                canContinue = false;
+                ChoosenProductsList.Add(new ProductInfo(DateTime.Now.Date.ToString("dd.MM.yy"), ProductName.Text, double.Parse(ProductWeight.Text)));
+                ProductName.Text = "";
+                ProductWeight.Text = "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Необходимо заполнить оба поля ввода");
+            }
         }
     }
 }
