@@ -26,7 +26,6 @@ namespace FitnessDietApp.Data
         private ICalculateNorm _calculateNorm;
         private IDeviationsCalculating _ideviationsCalculating;  
                   
-        private Analysing _analysing;
         
         public ICalculateNorm GetCalculateNorm()
         {
@@ -41,13 +40,14 @@ namespace FitnessDietApp.Data
             if (_ideviationsCalculating == null)
                 _ideviationsCalculating = new DeviationsCalculating();
             return _ideviationsCalculating;
-        }       
+        }
+        private IAnalysing _ianalysing;
 
-        public Analysing GetAnalysing()
+        public IAnalysing GetIAnalysing()
         {
-            if (_analysing == null)
-                _analysing = new Analysing();
-            return _analysing;
+            if (_ianalysing == null)
+                _ianalysing = new Analysing();
+            return _ianalysing;
         }  
 
     }

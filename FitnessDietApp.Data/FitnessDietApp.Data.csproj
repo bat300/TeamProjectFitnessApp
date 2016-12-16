@@ -57,6 +57,7 @@
     <Compile Include="DiaryItem.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="InfoProDaySummarising.cs" />
+    <Compile Include="Interfaces\IAnalysing.cs" />
     <Compile Include="Interfaces\ICalculateNorm.cs" />
     <Compile Include="Interfaces\IDeviationsCalculating.cs" />
     <Compile Include="Migrations\Configuration.cs" />

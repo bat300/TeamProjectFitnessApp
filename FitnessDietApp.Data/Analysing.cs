@@ -9,7 +9,7 @@ namespace FitnessDietApp.Data
 {
     public delegate void Recomendation(string Message);
 
-    public class Analysing
+    public class Analysing:IAnalysing
     {
         public event Recomendation RecomendationMessage;
 

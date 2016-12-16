@@ -44,7 +44,8 @@ namespace FitnessDietApp.UI
         private void AddProductToTheTable_Click(object sender, RoutedEventArgs e)
         {
             //ChosenProductsGrid.Items.Add(new { Date=DateTime.Now.Date.ToString("dd.MM.yy"), Name=ProductName.Text });
-            ChoosenProductsList.Add(new ProductInfo(DateTime.Now.Date.ToString("dd.MM.yy"), ProductName.Text, double.Parse(ProductWeight.Text)));
+            ChoosenProductsList.Add(new ProductInfo(DateTime.Now.Date.ToString("dd.MM.yy"), ProductName.Text,
+                double.Parse(ProductWeight.Text)));
             ChosenProductsGrid.Items.Add(ChoosenProductsList.Last());
             //ChosenProductsGrid.Items.Refresh();
             ProductName.Text = "";

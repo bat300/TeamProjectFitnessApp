@@ -26,6 +26,9 @@ namespace FitnessDietApp.UI
         public PageOfAnalysis()
         {
             InitializeComponent();
+            IAnalysing analyse = Factory.Default.GetIAnalysing();
+
+            analyse.RecomendationMessage += (a =>listBoxForRecommendations.Items.Add(a));
             double Max = 0;
             double Width = 0;
             using (Context context = new Context())
@@ -92,7 +95,8 @@ namespace FitnessDietApp.UI
                             double ProteinsProDay = inf.ProteinsPerDay(item.DiaryItems);
                             if (i != 0)
                             {
-                                LineGeometry lGeo = new LineGeometry(new Point((Math.Round(Max) + 1) * (i - 1) / Width, Hight - last), new Point((Math.Round(Max) + 1) * i / Width, Hight - ProteinsProDay));
+                                LineGeometry lGeo = new LineGeometry(new Point((Math.Round(Max) + 1) * (i - 1) / Width,
+                                    Hight - last), new Point((Math.Round(Max) + 1) * i / Width, Hight - ProteinsProDay));
                                 GeoGroup.Children.Add(lGeo);
                             }
                             last = ProteinsProDay;
@@ -113,7 +117,8 @@ namespace FitnessDietApp.UI
                             double FatsProDay = inf.FatsPerDay(item.DiaryItems);
                             if (i != 0)
                             {
-                                LineGeometry lGeo = new LineGeometry(new Point((Math.Round(Max) + 1) * (i - 1) / Width, Hight - last), new Point((Math.Round(Max) + 1) * i / Width, Hight - FatsProDay));
+                                LineGeometry lGeo = new LineGeometry(new Point((Math.Round(Max) + 1) * (i - 1) / Width,
+                                    Hight - last), new Point((Math.Round(Max) + 1) * i / Width, Hight - FatsProDay));
                                 GeoGroup.Children.Add(lGeo);
                             }
                             last = FatsProDay;
@@ -134,7 +139,8 @@ namespace FitnessDietApp.UI
                             double CarbohydratesProDay = inf.CarbohydratesPerDay(item.DiaryItems);
                             if (i != 0)
                             {
-                                LineGeometry lGeo = new LineGeometry(new Point((Math.Round(Max) + 1) * (i - 1) / Width, Hight - last), new Point((Math.Round(Max) + 1) * i / Width, Hight - CarbohydratesProDay));
+                                LineGeometry lGeo = new LineGeometry(new Point((Math.Round(Max) + 1) * (i - 1) / Width,
+                                    Hight - last), new Point((Math.Round(Max) + 1) * i / Width, Hight - CarbohydratesProDay));
                                 GeoGroup.Children.Add(lGeo);
                             }
                             last = CarbohydratesProDay;
@@ -149,37 +155,43 @@ namespace FitnessDietApp.UI
                         foreach (var item in context.Diary)
                         {
                             double CarbohydratesProDay = inf.CarbohydratesPerDay(item.DiaryItems);
-                            double DeviationOfCarbohydratesProDay = dev.DeviationOfCarbohydratesPerDay(CarbohydratesProDay, item.PersonNorm);
+                            double DeviationOfCarbohydratesProDay = dev.DeviationOfCarbohydratesPerDay(CarbohydratesProDay,
+                                item.PersonNorm);
                             double FatsProDay = inf.FatsPerDay(item.DiaryItems);
                             double DeviationOfFatsProDay = dev.DeviationOfFatsPerDay(FatsProDay, item.PersonNorm);
                             double ProteinsProDay = inf.ProteinsPerDay(item.DiaryItems);
                             double DeviationOfProteinsProDay = dev.DeviationOfProteinsPerDay(ProteinsProDay, item.PersonNorm);
                             double CalloriesProDay = inf.CalloriesPerDay(item.DiaryItems);
-                            double DeviationOfCalloriesProDay = dev.DeviationOfCalloriesPerDay(CalloriesProDay, item.PersonNorm);
+                            double DeviationOfCalloriesProDay = dev.DeviationOfCalloriesPerDay(CalloriesProDay,
+                                item.PersonNorm);
                             GeoDrawing.Brush = Brushes.Red;
                             GeoDrawing.Pen = new Pen(Brushes.Red, 8);
                             if (DeviationOfProteinsProDay > 0)
                             {
-                                EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width, Hight - ProteinsProDay), 1, 1);
+                                EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width,
+                                    Hight - ProteinsProDay), 1, 1);
 
                                 GeoGroup.Children.Add(Dot);
                             }
                            
                                 if (DeviationOfCarbohydratesProDay > 0)
                             {
-                                EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width, Hight - CarbohydratesProDay), 1, 1);
+                                EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width,
+                                    Hight - CarbohydratesProDay), 1, 1);
 
                                 GeoGroup.Children.Add(Dot);
                             }
                             
                                 if (DeviationOfFatsProDay > 0)
                             {
-                                EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width, Hight - FatsProDay), 1, 1);
+                                EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width,
+                                    Hight - FatsProDay), 1, 1);
                                 GeoGroup.Children.Add(Dot);
                             }
                             if (DeviationOfCalloriesProDay > 0)
                             {
-                                EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width, Hight - CalloriesProDay), 1, 1);
+                                EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width,
+                                    Hight - CalloriesProDay), 1, 1);
                                 GeoGroup.Children.Add(Dot);
                             }
                             i += 1;
@@ -193,37 +205,43 @@ namespace FitnessDietApp.UI
                         foreach (var item in context.Diary)
                         {
                             double CarbohydratesProDay = inf.CarbohydratesPerDay(item.DiaryItems);
-                            double DeviationOfCarbohydratesProDay = dev.DeviationOfCarbohydratesPerDay(CarbohydratesProDay, item.PersonNorm);
+                            double DeviationOfCarbohydratesProDay = dev.DeviationOfCarbohydratesPerDay(CarbohydratesProDay,
+                                item.PersonNorm);
                             double FatsProDay = inf.FatsPerDay(item.DiaryItems);
                             double DeviationOfFatsProDay = dev.DeviationOfFatsPerDay(FatsProDay, item.PersonNorm);
                             double ProteinsProDay = inf.ProteinsPerDay(item.DiaryItems);
                             double DeviationOfProteinsProDay = dev.DeviationOfProteinsPerDay(ProteinsProDay, item.PersonNorm);
                             double CalloriesProDay = inf.CalloriesPerDay(item.DiaryItems);
-                            double DeviationOfCalloriesProDay = dev.DeviationOfCalloriesPerDay(CalloriesProDay, item.PersonNorm);
+                            double DeviationOfCalloriesProDay = dev.DeviationOfCalloriesPerDay(CalloriesProDay,
+                                item.PersonNorm);
                             GeoDrawing.Brush = Brushes.Orange;
                             GeoDrawing.Pen = new Pen(Brushes.Orange, 8);
                             if (DeviationOfProteinsProDay < 0)
                             {
-                                EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width, Hight - ProteinsProDay), 1, 1);
+                                EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width,
+                                    Hight - ProteinsProDay), 1, 1);
 
                                 GeoGroup.Children.Add(Dot);
                             }
                             
                                 if (DeviationOfCarbohydratesProDay < 0)
                             {
-                                EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width, Hight - CarbohydratesProDay), 1, 1);
+                                EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width,
+                                    Hight - CarbohydratesProDay), 1, 1);
 
                                 GeoGroup.Children.Add(Dot);
                             }
                             
                                 if (DeviationOfFatsProDay < 0)
                             {
-                                EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width, Hight - FatsProDay), 1, 1);
+                                EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width,
+                                    Hight - FatsProDay), 1, 1);
                                 GeoGroup.Children.Add(Dot);
                             }
                             if (DeviationOfCalloriesProDay < 0)
                             {
-                                EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width, Hight - CalloriesProDay), 1, 1);
+                                EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width,
+                                    Hight - CalloriesProDay), 1, 1);
                                 GeoGroup.Children.Add(Dot);
                             }
                             i += 1;
@@ -283,7 +301,8 @@ namespace FitnessDietApp.UI
  
                             if (i != 0)
                             {
-                                LineGeometry lGeo = new LineGeometry(new Point((Math.Round(Max) + 1) * (i - 1) / Width, Hight - last), new Point((Math.Round(Max) + 1) * i / Width, Hight - CalloriesProDay));
+                                LineGeometry lGeo = new LineGeometry(new Point((Math.Round(Max) + 1) * (i - 1) / Width,
+                                    Hight - last), new Point((Math.Round(Max) + 1) * i / Width, Hight - CalloriesProDay));
                                 GeoGroup.Children.Add(lGeo);
                             }
                             last = CalloriesProDay;
