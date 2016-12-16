@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FitnessDietApp.Data.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FitnessDietApp.Data
 {
-    public class CalculateNorm
+    public class CalculateNorm: ICalculateNorm
     {
         
         public void CalculateNorms(PersonInfo personInfo, PersonNorm personNorm)
@@ -31,6 +32,8 @@ namespace FitnessDietApp.Data
                 case PersonInfo.StylesOfLife.EveryDaySport: // высокая
                     personNorm.Calories = personNorm.Calories * 1.73;
                     break;
+                default:
+                    throw new Exception("Error occured!");
             }
 
             personNorm.CaloriesLow = personNorm.Calories - 250;
@@ -46,9 +49,8 @@ namespace FitnessDietApp.Data
             personNorm.CarbohydratesUp = personNorm.CaloriesUp * 0.5 / 4;
 
         }
-    } 
-    
-    }
+    }  
+}
 
 
         

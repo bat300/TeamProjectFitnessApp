@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FitnessDietApp.Data.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace FitnessDietApp.Data
 {
-    public class InfoProDaySummarising//ИНТЕРФЕЙС ПОДСЧЁТА
+    //ИНТЕРФЕЙС ПОДСЧЁТА
+    public class InfoProDaySummarising: IInfoProDaySummarising
+        
     {
         //public int Id { get; set; }
         //private double proteinsProDay;
