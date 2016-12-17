@@ -27,14 +27,14 @@ namespace FitnessDietApp.UI
         {
             InitializeComponent();
 
-            DietComboBox.Items.Add("balanced"); // - protein/fat/carb values in 15/35/50 ratio");;
-            DietComboBox.Items.Add("high-protein"); // - more than 50% of total calories from proteins");
-            DietComboBox.Items.Add("low-carb"); // - less than 20% of total calories from carbs"); 
-            DietComboBox.Items.Add("low-fat"); // - less than 15% of total calories from fat");                                               
+            DietComboBox.Items.Add("balanced"); // protein/fat/carb values in 15/35/50 ratio;
+            DietComboBox.Items.Add("high-protein"); // more than 50% of total calories from proteins;
+            DietComboBox.Items.Add("low-carb"); // less than 20% of total calories from carbs; 
+            DietComboBox.Items.Add("low-fat"); // less than 15% of total calories from fat;                                               
             
-            HealthComboBox.Items.Add("alcohol-free"); // - no alcohol in the recipe");
-            HealthComboBox.Items.Add("sugar-conscious"); // - less than 4g of sugar per serving");
-            HealthComboBox.Items.Add("vegetarian"); // - no meat/poultry/fish");
+            HealthComboBox.Items.Add("alcohol-free"); // - no alcohol in the recipe;
+            HealthComboBox.Items.Add("sugar-conscious"); // - less than 4g of sugar per serving;
+            HealthComboBox.Items.Add("vegetarian"); // - no meat/poultry/fish;
             HealthComboBox.Items.Add("vegan");
             //HealthComboBox.Items.Add("dairy-free");
         }
