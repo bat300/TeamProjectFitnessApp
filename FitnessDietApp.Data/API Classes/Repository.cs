@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FitnessDietApp.Data
 {
-    class Repository
+    public class Repository
     {
         const string AppKey = "e62225700467dd10431ad8c55b6a2ca3";
         const string AppId = "ab576e02";

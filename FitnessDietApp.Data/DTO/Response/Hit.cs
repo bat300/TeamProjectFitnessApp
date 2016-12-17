@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FitnessDietApp.Data.DTO.Response
 {
-    class Hit
+    public class Hit
     {
         [JsonProperty("recipe")]
         public Recipe Recipe { get; set; }
