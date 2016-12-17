@@ -354,5 +354,10 @@ namespace FitnessDietApp.UI
                 analyse.Recomendations((DateTime)comboBoxDate.SelectedItem);
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("PageForRecepies.xaml",UriKind.Relative));
+        }
     }
 }
