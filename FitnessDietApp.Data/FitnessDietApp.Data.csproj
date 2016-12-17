@@ -38,6 +38,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -55,6 +59,13 @@
     <Compile Include="Calculations\DeviationsCalculating.cs" />
     <Compile Include="Diary.cs" />
     <Compile Include="DiaryItem.cs" />
+    <Compile Include="DTO\Request\Diet.cs" />
+    <Compile Include="DTO\Request\Health.cs" />
+    <Compile Include="DTO\Request\Search.cs" />
+    <Compile Include="DTO\Request\SearchInfo.cs" />
+    <Compile Include="DTO\Response\Hit.cs" />
+    <Compile Include="DTO\Response\Hits.cs" />
+    <Compile Include="DTO\Response\Recipe.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Calculations\InfoProDaySummarising.cs" />
     <Compile Include="Interfaces\IAnalysing.cs" />
@@ -69,6 +80,8 @@
     <Compile Include="PersonNorm.cs" />
     <Compile Include="Products.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="API Classes\ResultRecipe.cs" />
+    <Compile Include="API Classes\Repository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
