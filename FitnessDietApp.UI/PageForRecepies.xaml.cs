@@ -23,6 +23,16 @@ namespace FitnessDietApp.UI
         public PageForRecepies()
         {
             InitializeComponent();
+            ComboBoxDiet.Items.Add("balanced"); // - protein/fat/carb values in 15/35/50 ratio");
+            ComboBoxDiet.Items.Add("high-protein"); // - more than 50% of total calories from proteins");
+            ComboBoxDiet.Items.Add("low-carb"); // - less than 20% of total calories from carbs"); 
+            ComboBoxDiet.Items.Add("low-fat"); // - less than 15% of total calories from fat"); 
+          
+            ComboBoxHealth.Items.Add("alcohol-free"); // - no alcohol in the recipe");
+            ComboBoxHealth.Items.Add("sugar-conscious"); // - less than 4g of sugar per serving");
+            ComboBoxHealth.Items.Add("vegetarian"); // - no meat/poultry/fish");
+            ComboBoxHealth.Items.Add("vegan");
         }
+
     }
 }
