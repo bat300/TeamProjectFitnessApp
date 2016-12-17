@@ -36,13 +36,13 @@ namespace FitnessDietApp.UI
                 InfoProDaySummarising inf = new InfoProDaySummarising();
                 foreach (var item in context.Diary)
                 {
-                    double CarbohydratesProDay = inf.CarbohydratesPerDay(item.DiaryItems);
+                    double CarbohydratesProDay = inf.CarbohydratesPerDay(item.DiaryItems.ToList());
                    
-                    double FatsProDay = inf.FatsPerDay(item.DiaryItems);
+                    double FatsProDay = inf.FatsPerDay(item.DiaryItems.ToList());
                     
-                    double ProteinsProDay = inf.ProteinsPerDay(item.DiaryItems);
+                    double ProteinsProDay = inf.ProteinsPerDay(item.DiaryItems.ToList());
                     
-                    double CalloriesProDay = inf.CalloriesPerDay(item.DiaryItems);
+                    double CalloriesProDay = inf.CalloriesPerDay(item.DiaryItems.ToList());
                     
                     if (CarbohydratesProDay > Max)
                     {
@@ -92,7 +92,7 @@ namespace FitnessDietApp.UI
                         GeoGroup = new GeometryGroup();
                         foreach (var item in context.Diary)
                         {
-                            double ProteinsProDay = inf.ProteinsPerDay(item.DiaryItems);
+                            double ProteinsProDay = inf.ProteinsPerDay(item.DiaryItems.ToList());
                             if (i != 0)
                             {
                                 LineGeometry lGeo = new LineGeometry(new Point((Math.Round(Max) + 1) * (i - 1) / Width,
@@ -114,7 +114,7 @@ namespace FitnessDietApp.UI
                         GeoGroup = new GeometryGroup();
                         foreach (var item in context.Diary)
                         {
-                            double FatsProDay = inf.FatsPerDay(item.DiaryItems);
+                            double FatsProDay = inf.FatsPerDay(item.DiaryItems.ToList());
                             if (i != 0)
                             {
                                 LineGeometry lGeo = new LineGeometry(new Point((Math.Round(Max) + 1) * (i - 1) / Width,
@@ -136,7 +136,7 @@ namespace FitnessDietApp.UI
                         GeoGroup = new GeometryGroup();
                         foreach (var item in context.Diary)
                         {
-                            double CarbohydratesProDay = inf.CarbohydratesPerDay(item.DiaryItems);
+                            double CarbohydratesProDay = inf.CarbohydratesPerDay(item.DiaryItems.ToList());
                             if (i != 0)
                             {
                                 LineGeometry lGeo = new LineGeometry(new Point((Math.Round(Max) + 1) * (i - 1) / Width,
@@ -154,14 +154,14 @@ namespace FitnessDietApp.UI
                         int i = 0;
                         foreach (var item in context.Diary)
                         {
-                            double CarbohydratesProDay = inf.CarbohydratesPerDay(item.DiaryItems);
+                            double CarbohydratesProDay = inf.CarbohydratesPerDay(item.DiaryItems.ToList());
                             double DeviationOfCarbohydratesProDay = dev.DeviationOfCarbohydratesPerDay(CarbohydratesProDay,
                                 item.PersonNorm);
-                            double FatsProDay = inf.FatsPerDay(item.DiaryItems);
+                            double FatsProDay = inf.FatsPerDay(item.DiaryItems.ToList());
                             double DeviationOfFatsProDay = dev.DeviationOfFatsPerDay(FatsProDay, item.PersonNorm);
-                            double ProteinsProDay = inf.ProteinsPerDay(item.DiaryItems);
+                            double ProteinsProDay = inf.ProteinsPerDay(item.DiaryItems.ToList());
                             double DeviationOfProteinsProDay = dev.DeviationOfProteinsPerDay(ProteinsProDay, item.PersonNorm);
-                            double CalloriesProDay = inf.CalloriesPerDay(item.DiaryItems);
+                            double CalloriesProDay = inf.CalloriesPerDay(item.DiaryItems.ToList());
                             double DeviationOfCalloriesProDay = dev.DeviationOfCalloriesPerDay(CalloriesProDay,
                                 item.PersonNorm);
                             GeoDrawing.Brush = Brushes.Red;
@@ -204,14 +204,14 @@ namespace FitnessDietApp.UI
                         int i = 0;
                         foreach (var item in context.Diary)
                         {
-                            double CarbohydratesProDay = inf.CarbohydratesPerDay(item.DiaryItems);
+                            double CarbohydratesProDay = inf.CarbohydratesPerDay(item.DiaryItems.ToList());
                             double DeviationOfCarbohydratesProDay = dev.DeviationOfCarbohydratesPerDay(CarbohydratesProDay,
                                 item.PersonNorm);
-                            double FatsProDay = inf.FatsPerDay(item.DiaryItems);
+                            double FatsProDay = inf.FatsPerDay(item.DiaryItems.ToList());
                             double DeviationOfFatsProDay = dev.DeviationOfFatsPerDay(FatsProDay, item.PersonNorm);
-                            double ProteinsProDay = inf.ProteinsPerDay(item.DiaryItems);
+                            double ProteinsProDay = inf.ProteinsPerDay(item.DiaryItems.ToList());
                             double DeviationOfProteinsProDay = dev.DeviationOfProteinsPerDay(ProteinsProDay, item.PersonNorm);
-                            double CalloriesProDay = inf.CalloriesPerDay(item.DiaryItems);
+                            double CalloriesProDay = inf.CalloriesPerDay(item.DiaryItems.ToList());
                             double DeviationOfCalloriesProDay = dev.DeviationOfCalloriesPerDay(CalloriesProDay,
                                 item.PersonNorm);
                             GeoDrawing.Brush = Brushes.Orange;
@@ -297,7 +297,7 @@ namespace FitnessDietApp.UI
                         GeoGroup = new GeometryGroup();
                         foreach (var item in context.Diary)
                         {
-                            double CalloriesProDay = inf.CalloriesPerDay(item.DiaryItems);
+                            double CalloriesProDay = inf.CalloriesPerDay(item.DiaryItems.ToList());
  
                             if (i != 0)
                             {
@@ -333,7 +333,8 @@ namespace FitnessDietApp.UI
                     CallsDrawingGroup.Children.Add(GeoDrawing);
                 }
 
-                image.Source = new DrawingImage(CallsDrawingGroup);
+                //FIXME
+                //image.Source = new DrawingImage(CallsDrawingGroup);
             }
         }
     }

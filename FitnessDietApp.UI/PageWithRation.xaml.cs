@@ -15,13 +15,12 @@ using System.Windows.Shapes;
 using FitnessDietApp.Data;
 using System.Collections.ObjectModel;
 
-namespace FitnessDietApp.UI
-{
+namespace FitnessDietApp.UI {
     /// <summary>
     /// Логика взаимодействия для PageWithRation.xaml
     /// </summary>
     public partial class PageWithRation : Page
-        //в UI когда пользователь пишет продукт и количество, создаёшь объект Diary Item ; 
+    //в UI когда пользователь пишет продукт и количество, создаёшь объект Diary Item ; 
     //потом создаёшь объект класса Diary с этим DiaryItem! Если такой продукт в этот день уже есть, прибавляешь количество.
     // При создании объекта дневника нужно в графу с PersonNorm записывать последнюю занесённую норму!!!!!!!!!!!!!!!!!!!!!!
     //(последний объект в DbSet PersonNorm)!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -29,38 +28,46 @@ namespace FitnessDietApp.UI
     //после первого добавления продукта
 
     {
-        public ObservableCollection<ProductInfo> ChoosenProductsList = new ObservableCollection<ProductInfo>();
+        public Diary ChoosenDiary { get; set; }
 
         public ObservableCollection<string> ProductNames { get; private set; }
 
         bool canContinue = false;
-        public PageWithRation()
-        {
+
+        public PageWithRation() {
             InitializeComponent();
-            using (var context = new Context())
-            {
+        }
+
+        public void Init() {
+            using (var context = new Context()) {
+                if ((context.Diary.Count() != 0) && (context.Diary.ToList().Last().Date == DateTime.Now.Date))
+                    ChoosenDiary = context.Diary.Last();
+                else
+                    ChoosenDiary = new Diary() { Date = DateTime.Now.Date };
+
                 ProductNames = new ObservableCollection<string>(from product in context.Products.ToList() select product.Name);
+                ChoosenDiary.PersonNorm = context.PersonNorms.ToList().Last();
             }
 
-            ChosenProductsGrid.ItemsSource = ChoosenProductsList;
+            Date.Content = string.Format("Дата: {0}", ChoosenDiary.Date.ToString("dd.MM.yyyy"));
+            ChosenProductsGrid.ItemsSource = ChoosenDiary.DiaryItems;
             ProductName.ItemsSource = ProductNames;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
+        private void Button_Click(object sender, RoutedEventArgs e) {
         }
 
-        private void AddProductToTheTable_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                canContinue = false;
-                ChoosenProductsList.Add(new ProductInfo(DateTime.Now.Date.ToString("dd.MM.yy"), ProductName.Text, double.Parse(ProductWeight.Text)));
+        private void AddProductToTheTable_Click(object sender, RoutedEventArgs e) {
+            try {
+                IEnumerable<DiaryItem> diaryItem;
+            if ((ChoosenDiary.DiaryItems.Count != 0) && ((diaryItem = ChoosenDiary.DiaryItems.Where(item => item.Product.Name == ProductName.Text)).Count() != 0)) {
+                diaryItem.First().Quantity += int.Parse(ProductWeight.Text);
+                ChosenProductsGrid.Items.Refresh();
+            }  else
+                ChoosenDiary.DiaryItems.Add(new DiaryItem() { Product = new Products { Name = ProductName.Text }, Quantity = int.Parse(ProductWeight.Text) });
                 ProductName.Text = "";
                 ProductWeight.Text = "";
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 MessageBox.Show("Необходимо заполнить оба поля ввода");
             }
         }

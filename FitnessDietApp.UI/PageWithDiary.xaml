@@ -8,13 +8,12 @@
       d:DesignHeight="300" d:DesignWidth="500"
       Title="PageWithDiary">
 
-
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="30"/>
             <RowDefinition />
+            <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
@@ -85,6 +84,7 @@
         <Label Content="Ваша норма КБЖУ превышена (красным)" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <Label Content="Ваша норма КБЖУ в пределах нормы (зеленым)" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-        <Button Grid.Row="5" Content="Показать дневник с рассчетом КБЖУ" Margin="5"/>
+        <Button Name="GoToPageOfAnalysis" Grid.Row="5" Content="Перейти к анализу питания" Margin="5"/>
+        <Button Name="GoToPageWithRation" Grid.Row="6" Content="Перейти к заполнению рациона" Margin="5"/>
     </Grid>
 </Page>

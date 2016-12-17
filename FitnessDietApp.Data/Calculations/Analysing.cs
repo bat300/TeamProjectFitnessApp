@@ -28,13 +28,13 @@ namespace FitnessDietApp.Data
             {
                 foreach (var item in cont.Diary)
                 {
-                    double CarbohydratesProDay = inf.CarbohydratesPerDay(item.DiaryItems);
+                    double CarbohydratesProDay = inf.CarbohydratesPerDay(item.DiaryItems.ToList());
                     double DeviationOfCarbohydratesProDay = dev.DeviationOfCarbohydratesPerDay(CarbohydratesProDay, item.PersonNorm);
-                    double FatsProDay = inf.FatsPerDay(item.DiaryItems);
+                    double FatsProDay = inf.FatsPerDay(item.DiaryItems.ToList());
                     double DeviationOfFatsProDay = dev.DeviationOfFatsPerDay(FatsProDay, item.PersonNorm);
-                    double ProteinsProDay = inf.ProteinsPerDay(item.DiaryItems);
+                    double ProteinsProDay = inf.ProteinsPerDay(item.DiaryItems.ToList());
                     double DeviationOfProteinsProDay = dev.DeviationOfProteinsPerDay(ProteinsProDay, item.PersonNorm);
-                    double CalloriesProDay = inf.CalloriesPerDay(item.DiaryItems);
+                    double CalloriesProDay = inf.CalloriesPerDay(item.DiaryItems.ToList());
                     double DeviationOfCalloriesProDay = dev.DeviationOfCalloriesPerDay(CalloriesProDay, item.PersonNorm);
 
                     if (item.Date >= date)

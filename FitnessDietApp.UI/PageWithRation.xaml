@@ -14,6 +14,7 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="35"/>
+            <RowDefinition Height="25"/>
             <RowDefinition/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
@@ -34,17 +35,19 @@
             <TextBox Grid.Row="1" Grid.Column="1" Margin="15,0" Height="20" TextAlignment="Center" Name="ProductWeight"/>
         </Grid>
         <Button Content="Добавить!" Grid.Row="2" Width="150" Height="30" Name="AddProductToTheTable" Click="AddProductToTheTable_Click"/>
-        
-        <DataGrid Grid.Row="3" Name="ChosenProductsGrid" AutoGenerateColumns="False" IsReadOnly="True">
+
+        <Label Name="Date" Grid.Row="3"/>
+
+        <DataGrid Grid.Row="4" Name="ChosenProductsGrid" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Дата"  Width="90" Binding="{Binding Date}">
+                <DataGridTextColumn Header="Вес"  Width="90" Binding="{Binding Quantity}">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader"  >
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Ваши добавленные продукты" Binding="{Binding ProductName}" Width="*">
+                <DataGridTextColumn Header="Ваши добавленные продукты" Binding="{Binding Product.Name}" Width="*">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader"  >
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -54,13 +57,13 @@
             </DataGrid.Columns>
         </DataGrid>
         
-        <Grid Grid.Row="4">
+        <Grid Grid.Row="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Content="Показать дневник с рассчетом КБЖУ" Margin="5"/>
-            <Button Content="Анализ дневника питания" Grid.Column="1" Margin="5" Click="Button_Click"/>
+            <Button Content="Показать дневник с рассчетом КБЖУ" Margin="5" Name="GoToPageWithDiary"/>
+            <Button Content="Анализ дневника питания" Grid.Column="1" Margin="5" Name="GoToPageOfAnalysis"/>
         </Grid>
     </Grid>
 </Page>

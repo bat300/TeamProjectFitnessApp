@@ -24,6 +24,7 @@ namespace FitnessDietApp.UI
         //эти методы (а все методы для рассчитывания отклонений находятся в классе DeviationsCalculating, 
         //его экземпляр нужно создавать через интерфейс и Factory
     {
+        
         public PageWithDiary()
         {
             InitializeComponent();

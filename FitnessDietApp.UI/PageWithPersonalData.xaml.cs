@@ -14,16 +14,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FitnessDietApp.UI
-{
+namespace FitnessDietApp.UI {
     /// <summary>
     /// Логика взаимодействия для PageWithPersonalData.xaml
     /// </summary>
-    public partial class PageWithPersonalData : Page
-    {
-        public PersonInfo Person { get; set; }
-        public PageWithPersonalData()
-        {
+    public partial class PageWithPersonalData : Page {
+        protected PersonInfo person = new PersonInfo();
+        protected PersonNorm Norm = new PersonNorm();
+        protected bool canContinue = false;
+
+        public PageWithPersonalData() {
             InitializeComponent();
             ChooseGender.Items.Add("Мужской");
             ChooseGender.Items.Add("Женский");
@@ -33,43 +33,39 @@ namespace FitnessDietApp.UI
             ChooseLifestyle.Items.Add("Интенсивные тренировки 5-7 раз в неделю");
         }
 
-        PersonInfo person = new PersonInfo();
-        PersonNorm norm = new PersonNorm();
-        bool canContinue = false;
-       
-        private void Count_Click(object sender, RoutedEventArgs e)////Не хватает добавления в бд информации 
-            //о человеке через класс PersonInfo,элемент которого должен добавляться в DBSet с соответсвующим названием
-            //или я не заметила его??
-            //при расчёте кбжу(метод из класса CalculateNorm) нам нужно создавать экземпляр класса PersonNorm (пустой)
-            //в результате метода он изменится. Его же надо добавить в DbSet PersonNorm.
-        { 
-            try
-            {
+        private void Count_Click(object sender, RoutedEventArgs e) {
+            try {
                 canContinue = false;
-                Person.Age = int.Parse(Age.Text);
-                Person.Weight = double.Parse(Weight.Text);
-                Person.Height = int.Parse(Height.Text);
-                Person.Gender = PersonInfo.GetGenderFromString((string)ChooseGender.SelectedItem);
+
+                person.Age = int.Parse(Age.Text);
+                person.Weight = double.Parse(Weight.Text);
+                person.Height = int.Parse(Height.Text);
+                person.Gender = PersonInfo.GetGenderFromString((string)ChooseGender.SelectedItem);
                 person.Lifestyle = PersonInfo.GetLifestyleFromString((string)ChooseLifestyle.SelectedItem);
                 CalculateNorm calc = new CalculateNorm();
-                calc.CalculateNorms(person, norm);
-                Norma.Content = norm.Calories.ToString();
+                calc.CalculateNorms(person, Norm);
+                Norma.Content = Norm.Calories.ToString();
+
                 canContinue = true;
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 MessageBox.Show("Введены некорректные данные");
             }
         }
 
-        private void ChooseGender_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-        }
-    
-        private void GoToTheDiary_Click(object sender, RoutedEventArgs e)
-        {
-            
-            
+        private void GoToPageWithRation_Click(object sender, RoutedEventArgs e) {
+            if (canContinue) {
+                using (var context = new Context()) {
+                    context.Database.ExecuteSqlCommand("DELETE FROM Diary");
+                    context.Database.ExecuteSqlCommand("DELETE FROM DiaryItems");
+                    context.Database.ExecuteSqlCommand("DELETE FROM PersonInfo");
+
+                    context.PersonInfo.Add(person);
+                    context.PersonNorms.Add(Norm);
+
+                    context.SaveChanges();
+                }
+            } else
+                MessageBox.Show("Введены некорректные данные");
         }
     }
 }
