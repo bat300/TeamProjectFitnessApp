@@ -36,8 +36,9 @@ namespace FitnessDietApp.UI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = Start;
-            MainFrame.Content = Ration; 
+            //MainFrame.Content = Start;
+            //MainFrame.Content = Ration;
+            MainFrame.Content = Analysis;
             Start.ChooseNewUser.Click += ChooseNewUser_Click;
         }
 
