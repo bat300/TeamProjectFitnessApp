@@ -15,7 +15,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Label Content="Welcome!" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Forte"/>
-        <Button Grid.Row="1" Margin="30" Content="Новый пользователь" FontSize="20" Name="ChooseNewUser" Click="ChooseNewUser_Click"/>
+        <Button Grid.Row="1" Margin="30" Content="Новый пользователь" FontSize="20" Name="ChooseNewUser"/>
         <Button Grid.Row="2" Margin="30" Content="Старый пользователь" FontSize="20" Name="GoToPageWithDiary" />
     </Grid>
 </Page>
