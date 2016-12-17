@@ -47,38 +47,42 @@ namespace FitnessDietApp.UI
 
         private async void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            try
+            using (Context cont = new Context())
             {
-                string query = TextBoxProductsForRecipe.Text;
-                int from = 300;
-                int to = 1000;
-                string calories = String.Format($"gte {from}, lte {to}");
-                List<ResultRecipe> result;
-
-                if ((string)ComboBoxDiet.SelectedItem != null)
+                try
                 {
-                    diet.DietLabel = (string)ComboBoxDiet.SelectedItem;
-                    health.HealthLabel = (string)ComboBoxHealth.SelectedItem;
+                    string query = TextBoxProductsForRecipe.Text;
+                    PersonNorm p = cont.PersonNorms.LastOrDefault();
+                    int from = (int)(Math.Round(p.CaloriesLow / 6));
+                    int to = (int)(Math.Round(p.CaloriesUp / 3));
+                    string calories = String.Format($"gte {from}, lte {to}");
+                    List<ResultRecipe> result;
 
-                    result = await repo.GetInfo(query, calories, diet.DietLabel, health.HealthLabel);
-                }
-                else
-                    result = await repo.GetInfo(query, calories);
-
-                if (result != null)
-                {
-                    foreach (var i in result)
+                    if ((string)ComboBoxDiet.SelectedItem != null)
                     {
-                        listBoxForRecepies.Items.Add($"\nRecipe: {i.RecipeTitle} \n linq: { i.RecipeURL} \n calories per serving: { i.Calories / i.Servings} \n weight per serving: { i.Weight / i.Servings} ");
-                    }
-                }
-                else
-                    MessageBox.Show("No information was found");
-            }
+                        diet.DietLabel = (string)ComboBoxDiet.SelectedItem;
+                        health.HealthLabel = (string)ComboBoxHealth.SelectedItem;
 
-            catch (Exception ex)
-            {
-                MessageBox.Show("Enter correct info");
+                        result = await repo.GetInfo(query, calories, diet.DietLabel, health.HealthLabel);
+                    }
+                    else
+                        result = await repo.GetInfo(query, calories);
+
+                    if (result != null)
+                    {
+                        foreach (var i in result)
+                        {
+                            listBoxForRecepies.Items.Add($"\nRecipe: {i.RecipeTitle} \n linq: { i.RecipeURL} \n calories per serving: { i.Calories / i.Servings} \n weight per serving: { i.Weight / i.Servings} ");
+                        }
+                    }
+                    else
+                        MessageBox.Show("No information was found");
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Enter correct info");
+                }
             }
         }
     }
