@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FitnessDietApp.Data.DTO.Response
 {
-    class Recipe
+    public class Recipe
     {
         [JsonProperty("label")]
         public string RecipeTitle { get; set; }
@@ -15,13 +15,10 @@ namespace FitnessDietApp.Data.DTO.Response
         public string ImageURL { get; set; }
         [JsonProperty("url")]
         public string RecipeURL { get; set; }
-        //level
         [JsonProperty("calories")]
         public float Calories { get; set; } //kcal
         [JsonProperty("totalWeight")]
         public float Weight { get; set; }
-        //ingredients
-        //nutrition
         [JsonProperty("yield")]
         public double Servings { get; set; }
         [JsonProperty("dietLabels")]

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FitnessDietApp.Data.DTO.Response
 {
-    class Hits
+    public class Hits
     {
         [JsonProperty("q")]
         public string Query { get; set; }

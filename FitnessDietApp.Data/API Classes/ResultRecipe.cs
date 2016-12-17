@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FitnessDietApp.Data
 {
-    class ResultRecipe
+    public class ResultRecipe
     {
         public string RecipeTitle { get; set; }
         public string ImageURL { get; set; }

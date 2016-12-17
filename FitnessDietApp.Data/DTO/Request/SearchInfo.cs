@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FitnessDietApp.Data.DTO
 {
-    class SearchInfo
+    public class SearchInfo
     {
         [JsonProperty("from")]
         public int From { get; set; }

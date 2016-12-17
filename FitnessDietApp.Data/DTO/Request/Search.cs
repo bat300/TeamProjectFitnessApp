@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FitnessDietApp.Data.DTO
 {
-    class Search
+    public class Search
     {
         public SearchInfo[] SearchItems { get; set; }
     }
