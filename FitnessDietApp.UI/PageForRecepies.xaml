@@ -16,7 +16,7 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
-        <Label Content="Recepies" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Forte"/>
+        <Label Content="Recipes" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Forte"/>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

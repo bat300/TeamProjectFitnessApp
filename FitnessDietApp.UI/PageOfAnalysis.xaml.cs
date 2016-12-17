@@ -27,12 +27,17 @@ namespace FitnessDietApp.UI
         {
             InitializeComponent();
             IAnalysing analyse = Factory.Default.GetIAnalysing();
+            
 
             analyse.RecomendationMessage += (a =>listBoxForRecommendations.Items.Add(a));
             double Max = 0;
             double Width = 0;
             using (Context context = new Context())
             {
+                foreach(var item in context.Diary)
+                {
+                    comboBoxDate.Items.Add(item.Date);//нужен ли toString?
+                }
                 InfoProDaySummarising inf = new InfoProDaySummarising();
                 foreach (var item in context.Diary)
                 {
@@ -334,6 +339,19 @@ namespace FitnessDietApp.UI
                 }
 
                 image.Source = new DrawingImage(CallsDrawingGroup);
+            }
+        }
+
+        private void comboBoxDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            IAnalysing analyse = Factory.Default.GetIAnalysing();
+            if (comboBoxDate.SelectedIndex==0)
+            {
+                analyse.Recomendations(new DateTime(01,01,1800));
+            }
+            else
+            {
+                analyse.Recomendations((DateTime)comboBoxDate.SelectedItem);
             }
         }
     }
