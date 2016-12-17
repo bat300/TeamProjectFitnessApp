@@ -3,6 +3,7 @@ using FitnessDietApp.Data.DTO;
 using FitnessDietApp.Data.DTO.Request;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -84,6 +85,14 @@ namespace FitnessDietApp.UI
                     MessageBox.Show("Enter correct info");
                 }
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var item = listBoxForRecepies.SelectedItem;
+            var listOfRecipesProperties = item.ToString().Split('\n');
+            var linq = listOfRecipesProperties[2].Split(' ')[2];
+            Process.Start(linq);
         }
     }
 }
