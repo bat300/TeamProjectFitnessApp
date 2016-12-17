@@ -27,16 +27,16 @@ namespace FitnessDietApp.UI
         {
             InitializeComponent();
 
-            DietComboBox.Items.Add("balanced"); // protein/fat/carb values in 15/35/50 ratio;
-            DietComboBox.Items.Add("high-protein"); // more than 50% of total calories from proteins;
-            DietComboBox.Items.Add("low-carb"); // less than 20% of total calories from carbs; 
-            DietComboBox.Items.Add("low-fat"); // less than 15% of total calories from fat;                                               
-            
-            HealthComboBox.Items.Add("alcohol-free"); // - no alcohol in the recipe;
-            HealthComboBox.Items.Add("sugar-conscious"); // - less than 4g of sugar per serving;
-            HealthComboBox.Items.Add("vegetarian"); // - no meat/poultry/fish;
-            HealthComboBox.Items.Add("vegan");
-            //HealthComboBox.Items.Add("dairy-free");
+            ComboBoxDiet.Items.Add("balanced"); // protein/fat/carb values in 15/35/50 ratio;
+            ComboBoxDiet.Items.Add("high-protein"); // more than 50% of total calories from proteins;
+            ComboBoxDiet.Items.Add("low-carb"); // less than 20% of total calories from carbs; 
+            ComboBoxDiet.Items.Add("low-fat"); // less than 15% of total calories from fat;                                               
+
+            ComboBoxHealth.Items.Add("alcohol-free"); // - no alcohol in the recipe;
+            ComboBoxHealth.Items.Add("sugar-conscious"); // - less than 4g of sugar per serving;
+            ComboBoxHealth.Items.Add("vegetarian"); // - no meat/poultry/fish;
+            ComboBoxHealth.Items.Add("vegan");
+
         }
 
         Repository repo = new Repository();
@@ -49,16 +49,16 @@ namespace FitnessDietApp.UI
         {
             try
             {
-                string query = QueryTextBox.Text;
+                string query = TextBoxProductsForRecipe.Text;
                 int from = 300;
                 int to = 1000;
                 string calories = String.Format($"gte {from}, lte {to}");
                 List<ResultRecipe> result;
 
-                if ((string)DietComboBox.SelectedItem != null)
+                if ((string)ComboBoxDiet.SelectedItem != null)
                 {
-                    diet.DietLabel = (string)DietComboBox.SelectedItem;
-                    health.HealthLabel = (string)HealthComboBox.SelectedItem;
+                    diet.DietLabel = (string)ComboBoxDiet.SelectedItem;
+                    health.HealthLabel = (string)ComboBoxHealth.SelectedItem;
 
                     result = await repo.GetInfo(query, calories, diet.DietLabel, health.HealthLabel);
                 }
@@ -69,7 +69,7 @@ namespace FitnessDietApp.UI
                 {
                     foreach (var i in result)
                     {
-                        listBox.Items.Add($"\nRecipe: {i.RecipeTitle} \n linq: { i.RecipeURL} \n calories per serving: { i.Calories / i.Servings} \n weight per serving: { i.Weight / i.Servings} ");
+                        listBoxForRecepies.Items.Add($"\nRecipe: {i.RecipeTitle} \n linq: { i.RecipeURL} \n calories per serving: { i.Calories / i.Servings} \n weight per serving: { i.Weight / i.Servings} ");
                     }
                 }
                 else
@@ -81,4 +81,6 @@ namespace FitnessDietApp.UI
                 MessageBox.Show("Enter correct info");
             }
         }
+    }
 }
+
