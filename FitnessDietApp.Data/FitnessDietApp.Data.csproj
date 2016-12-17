@@ -60,6 +60,10 @@
     <Compile Include="Interfaces\IAnalysing.cs" />
     <Compile Include="Interfaces\ICalculateNorm.cs" />
     <Compile Include="Interfaces\IDeviationsCalculating.cs" />
+    <Compile Include="Migrations\201612171619482_EverithingOK.cs" />
+    <Compile Include="Migrations\201612171619482_EverithingOK.Designer.cs">
+      <DependentUpon>201612171619482_EverithingOK.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PersonInfo.cs" />
     <Compile Include="PersonNorm.cs" />
@@ -69,6 +73,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201612171619482_EverithingOK.resx">
+      <DependentUpon>201612171619482_EverithingOK.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
