@@ -5,12 +5,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FitnessDietApp.UI"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="400" d:DesignWidth="300"
       Title="PageOfAnalysis">
     <Grid Margin="0,0,0,0" >
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="6*"/>
+            <RowDefinition Height="8*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="3*"/>
@@ -19,8 +19,8 @@
         <Image Grid.Row="1" x:Name="image"  Margin="10 10 10 10" />
         <Label Content="Analisys" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Forte"/>
         <ListBox Grid.Row="4" x:Name="listBoxForRecommendations" Margin="10,10,10,10"  />
-        <Label Grid.Row="2" FontSize="7" Content="Цвета на графике: белки-зелёный, жиры-розовый, углеводы-синий, калории-чёрный." FontFamily="Forte"/>
-        <Button Grid.Row="5" Margin="5 0 5 5" Content="Найти рецепты (на английском)" FontSize="10" FontFamily="Forte" Click="Button_Click"/>
+        <Label Grid.Row="2" FontSize="8.5" Content="График: зелёные белки, розовые жиры, синие углеводы, чёрные калории." FontFamily="Forte"/>
+        <Button Grid.Row="5" Margin="5 0 5 2" Content="Найти рецепты (на английском)" FontSize="10" FontFamily="Forte" Click="Button_Click"/>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />

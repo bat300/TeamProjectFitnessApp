@@ -21,7 +21,6 @@ namespace FitnessDietApp.Data
             double AveragePersentageOfCallories = 0;
             int NumberOfDays = 0;
             InfoProDaySummarising inf = new InfoProDaySummarising();
-            // IDeviationsCalculating dev = new DeviationsCalculating();
             IDeviationsCalculating dev = Factory.Default.GetDeviationsCalculating();
 
             using (var cont = new Context())

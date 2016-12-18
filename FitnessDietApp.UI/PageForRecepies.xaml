@@ -23,9 +23,9 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Label Content="Enter products to search a recepe" VerticalAlignment="Bottom" FontSize="10" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center"/>
-            <Label Content="Choose a diet" FontSize="10" VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center"/>
-            <Label Content="Health requirements" VerticalAlignment="Bottom" FontSize="10" Grid.Column="2" HorizontalAlignment="Center"/>
+            <Label Content="Enter products to search a recepe" VerticalAlignment="Bottom" FontSize="10.5" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" />
+            <Label Content="Choose a diet" FontSize="10.5" VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center"/>
+            <Label Content="Health requirements" VerticalAlignment="Bottom" FontSize="10.5" Grid.Column="2" HorizontalAlignment="Center"/>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
@@ -33,9 +33,9 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="TextBoxProductsForRecipe" Margin="5 5 5 5"/>
-            <ComboBox x:Name="ComboBoxDiet" Grid.Column="1" Margin="5 5 5 5"/>
-            <ComboBox x:Name="ComboBoxHealth" Grid.Column="2" Margin="5 5 5 5"/>
+            <TextBox x:Name="TextBoxProductsForRecipe" Margin="5 0 5 0"/>
+            <ComboBox x:Name="ComboBoxDiet" Grid.Column="1" Margin="5 0 5 3"/>
+            <ComboBox x:Name="ComboBoxHealth" Grid.Column="2" Margin="5 0 5 3"/>
         </Grid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
