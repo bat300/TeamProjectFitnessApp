@@ -33,7 +33,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Дата"  Width="90" Binding="{Binding Date}">
                     <DataGridTextColumn.HeaderStyle>
-                        <Style TargetType="DataGridColumnHeader"  >
+                        <Style TargetType="DataGridColumnHeader">
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
@@ -44,7 +44,7 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Продукты" Width="*" Binding="{Binding Products}">
+                <DataGridTextColumn Header="Продукты" Width="300" Binding="{Binding Products}">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -77,7 +77,7 @@
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Белки" Width="*" Binding="{Binding ProteinsPerDay}">
                     <DataGridTextColumn.HeaderStyle>
-                        <Style TargetType="DataGridColumnHeader"  >
+                        <Style TargetType="DataGridColumnHeader">
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
