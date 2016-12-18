@@ -17,6 +17,7 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <Label Content="Дневник питания" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <Grid Grid.Row="1">
@@ -29,62 +30,76 @@
         </Grid>
         <DataGrid Grid.Row="2" Name="FullTableOfComponents">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Дата"  Width="90">
+                <DataGridTextColumn Header="Дата"  Width="90" Binding="{Binding Date}">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader"  >
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Продукты" Width="*">
+                <DataGridTextColumn Header="Продукты" Width="*" Binding="{Binding Products}">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader"  >
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="ККал" Width="*">
+                <DataGridTextColumn Header="ККал" Width="*" Binding="{Binding CaloriesPerDay}">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader"  >
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background" Value="{Binding CaloriesColor}"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Белки" Width="*">
+                <DataGridTextColumn Header="Белки" Width="*" Binding="{Binding ProteinsPerDay}">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader"  >
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background" Value="{Binding ProteinsColor}"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Жиры" Width="*">
+                <DataGridTextColumn Header="Жиры" Width="*" Binding="{Binding FatsPerDay }">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader"  >
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background" Value="{Binding FatsColor}"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Углеводы" Width="*">
+                <DataGridTextColumn Header="Углеводы" Width="*" Binding="{Binding CarbohydratesPerDay}">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader"  >
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Итого" Width="*">
-                    <DataGridTextColumn.HeaderStyle>
-                        <Style TargetType="DataGridColumnHeader"  >
-                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background" Value="{Binding CarbohydratesColor}"/>
                         </Style>
-                    </DataGridTextColumn.HeaderStyle>
+                    </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 
-        <Label Content="Ваша норма КБЖУ превышена (красным)" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <Label Content="Ваша норма КБЖУ в пределах нормы (зеленым)" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Label Content="Ваша норма КБЖУ превышена (красным)" Background="Red" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Label Content="Ваша норма КБЖУ в пределах нормы (зеленым)" Background="Green" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Label Content="Ваша норма КБЖУ занижена (жёлтым)" Grid.Row="5" Background="Yellow" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-        <Button Name="GoToPageOfAnalysis" Grid.Row="5" Content="Перейти к анализу питания" Margin="5"/>
-        <Button Name="GoToPageWithRation" Grid.Row="6" Content="Перейти к заполнению рациона" Margin="5"/>
+        <Button Name="GoToPageOfAnalysis" Grid.Row="6" Content="Перейти к анализу питания" Margin="5"/>
+        <Button Name="GoToPageWithRation" Grid.Row="7" Content="Перейти к заполнению рациона" Margin="5"/>
     </Grid>
 </Page>

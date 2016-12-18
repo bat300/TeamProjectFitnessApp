@@ -1,44 +1,27 @@
-﻿using FitnessDietApp.Data.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace FitnessDietApp.Data
-{
+namespace FitnessDietApp.Data {
     //ИНТЕРФЕЙС ПОДСЧЁТА
-    public class InfoProDaySummarising
-        
-    {
-
-        public Diary DaysDiary { get; set; }
-
-        public double ProteinsPerDay(List<DiaryItem> diaryItem)
-        {
+    public class InfoProDaySummarising {
+        public double ProteinsPerDay(List<DiaryItem> diaryItem) {
             double protein = 0;
-            foreach (var item in diaryItem)
-            {
+            foreach (var item in diaryItem) {
                 protein += item.Product.Proteins * item.Quantity / 100;
             }
             return protein;
         }
 
-        public double FatsPerDay(List<DiaryItem> diaryItem)
-        {
+        public double FatsPerDay(List<DiaryItem> diaryItem) {
             double fat = 0;
-            foreach (var item in diaryItem)
-            {
+            foreach (var item in diaryItem) {
                 fat += item.Product.Fat * item.Quantity / 100;
             }
             return fat;
         }
 
-        public double CarbohydratesPerDay(List<DiaryItem> diaryItems)
-        {
+        public double CarbohydratesPerDay(List<DiaryItem> diaryItems) {
             double carbohydrate = 0;
-            foreach (var item in diaryItems)
-            {
+            foreach (var item in diaryItems) {
                 carbohydrate += item.Product.Carbohydrates * item.Quantity / 100;
             }
             return carbohydrate;
@@ -89,11 +72,9 @@ namespace FitnessDietApp.Data
                 return 0;
         }*/
 
-        public double CalloriesPerDay(List<DiaryItem> diaryItem)
-        {
+        public double CalloriesPerDay(List<DiaryItem> diaryItem) {
             double callory = 0;
-            foreach (var item in diaryItem)
-            {
+            foreach (var item in diaryItem) {
                 callory += item.Product.Сalories * item.Quantity / 100;
             }
             return callory;
