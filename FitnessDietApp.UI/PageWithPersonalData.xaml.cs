@@ -1,19 +1,21 @@
 ﻿using FitnessDietApp.Data;
-using FitnessDietApp.Data.Interfaces;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System;
 
-namespace FitnessDietApp.UI {
+namespace FitnessDietApp.UI
+{
     /// <summary>
     /// Логика взаимодействия для PageWithPersonalData.xaml
     /// </summary>
-    public partial class PageWithPersonalData : Page {
+    public partial class PageWithPersonalData : Page
+    {
         protected PersonInfo person;
         protected PersonNorm norm;
 
-        public PageWithPersonalData() {
+        public PageWithPersonalData()
+        {
             InitializeComponent();
             ChooseGender.Items.Add("Мужской");
             ChooseGender.Items.Add("Женский");
@@ -23,7 +25,9 @@ namespace FitnessDietApp.UI {
             ChooseLifestyle.Items.Add("Интенсивные тренировки 5-7 раз в неделю");
         }
 
-        public void Init() {
+
+        public void Init()
+        {
             try
             {
                 using (var context = new Context())
@@ -49,14 +53,18 @@ namespace FitnessDietApp.UI {
                         GoToPageWithRation.IsEnabled = false;
                     }
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Ошибка!", ex.Message);
             }
         }
 
-        private void Count_Click(object sender, RoutedEventArgs e) {
-            try {
+
+        private void Count_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
                 GoToPageWithRation.IsEnabled = false;
 
                 person.Age = int.Parse(Age.Text);
@@ -75,16 +83,18 @@ namespace FitnessDietApp.UI {
                 int n;
                 if (!int.TryParse(Age.Text, out n))
                     MessageBox.Show("Введён некорректный возраст :(");
-               if (!int.TryParse(Weight.Text, out n))
+                if (!int.TryParse(Weight.Text, out n))
                     MessageBox.Show("Введён некорректный вес :(");
-                 if (!int.TryParse(Height.Text, out n))
+                if (!int.TryParse(Height.Text, out n))
                     MessageBox.Show("Введён некорректный рост :(");
                 else
                     MessageBox.Show("Что-то пошло не так :(");
             }
         }
 
-        private void GoToPageWithRation_Click(object sender, RoutedEventArgs e) {
+
+        private void GoToPageWithRation_Click(object sender, RoutedEventArgs e)
+        {
             try
             {
                 using (var context = new Context())
@@ -94,11 +104,11 @@ namespace FitnessDietApp.UI {
 
                     context.SaveChanges();
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Ошибка!", ex.Message);
             }
-            }
-            
+        }
     }
 }
