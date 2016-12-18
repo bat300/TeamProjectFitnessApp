@@ -25,7 +25,6 @@ namespace FitnessDietApp.UI {
                         ((diary.PersonNorm.CaloriesUp + diary.PersonNorm.CaloriesLow) / 2).ToString("F2"),
                         ((diary.PersonNorm.ProteinsUp + diary.PersonNorm.ProteinsLow) / 2).ToString("F2"),
                         ((diary.PersonNorm.FatUp + diary.PersonNorm.FatLow) / 2).ToString("F2"),
-                       
                         ((diary.PersonNorm.CarbohydratesUp + diary.PersonNorm.CarbohydratesLow) / 2).ToString("F2")));
 
                     double proteinsPerDay = infoProDaySummarising.ProteinsPerDay(diary.DiaryItems.ToList());
@@ -48,13 +47,12 @@ namespace FitnessDietApp.UI {
                         CarbohydratesPerDay = carbohydratesPerDay,
                         CarbohydratesColor = GetBrushFromDouble(deviationOfCarbohydratesPerDay),
                         Date = diary.Date.ToString("dd.MM.yyyy"),
-                        Products = string.Join("\n",from diaryItem in diary.DiaryItems select diaryItem.Product.Name)
+                        Products = string.Join("\n", from diaryItem in diary.DiaryItems select diaryItem.Product.Name)
                     });
                 }
 
                 YourCalculation.Text = intervals.ToString();
             }
-
         }
 
         protected static Brush GetBrushFromDouble(double value) {
