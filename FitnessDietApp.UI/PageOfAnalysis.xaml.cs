@@ -150,7 +150,7 @@ namespace FitnessDietApp.UI {
                                 double DeviationOfCalloriesProDay = dev.DeviationOfCalloriesPerDay(CalloriesProDay,
                                     item.PersonNorm);
                                 GeoDrawing.Brush = Brushes.Red;
-                                GeoDrawing.Pen = new Pen(Brushes.Red, 8);
+                                GeoDrawing.Pen = new Pen(Brushes.Red, 12);
                                 if (DeviationOfProteinsProDay > 0) {
                                     EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width,
                                         Hight - ProteinsProDay), 1, 1);
@@ -194,7 +194,7 @@ namespace FitnessDietApp.UI {
                                 double DeviationOfCalloriesProDay = dev.DeviationOfCalloriesPerDay(CalloriesProDay,
                                     item.PersonNorm);
                                 GeoDrawing.Brush = Brushes.Orange;
-                                GeoDrawing.Pen = new Pen(Brushes.Orange, 8);
+                                GeoDrawing.Pen = new Pen(Brushes.Orange, 12);
                                 if (DeviationOfProteinsProDay < 0) {
                                     EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width,
                                         Hight - ProteinsProDay), 1, 1);

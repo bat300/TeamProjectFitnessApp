@@ -37,6 +37,6 @@
             <Label Content="Ваша идеальная норма: "/>
             <Label Name="Norma" Margin="10,0,0,0"/>
         </StackPanel>
-        <Button Content="Перейти к дневнику питания" Margin="100,10" Name="GoToPageWithRation" Click="GoToPageWithRation_Click"/>
+        <Button Content="Перейти к вводу рациона питания" Margin="48,10" Name="GoToPageWithRation" Click="GoToPageWithRation_Click" Height="26"/>
     </StackPanel>
 </Page>

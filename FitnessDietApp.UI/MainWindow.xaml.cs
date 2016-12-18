@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -8,6 +9,7 @@ namespace FitnessDietApp.UI {
     /// </summary>
     public partial class MainWindow : Window
     {
+       
         StartPage Start = new StartPage();
         PageWithDiary Diary = new PageWithDiary();
         PageWithPersonalData PersonalData = new PageWithPersonalData();
@@ -19,19 +21,25 @@ namespace FitnessDietApp.UI {
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
-            MainFrame.Content = Start;
-            Start.ChooseNewUser.Click += GoToPageWithPersonalData_Click;
-            Start.ChooseOldUser.Click += GoToPageWithPersonalData_Click;
-            PersonalData.GoToPageWithRation.Click += GoToPageWithRation_Click;
-            Ration.GoToPageOfAnalysis.Click += GoToPageOfAnalysis_Click;
-            Ration.GoToPageWithDiary.Click += GoToPageWithDiary_Click;
-            Diary.GoToPageOfAnalysis.Click += GoToPageOfAnalysis_Click;
-            Diary.GoToPageWithRation.Click += GoToPageWithRation_Click;
+            try
+            {
+                MainFrame.Content = Start;
+                Start.ChooseNewUser.Click += GoToPageWithPersonalData_Click;
+                Start.ChooseOldUser.Click += GoToPageWithPersonalData_Click;
+                PersonalData.GoToPageWithRation.Click += GoToPageWithRation_Click;
+                Ration.GoToPageOfAnalysis.Click += GoToPageOfAnalysis_Click;
+                Ration.GoToPageWithDiary.Click += GoToPageWithDiary_Click;
+                Diary.GoToPageOfAnalysis.Click += GoToPageOfAnalysis_Click;
+                Diary.GoToPageWithRation.Click += GoToPageWithRation_Click;
 
-            PersonalData.Age.TextChanged += ValidatePositiveInt;
-            PersonalData.Weight.TextChanged += ValidatePositiveDouble;
-            PersonalData.Height.TextChanged += ValidatePositiveInt;
-            Ration.ProductWeight.TextChanged += ValidatePositiveInt;
+                PersonalData.Age.TextChanged += ValidatePositiveInt;
+                PersonalData.Weight.TextChanged += ValidatePositiveDouble;
+                PersonalData.Height.TextChanged += ValidatePositiveInt;
+                Ration.ProductWeight.TextChanged += ValidatePositiveInt;
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Ошибка!");
+            }
         }
 
         private void ValidatePositiveInt(object sender, TextChangedEventArgs e) {
@@ -71,6 +79,7 @@ namespace FitnessDietApp.UI {
             MainFrame.Content = PersonalData;
         }
     }
+    
 }
 
 

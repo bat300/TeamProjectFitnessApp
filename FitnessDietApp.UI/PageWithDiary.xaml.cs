@@ -1,4 +1,5 @@
 ﻿using FitnessDietApp.Data;
+using System;
 using System.Linq;
 using System.Text;
 using System.Windows.Controls;
@@ -63,6 +64,11 @@ namespace FitnessDietApp.UI {
                 return Brushes.Red;
             else
                 return Brushes.Green;
+        }
+
+        private void GoToPageForRecepies_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("PageForRecepies.xaml", UriKind.Relative));
         }
     }
 }

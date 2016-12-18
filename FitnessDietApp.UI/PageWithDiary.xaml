@@ -5,10 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FitnessDietApp.UI"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="500"
+      d:DesignHeight="339" d:DesignWidth="581"
       Title="PageWithDiary">
 
-    <Grid>
+    <Grid Margin="0,0, 0, 0">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="30"/>
@@ -16,8 +16,9 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
         <Label Content="Дневник питания" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <Grid Grid.Row="1">
@@ -137,5 +138,6 @@
 
         <Button Name="GoToPageOfAnalysis" Grid.Row="6" Content="Перейти к анализу питания" Margin="5"/>
         <Button Name="GoToPageWithRation" Grid.Row="7" Content="Перейти к заполнению рациона" Margin="5"/>
+        <Button Name="GoToPageForRecepies" Grid.Row="8" Content="Найти рецепты (find recepies)" Margin="5" Click="GoToPageForRecepies_Click"/>
     </Grid>
 </Page>

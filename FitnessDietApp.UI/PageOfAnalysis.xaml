@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:FitnessDietApp.UI"
       mc:Ignorable="d" 
       d:DesignHeight="400" d:DesignWidth="300"
-      Title="PageOfAnalysis">
+      Title="PageOfAnalysis" >
     <Grid Margin="0,0,0,0" >
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -27,7 +27,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Label Content="Выберите дату начала анализа:" FontSize="9" FontFamily="Forte" HorizontalAlignment="Center"/>
-            <ComboBox x:Name="comboBoxDate" Margin="5 5 5 5" Grid.Column="1" SelectionChanged="comboBoxDate_SelectionChanged" />
+            <ComboBox x:Name="comboBoxDate" Margin="5 5 5 3" Grid.Column="1" SelectionChanged="comboBoxDate_SelectionChanged" />
            
         </Grid>
     </Grid>

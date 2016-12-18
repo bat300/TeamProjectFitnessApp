@@ -104,10 +104,12 @@ namespace FitnessDietApp.UI
 
                         if (result != null&&result.Count!=0)
                         {
+                            listBoxForRecepies.Items.Clear();
                             foreach (var i in result)
                             {
                                 listBoxForRecepies.Items.Add($"\nRecipe: {i.RecipeTitle} \n linq: { i.RecipeURL} \n calories per serving: { i.Calories / i.Servings:F2} \n weight per serving: { i.Weight / i.Servings:F2} ");
                             }
+                            result.Clear();
                         }
                         else
                             MessageBox.Show("No information was found");
