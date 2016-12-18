@@ -6,21 +6,25 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace FitnessDietApp.UI {
+namespace FitnessDietApp.UI
+{
     /// <summary>
     /// Логика взаимодействия для PageWithDiary.xaml
     /// </summary>
-    public partial class PageWithDiary : Page {
-        public PageWithDiary() {
+    public partial class PageWithDiary : Page
+    {
+        public PageWithDiary()
+        {
             InitializeComponent();
         }
 
-        public void Init() {
+        public void Init()
+        {
             try
             {
                 using (var context = new Context())
                 {
-                    if (context.Diary.Count()>=2)
+                    if (context.Diary.Count() >= 2)
                     {
                         GoToPageOfAnalysis.IsEnabled = true;
                     }
@@ -68,14 +72,16 @@ namespace FitnessDietApp.UI {
 
                     YourCalculation.Text = intervals.ToString();
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("Ошибка!", ex.Message);
             }
 
         }
 
-        protected static Brush GetBrushFromDouble(double value) {
+        protected static Brush GetBrushFromDouble(double value)
+        {
             if (value < 0)
                 return Brushes.Yellow;
             if (value > 0)
