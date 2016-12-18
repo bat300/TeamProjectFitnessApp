@@ -46,7 +46,7 @@ namespace FitnessDietApp.UI {
                         CarbohydratesPerDay = carbohydratesPerDay,
                         CarbohydratesColor = GetBrushFromDouble(deviationOfCarbohydratesPerDay),
                         Date = diary.Date.ToString("dd.MM.yyyy"),
-                        Products = string.Join("; ",from diaryItem in diary.DiaryItems select diaryItem.Product.Name)
+                        Products = string.Join("\n",from diaryItem in diary.DiaryItems select diaryItem.Product.Name)
                     });
                 }
 

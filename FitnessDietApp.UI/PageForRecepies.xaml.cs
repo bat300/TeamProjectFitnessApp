@@ -46,68 +46,80 @@ namespace FitnessDietApp.UI
         Health health = new Health();
 
 
-        private async void SearchButton_Click(object sender, RoutedEventArgs e)
-        {
-            using (Context cont = new Context())
-            {
-                try
-                {                    
-                    string query = TextBoxProductsForRecipe.Text;
-                    PersonNorm p = cont.PersonNorms.LastOrDefault();
-                    int from = (int)(Math.Round(p.CaloriesLow / 6));
-                    int to = (int)(Math.Round(p.CaloriesUp / 3));
-                    string calories = String.Format($"gte {from}, lte {to}");
-                    List<ResultRecipe> result;
-
-                    diet.DietLabel = (string)ComboBoxDiet.SelectedItem;
-                    health.HealthLabel = (string)ComboBoxHealth.SelectedItem;
-
-                    // !!!!!!!!!!!НАДО ПРОВЕРИТЬ!!!!!!!!!!
-                    if ((string)ComboBoxDiet.SelectedItem == null & (string)ComboBoxHealth.SelectedItem == null) // оба выбраны
-                    {
-                        result = await repo.GetInfo(query, calories);
-                    }
-
-                    else if ((string)ComboBoxDiet.SelectedItem != null & (string)ComboBoxHealth.SelectedItem != null) // оба не выбраны
-                    {
-                        result = await repo.GetInfo(query, calories, diet.DietLabel, health.HealthLabel);
-                    }
-
-                    else // хотя бы один выбран
-                    {
-                        if ((string)ComboBoxDiet.SelectedItem != null) // т.е. выбран diet
-                            result = await repo.GetInfo(query, calories, diet.DietLabel, health.HealthLabel, true);
-                        
-                        else // т.е. выбран health ((string)ComboBoxDiet.SelectedItem == null) 
-                            result = await repo.GetInfo(query, calories, diet.DietLabel, health.HealthLabel, false);
-                    }
-
-
-                    if (result != null)
-                    {
-                        foreach (var i in result)
-                        {
-                            listBoxForRecepies.Items.Add($"\nRecipe: {i.RecipeTitle} \n linq: { i.RecipeURL} \n calories per serving: { i.Calories / i.Servings} \n weight per serving: { i.Weight / i.Servings} ");
-                        }
-                    }
-                    else
-                        MessageBox.Show("No information was found");
-                }
-
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Enter correct info");
-                }
-            }
-        }
+        //private async void SearchButton_Click(object sender, RoutedEventArgs e)
+        
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var item = listBoxForRecepies.SelectedItem;
-            var listOfRecipesProperties = item.ToString().Split('\n');
-            var linq = listOfRecipesProperties[2].Split(' ')[2];
-            Process.Start(linq);
+            if (item != null)
+            {
+                var listOfRecipesProperties = item.ToString().Split('\n');
+                var linq = listOfRecipesProperties[2].Split(' ')[2];
+                Process.Start(linq);
+            }
+            else
+            {
+                MessageBox.Show("Вы ещё не выбрали рецепт!");
+            }
         }
+
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            {
+                using (Context cont = new Context())
+                {
+                    try
+                    {
+                        string query = TextBoxProductsForRecipe.Text;
+                        PersonNorm p = cont.PersonNorms.ToList().LastOrDefault();
+                        int from = (int)(Math.Round(p.CaloriesLow / 6));
+                        int to = (int)(Math.Round(p.CaloriesUp / 3));
+                        string calories = String.Format($"gte {from}, lte {to}");
+                        List<ResultRecipe> result;
+
+                        diet.DietLabel = (string)ComboBoxDiet.SelectedItem;
+                        health.HealthLabel = (string)ComboBoxHealth.SelectedItem;
+
+                        // !!!!!!!!!!!НАДО ПРОВЕРИТЬ!!!!!!!!!!
+                        if ((string)ComboBoxDiet.SelectedItem == null & (string)ComboBoxHealth.SelectedItem == null) // оба выбраны
+                        {
+                            result = await repo.GetInfo(query, calories);
+                        }
+
+                        else if ((string)ComboBoxDiet.SelectedItem != null & (string)ComboBoxHealth.SelectedItem != null) // оба не выбраны
+                        {
+                            result = await repo.GetInfo(query, calories, diet.DietLabel, health.HealthLabel);
+                        }
+
+                        else // хотя бы один выбран
+                        {
+                            if ((string)ComboBoxDiet.SelectedItem != null) // т.е. выбран diet
+                                result = await repo.GetInfo(query, calories, diet.DietLabel, health.HealthLabel, true);
+
+                            else // т.е. выбран health ((string)ComboBoxDiet.SelectedItem == null) 
+                                result = await repo.GetInfo(query, calories, diet.DietLabel, health.HealthLabel, false);
+                        }
+
+
+                        if (result != null)
+                        {
+                            foreach (var i in result)
+                            {
+                                listBoxForRecepies.Items.Add($"\nRecipe: {i.RecipeTitle} \n linq: { i.RecipeURL} \n calories per serving: { i.Calories / i.Servings} \n weight per serving: { i.Weight / i.Servings} ");
+                            }
+                        }
+                        else
+                            MessageBox.Show("No information was found");
+                    }
+
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Enter correct info");
+                    }
+                }
+            }
+            }
     }
 }
 
