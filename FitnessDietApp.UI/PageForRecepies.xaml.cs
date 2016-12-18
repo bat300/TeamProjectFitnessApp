@@ -63,22 +63,22 @@ namespace FitnessDietApp.UI
                     health.HealthLabel = (string)ComboBoxHealth.SelectedItem;
 
                     // !!!!!!!!!!!НАДО ПРОВЕРИТЬ!!!!!!!!!!
-                    if ((string)ComboBoxDiet.SelectedItem == null & (string)ComboBoxHealth.SelectedItem == null)
+                    if ((string)ComboBoxDiet.SelectedItem == null & (string)ComboBoxHealth.SelectedItem == null) // оба выбраны
                     {
                         result = await repo.GetInfo(query, calories);
                     }
 
-                    else if ((string)ComboBoxDiet.SelectedItem != null & (string)ComboBoxHealth.SelectedItem != null)
+                    else if ((string)ComboBoxDiet.SelectedItem != null & (string)ComboBoxHealth.SelectedItem != null) // оба не выбраны
                     {
                         result = await repo.GetInfo(query, calories, diet.DietLabel, health.HealthLabel);
                     }
 
-                    else
+                    else // хотя бы один выбран
                     {
-                        if ((string)ComboBoxDiet.SelectedItem != null & (string)ComboBoxHealth.SelectedItem == null)
+                        if ((string)ComboBoxDiet.SelectedItem != null) // т.е. выбран diet
                             result = await repo.GetInfo(query, calories, diet.DietLabel, health.HealthLabel, true);
                         
-                        else // получается ((string)ComboBoxDiet.SelectedItem == null || (string)ComboBoxHealth.SelectedItem != null), а надо &
+                        else // т.е. выбран health ((string)ComboBoxDiet.SelectedItem == null) 
                             result = await repo.GetInfo(query, calories, diet.DietLabel, health.HealthLabel, false);
                     }
 
@@ -104,9 +104,16 @@ namespace FitnessDietApp.UI
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var item = listBoxForRecepies.SelectedItem;
-            var listOfRecipesProperties = item.ToString().Split('\n');
-            var linq = listOfRecipesProperties[2].Split(' ')[2];
-            Process.Start(linq);
+            if (item != null)
+            {
+                var listOfRecipesProperties = item.ToString().Split('\n');
+                var linq = listOfRecipesProperties[2].Split(' ')[2];
+                Process.Start(linq);
+            }
+            else
+            {
+                MessageBox.Show("Вы ещё не выбрали рецепт!");
+            }
         }
     }
 }
