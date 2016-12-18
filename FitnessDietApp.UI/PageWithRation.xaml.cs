@@ -47,6 +47,8 @@ namespace FitnessDietApp.UI {
 
         private void AddProductToTheTable_Click(object sender, RoutedEventArgs e) {
             try {
+                if (int.Parse(ProductWeight.Text) <= 0)
+                    throw new Exception();
                 IEnumerable<DiaryItem> diaryItem;
                 if ((ChoosenDiary.DiaryItems.Count != 0) && ((diaryItem = ChoosenDiary.DiaryItems.Where(item => item.Product.Name == ProductName.Text)).Count() != 0)) {
                     diaryItem.First().Quantity += int.Parse(ProductWeight.Text);
@@ -59,6 +61,7 @@ namespace FitnessDietApp.UI {
                         ChoosenDiary.DiaryItems.Add(new DiaryItem() { Product = new Products() { Name = ProductName.Text }, Quantity = int.Parse(ProductWeight.Text) });
                     }
                 }
+
                 ProductName.Text = "";
                 ProductWeight.Text = "";
                 //GoToPageOfAnalysis.IsEnabled = true;
@@ -76,7 +79,7 @@ namespace FitnessDietApp.UI {
 
         private void GoToOtherPage_Click(object sender, RoutedEventArgs e) {
             using (var context = new Context()) {
-                if ((context.Diary.Count() != 0) && (context.Diary.ToList().Last().Date == DateTime.Now.Date)) {
+                if ((context.Diary.Count() != 0) && (context.Diary.ToList().Last().Date == ChoosenDiary.Date)) {
                     context.DiaryItems.RemoveRange(from diaryItem in (context.DiaryItems.ToList()) where context.Diary.ToList().Last().DiaryItems.Contains(diaryItem) select diaryItem);
                     context.Diary.Remove(context.Diary.ToList().Last());
                 }
