@@ -44,10 +44,7 @@ namespace FitnessDietApp.UI
         SearchInfo searchInfo = new SearchInfo();
         Diet diet = new Diet();
         Health health = new Health();
-
-
-        //private async void SearchButton_Click(object sender, RoutedEventArgs e)
-        
+                       
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -64,6 +61,7 @@ namespace FitnessDietApp.UI
             }
         }
 
+
         private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
             {
@@ -76,12 +74,12 @@ namespace FitnessDietApp.UI
                         int from = (int)(Math.Round(p.CaloriesLow / 6));
                         int to = (int)(Math.Round(p.CaloriesUp / 3));
                         string calories = String.Format($"gte {from}, lte {to}");
+
                         List<ResultRecipe> result;
 
                         diet.DietLabel = (string)ComboBoxDiet.SelectedItem;
                         health.HealthLabel = (string)ComboBoxHealth.SelectedItem;
 
-                        // !!!!!!!!!!!НАДО ПРОВЕРИТЬ!!!!!!!!!!
                         if ((string)ComboBoxDiet.SelectedItem == null & (string)ComboBoxHealth.SelectedItem == null) // оба выбраны
                         {
                             result = await repo.GetInfo(query, calories);
@@ -100,8 +98,7 @@ namespace FitnessDietApp.UI
                             else // т.е. выбран health ((string)ComboBoxDiet.SelectedItem == null) 
                                 result = await repo.GetInfo(query, calories, diet.DietLabel, health.HealthLabel, false);
                         }
-
-
+                        
                         if (result != null&&result.Count!=0)
                         {
                             listBoxForRecepies.Items.Clear();
@@ -121,7 +118,7 @@ namespace FitnessDietApp.UI
                     }
                 }
             }
-            }
+        }
     }
 }
 

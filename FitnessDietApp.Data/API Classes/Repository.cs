@@ -1,10 +1,7 @@
 ﻿using FitnessDietApp.Data.DTO.Response;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FitnessDietApp.Data
@@ -14,6 +11,7 @@ namespace FitnessDietApp.Data
         const string AppKey = "e62225700467dd10431ad8c55b6a2ca3";
         const string AppId = "ab576e02";
 
+
         List<ResultRecipe> recipes = new List<ResultRecipe>();
 
 
@@ -22,6 +20,7 @@ namespace FitnessDietApp.Data
             return $"https://api.edamam.com/search?q={query}&app_id={AppId}&app_key={AppKey}&calories={calories}";
         }
 
+
         static string MakeQuery(string query, string calories, string diet, string health, bool check)
         {
             if (check == true)
@@ -29,6 +28,7 @@ namespace FitnessDietApp.Data
             else
                 return $"https://api.edamam.com/search?q={query}&app_id={AppId}&app_key={AppKey}&calories={calories}&health={health}";
         }
+
 
         static string MakeQuery(string query, string calories, string diet, string health)
         {
@@ -47,6 +47,7 @@ namespace FitnessDietApp.Data
             }
         }
 
+
         public async Task<List<ResultRecipe>> GetInfo(string query, string calories, string diet, string health, bool check)
         {
             using (var client = new HttpClient())
@@ -58,14 +59,15 @@ namespace FitnessDietApp.Data
             }
         }
 
+
         public async Task<List<ResultRecipe>> GetInfo(string query, string calories, string diet, string health)
         {
             using (var client = new HttpClient())
             {
-                var getResponse = await client.GetStringAsync(MakeQuery(query, calories, diet, health));                
+                var getResponse = await client.GetStringAsync(MakeQuery(query, calories, diet, health));
                 var data = JsonConvert.DeserializeObject<Hits>(getResponse);
 
-                return ConvertFromDTOtoModel(data);                
+                return ConvertFromDTOtoModel(data);
             }
         }
 

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace FitnessDietApp.Data
@@ -11,42 +7,45 @@ namespace FitnessDietApp.Data
     [Table("PersonInfo")]
     public class PersonInfo
     {
-      
-        public enum PersonsGender  { Male, Female, Error }
-        public enum StylesOfLife { NoSport, LightSport, RegularSport, EveryDaySport}
+
+        public enum PersonsGender { Male, Female, Error }
+        public enum StylesOfLife { NoSport, LightSport, RegularSport, EveryDaySport }
+
 
         public static PersonsGender GetGenderFromString(string stringGender)
         {
-             PersonsGender gender = PersonsGender.Female;
-             switch (stringGender)
-             {
-                 case "Мужской":
-                     gender = PersonsGender.Male;
-                     break;
-                 case "Женский":
-                     gender = PersonsGender.Female;
-                     break;
-                 default:
-                     throw new Exception("Passed string is not correct");
-             }
-             return gender;
-         }
+            PersonsGender gender = PersonsGender.Female;
+            switch (stringGender)
+            {
+                case "Мужской":
+                    gender = PersonsGender.Male;
+                    break;
+                case "Женский":
+                    gender = PersonsGender.Female;
+                    break;
+                default:
+                    throw new Exception("Passed string is not correct");
+            }
+            return gender;
+        }
+
 
         public static string GetStringFromGender(PersonsGender gender)
         {
-             string stringGender = "";
-             switch (gender)
-             {
-                 case PersonsGender.Male:
+            string stringGender = "";
+            switch (gender)
+            {
+                case PersonsGender.Male:
                     stringGender = "Мужской";
-                     break;
-                 case PersonsGender.Female:
+                    break;
+                case PersonsGender.Female:
                     stringGender = "Женский";
-                     break;
-             }
-             return stringGender;
-         }
-                
+                    break;
+            }
+            return stringGender;
+        }
+
+
         public static StylesOfLife GetLifestyleFromString(string stringLifestyle)
         {
             StylesOfLife lifestyle = StylesOfLife.NoSport;
@@ -69,6 +68,7 @@ namespace FitnessDietApp.Data
             }
             return lifestyle;
         }
+
 
         public static string GetStringFromLifestyle(StylesOfLife lifestyle)
         {

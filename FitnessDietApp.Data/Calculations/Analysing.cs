@@ -1,16 +1,13 @@
 ﻿using FitnessDietApp.Data.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FitnessDietApp.Data
 {
     public delegate void Recomendation(string Message);
 
-    public class Analysing:IAnalysing
+    public class Analysing : IAnalysing
     {
         public event Recomendation RecomendationMessage;
 
@@ -81,11 +78,10 @@ namespace FitnessDietApp.Data
                 AveragePersentageOfProteins = AveragePersentageOfProteins / NumberOfDays;
                 StringBuilder Message = new StringBuilder();
                 Message.Append(String.Format("Средние отклонения от нормы БЖУ: Белки {0:F2}%, Жиры {1:F2}%, Углеводы {2:F2}% , Калории {3:F2}%.\n ",
-                    AveragePersentageOfProteins*100, AveragePersentageOfFat*100, AveragePersentageOfCarbohydrates*100, AveragePersentageOfCallories*100));
+                    AveragePersentageOfProteins * 100, AveragePersentageOfFat * 100, AveragePersentageOfCarbohydrates * 100, AveragePersentageOfCallories * 100));
 
                 if ((AveragePersentageOfProteins > 0) && (AveragePersentageOfFat > 0) && (AveragePersentageOfCarbohydrates > 0))//Доделать!
                 {
-
                     Message.Append("Рекомендуется уменьшить количество потребляемой пищи.");
                     RecomendationMessage(Message.ToString());
                 }
@@ -118,7 +114,7 @@ namespace FitnessDietApp.Data
                         {
                             Message.Append(" углеводов,");
                         }
-                        Message.Remove(Message.Length-1, 1);
+                        Message.Remove(Message.Length - 1, 1);
                         Message.Append(".");
                         RecomendationMessage(Message.ToString());
                     }
