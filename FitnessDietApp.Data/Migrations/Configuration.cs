@@ -1,24 +1,28 @@
-namespace FitnessDietApp.Data.Migrations {
+namespace FitnessDietApp.Data.Migrations
+{
     using System.Collections.Generic;
+    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.IO;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<FitnessDietApp.Data.Context> {
-        public Configuration() {
+    internal sealed class Configuration : DbMigrationsConfiguration<FitnessDietApp.Data.Context>
+    {
+        public Configuration()
+        {
             AutomaticMigrationsEnabled = true;
             ContextKey = "FitnessDietApp.Data.Context";
         }
 
-        protected override void Seed(Context context) {
-            //context.Database.ExecuteSqlCommand(TransactionalBehavior.DoNotEnsureTransaction, "ALTER DATABASE " 
-            //+ context.Database.Connection.Database + " SET SINGLE_USER WITH ROLLBACK IMMEDIATE");
-            //context.Database.ExecuteSqlCommand(TransactionalBehavior.DoNotEnsureTransaction, "ALTER DATABASE " 
-            //+ context.Database.Connection.Database + " SET MULTI_USER");
+        protected override void Seed(Context context)
+        {
+            context.Database.ExecuteSqlCommand(TransactionalBehavior.DoNotEnsureTransaction, "ALTER DATABASE "
+            + context.Database.Connection.Database + " SET SINGLE_USER WITH ROLLBACK IMMEDIATE");
+            context.Database.ExecuteSqlCommand(TransactionalBehavior.DoNotEnsureTransaction, "ALTER DATABASE "
+            + context.Database.Connection.Database + " SET MULTI_USER");
 
-            //context.Database.Delete();
-            //context.Database.Create();
-            //System.Diagnostics.Debugger.Launch();
+            context.Database.Delete();
+            context.Database.Create();
 
             Dictionary<string, Products> products = new Dictionary<string, Products>();
 
