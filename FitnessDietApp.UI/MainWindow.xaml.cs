@@ -44,7 +44,7 @@ namespace FitnessDietApp.UI {
 
         private void ValidatePositiveInt(object sender, TextChangedEventArgs e) {
             var textbox = (TextBox)sender;
-            int n = 0;
+            int n;
             if ((int.TryParse(textbox.Text, out n)) && (n > 0))
                 textbox.Background = Brushes.White;
             else
@@ -53,7 +53,7 @@ namespace FitnessDietApp.UI {
 
         private void ValidatePositiveDouble(object sender, TextChangedEventArgs e) {
             var textbox = (TextBox)sender;
-            double n = 0;
+            double n;
             if ((double.TryParse(textbox.Text, out n)) && (n > 0))
                 textbox.Background = Brushes.White;
             else

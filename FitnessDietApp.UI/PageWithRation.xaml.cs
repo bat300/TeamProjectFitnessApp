@@ -5,33 +5,28 @@ using System.Windows;
 using System.Windows.Controls;
 using FitnessDietApp.Data;
 using System.Collections.ObjectModel;
+using System.Windows.Media;
 
-namespace FitnessDietApp.UI
-{
+namespace FitnessDietApp.UI {
     /// <summary>
     /// Логика взаимодействия для PageWithRation.xaml
     /// </summary>
-    public partial class PageWithRation : Page
-    {
+    public partial class PageWithRation : Page {
         public Diary ChoosenDiary { get; set; }
 
         protected ObservableCollection<string> ProductNames { get; private set; }
 
 
-        public PageWithRation()
-        {
+        public PageWithRation() {
             InitializeComponent();
-            using (var context = new Context())
-            {
+            using (var context = new Context()) {
                 ProductNames = new ObservableCollection<string>(from product in context.Products.ToList() select product.Name);
             }
         }
 
 
-        public void Init()
-        {
-            using (var context = new Context())
-            {
+        public void Init() {
+            using (var context = new Context()) {
                 if ((context.Diary.Count() != 0) && (context.Diary.ToList().Last().Date == DateTime.Now.Date))
                     ChoosenDiary = context.Diary.Include("DiaryItems").Include("DiaryItems.Product").ToList().Last();
                 else
@@ -39,12 +34,10 @@ namespace FitnessDietApp.UI
 
                 ChoosenDiary.PersonNorm = context.PersonNorms.ToList().Last();
 
-                if (context.Diary.Count() == 0)
-                {
+                if (context.Diary.Count() == 0) {
                     GoToPageWithDiary.IsEnabled = false;
                 }
-                if (context.Diary.Count() < 2)
-                {
+                if (context.Diary.Count() < 2) {
                     GoToPageOfAnalysis.IsEnabled = false;
                 }
             }
@@ -55,37 +48,32 @@ namespace FitnessDietApp.UI
         }
 
 
-        private void AddProductToTheTable_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
+        private void AddProductToTheTable_Click(object sender, RoutedEventArgs e) {
+            try {
                 if (int.Parse(ProductWeight.Text) <= 0)
                     throw new Exception();
                 IEnumerable<DiaryItem> diaryItem;
                 if ((ChoosenDiary.DiaryItems.Count != 0) && ((diaryItem = ChoosenDiary.DiaryItems.Where(
-                    item => item.Product.Name == ProductName.Text)).Count() != 0))
-                {
+                    item => item.Product.Name == ProductName.Text)).Count() != 0)) {
                     diaryItem.First().Quantity += int.Parse(ProductWeight.Text);
                     ChosenProductsGrid.Items.Refresh();
-                }
-                else
-                {
-                    using (var context = new Context())
-                    {
+                } else {
+                    using (var context = new Context()) {
                         if (!ProductNames.Contains(ProductName.Text))
                             throw new Exception();
 
-                        ChoosenDiary.DiaryItems.Add(new DiaryItem() { Product = new Products() { Name = ProductName.Text },
-                            Quantity = int.Parse(ProductWeight.Text) });
+                        ChoosenDiary.DiaryItems.Add(new DiaryItem() {
+                            Product = new Products() { Name = ProductName.Text },
+                            Quantity = int.Parse(ProductWeight.Text)
+                        });
                     }
                 }
 
                 ProductName.Text = "";
                 ProductWeight.Text = "";
+                ProductWeight.Background = Brushes.White;
                 GoToPageWithDiary.IsEnabled = true;
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 int n;
                 if (!ProductNames.Contains(ProductName.Text))
                     MessageBox.Show("Такого продукта нет в списке :(");
@@ -97,14 +85,12 @@ namespace FitnessDietApp.UI
         }
 
 
-        private void GoToOtherPage_Click(object sender, RoutedEventArgs e)
-        {
-            using (var context = new Context())
-            {
-                if ((context.Diary.Count() != 0) && (context.Diary.ToList().Last().Date == ChoosenDiary.Date))
-                {
+        private void GoToOtherPage_Click(object sender, RoutedEventArgs e) {
+            using (var context = new Context()) {
+                if ((context.Diary.Count() != 0) && (context.Diary.ToList().Last().Date == ChoosenDiary.Date)) {
                     context.DiaryItems.RemoveRange(from diaryItem in (context.DiaryItems.ToList())
-                                                   where context.Diary.ToList().Last().DiaryItems.Contains(diaryItem) select diaryItem);
+                                                   where context.Diary.ToList().Last().DiaryItems.Contains(diaryItem)
+                                                   select diaryItem);
                     context.Diary.Remove(context.Diary.ToList().Last());
                 }
 
@@ -114,8 +100,7 @@ namespace FitnessDietApp.UI
                 context.Diary.Add(ChoosenDiary);
                 context.DiaryItems.AddRange(ChoosenDiary.DiaryItems);
 
-                if (context.Diary.Count() >= 2)
-                {
+                if (context.Diary.Count() >= 2) {
                     GoToPageOfAnalysis.IsEnabled = true;
                 }
 
