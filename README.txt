@@ -1,5 +1,5 @@
 # TeamProjectFitnessApp
-
+0) Собрать решение.
 1) В консоли диспетчеров пакетов nuget, выбрав проект по умолчанию FitnessDietApp.Data, 
 необходимо написать Update-Database, чтобы воспроизвести базу данных
 
