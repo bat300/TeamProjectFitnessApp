@@ -3,6 +3,7 @@ using FitnessDietApp.Data.Interfaces;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System;
 
 namespace FitnessDietApp.UI {
     /// <summary>
@@ -58,8 +59,18 @@ namespace FitnessDietApp.UI {
                 Norma.Content = norm.Calories.ToString();
 
                 GoToPageWithRation.IsEnabled = true;
-            } catch {
-                MessageBox.Show("Введены некорректные данные");
+            }
+            catch (Exception ex)
+            {
+                int n;
+                 if (!int.TryParse(Age.Text, out n))
+                    MessageBox.Show("Введён некорректный возраст :(");
+                if (!int.TryParse(Weight.Text, out n))
+                    MessageBox.Show("Введён некорректный вес :(");
+                if (!int.TryParse(Height.Text, out n))
+                    MessageBox.Show("Введён некорректный рост :(");
+                else
+                    MessageBox.Show("Что-то пошло не так :(");
             }
         }
 

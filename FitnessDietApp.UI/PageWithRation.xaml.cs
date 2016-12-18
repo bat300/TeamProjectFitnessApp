@@ -63,11 +63,11 @@ namespace FitnessDietApp.UI {
             } catch (Exception ex) {
                 int n;
                 if (!ProductNames.Contains(ProductName.Text))
-                    MessageBox.Show("Такого продукта нет в списке.");
+                    MessageBox.Show("Такого продукта нет в списке :(");
                 else if (!int.TryParse(ProductWeight.Text, out n))
-                    MessageBox.Show("Введён некорректный вес.");
+                    MessageBox.Show("Введён некорректный вес :(");
                 else
-                    MessageBox.Show("Что-то пошло не так");
+                    MessageBox.Show("Что-то пошло не так :(");
             }
         }
 
