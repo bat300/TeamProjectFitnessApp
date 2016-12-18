@@ -22,8 +22,9 @@ namespace FitnessDietApp.UI {
                 foreach (var diary in context.Diary.Include("PersonNorm").Include("DiaryItems").Include("DiaryItems.Product")) {
                     intervals.Append(string.Format("{0}/{1}/{2}/{3} ",
                         ((diary.PersonNorm.CaloriesUp + diary.PersonNorm.CaloriesLow) / 2).ToString("F2"),
-                        ((diary.PersonNorm.FatUp + diary.PersonNorm.FatLow) / 2).ToString("F2"),
                         ((diary.PersonNorm.ProteinsUp + diary.PersonNorm.ProteinsLow) / 2).ToString("F2"),
+                        ((diary.PersonNorm.FatUp + diary.PersonNorm.FatLow) / 2).ToString("F2"),
+                       
                         ((diary.PersonNorm.CarbohydratesUp + diary.PersonNorm.CarbohydratesLow) / 2).ToString("F2")));
 
                     double proteinsPerDay = infoProDaySummarising.ProteinsPerDay(diary.DiaryItems.ToList());
@@ -31,9 +32,9 @@ namespace FitnessDietApp.UI {
                     double fatsPerDay = infoProDaySummarising.FatsPerDay(diary.DiaryItems.ToList());
                     double carbohydratesPerDay = infoProDaySummarising.CarbohydratesPerDay(diary.DiaryItems.ToList());
 
-                    double deviationOfProteinsPerDay = deviations.DeviationOfProteinsPerDay(caloriesPerDay, diary.PersonNorm);
-                    double deviationOfFatsPerDay = deviations.DeviationOfFatsPerDay(caloriesPerDay, diary.PersonNorm);
-                    double deviationOfCarbohydratesPerDay = deviations.DeviationOfCarbohydratesPerDay(caloriesPerDay, diary.PersonNorm);
+                    double deviationOfProteinsPerDay = deviations.DeviationOfProteinsPerDay(proteinsPerDay, diary.PersonNorm);
+                    double deviationOfFatsPerDay = deviations.DeviationOfFatsPerDay(fatsPerDay, diary.PersonNorm);
+                    double deviationOfCarbohydratesPerDay = deviations.DeviationOfCarbohydratesPerDay(carbohydratesPerDay, diary.PersonNorm);
                     double deviationOfCalloriesPerDay = deviations.DeviationOfCalloriesPerDay(caloriesPerDay, diary.PersonNorm);
 
                     FullTableOfComponents.Items.Add(new {

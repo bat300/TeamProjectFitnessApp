@@ -106,7 +106,7 @@ namespace FitnessDietApp.UI
                         {
                             foreach (var i in result)
                             {
-                                listBoxForRecepies.Items.Add($"\nRecipe: {i.RecipeTitle} \n linq: { i.RecipeURL} \n calories per serving: { i.Calories / i.Servings} \n weight per serving: { i.Weight / i.Servings} ");
+                                listBoxForRecepies.Items.Add($"\nRecipe: {i.RecipeTitle} \n linq: { i.RecipeURL} \n calories per serving: { i.Calories / i.Servings:F2} \n weight per serving: { i.Weight / i.Servings:F2} ");
                             }
                         }
                         else
