@@ -23,10 +23,12 @@ namespace FitnessDietApp.UI {
                     } else {
                         GoToPageOfAnalysis.IsEnabled = false;
                     }
+
                     StringBuilder intervals = new StringBuilder();
                     var infoProDaySummarising = new InfoProDaySummarising();
                     var deviations = Factory.Default.GetDeviationsCalculating();
                     FullTableOfComponents.Items.Clear();
+
                     foreach (var diary in context.Diary.Include("PersonNorm").Include("DiaryItems").Include("DiaryItems.Product")) {
                         intervals.Append(string.Format("{0}/{1}/{2}/{3} ",
                             ((diary.PersonNorm.CaloriesUp + diary.PersonNorm.CaloriesLow) / 2).ToString("F2"),
@@ -67,6 +69,7 @@ namespace FitnessDietApp.UI {
 
         }
 
+
         protected static Brush GetBrushFromDouble(double value) {
             if (value < 0)
                 return Brushes.Yellow;
@@ -75,6 +78,7 @@ namespace FitnessDietApp.UI {
             else
                 return Brushes.Green;
         }
+
 
         private void GoToPageForRecepies_Click(object sender, System.Windows.RoutedEventArgs e) {
             NavigationService.Navigate(new Uri("PageForRecepies.xaml", UriKind.Relative));

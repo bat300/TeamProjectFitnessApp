@@ -17,6 +17,7 @@ namespace FitnessDietApp.UI
 
         protected ObservableCollection<string> ProductNames { get; private set; }
 
+
         public PageWithRation()
         {
             InitializeComponent();
@@ -25,6 +26,7 @@ namespace FitnessDietApp.UI
                 ProductNames = new ObservableCollection<string>(from product in context.Products.ToList() select product.Name);
             }
         }
+
 
         public void Init()
         {
@@ -51,6 +53,7 @@ namespace FitnessDietApp.UI
             ChosenProductsGrid.ItemsSource = ChoosenDiary.DiaryItems;
             ProductName.ItemsSource = ProductNames;
         }
+
 
         private void AddProductToTheTable_Click(object sender, RoutedEventArgs e)
         {
@@ -93,6 +96,7 @@ namespace FitnessDietApp.UI
             }
         }
 
+
         private void GoToOtherPage_Click(object sender, RoutedEventArgs e)
         {
             using (var context = new Context())
@@ -106,8 +110,10 @@ namespace FitnessDietApp.UI
 
                 foreach (var diaryItem in ChoosenDiary.DiaryItems)
                     diaryItem.Product = context.Products.First(product => product.Name == diaryItem.Product.Name);
+
                 context.Diary.Add(ChoosenDiary);
                 context.DiaryItems.AddRange(ChoosenDiary.DiaryItems);
+
                 if (context.Diary.Count() >= 2)
                 {
                     GoToPageOfAnalysis.IsEnabled = true;

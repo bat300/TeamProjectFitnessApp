@@ -48,7 +48,7 @@ namespace FitnessDietApp.UI
             }
             else
             {
-                MessageBox.Show("Вы ещё не выбрали рецепт!");
+                MessageBox.Show("You haven't choosen a product!");
             }
         }
 
