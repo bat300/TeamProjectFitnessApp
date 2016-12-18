@@ -102,7 +102,7 @@ namespace FitnessDietApp.UI
                         }
 
 
-                        if (result != null)
+                        if (result != null&&result.Count!=0)
                         {
                             foreach (var i in result)
                             {

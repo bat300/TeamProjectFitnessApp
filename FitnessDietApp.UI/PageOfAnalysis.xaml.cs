@@ -298,7 +298,7 @@ namespace FitnessDietApp.UI {
                         CallsDrawingGroup.Children.Add(GeoDrawing);
                     }
 
-                    //FIXME
+                    
                     image.Source = new DrawingImage(CallsDrawingGroup);
                 }
             }
