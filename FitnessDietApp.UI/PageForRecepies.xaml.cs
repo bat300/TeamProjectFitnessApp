@@ -64,19 +64,27 @@ namespace FitnessDietApp.UI
 
 
                     if ((string)ComboBoxDiet.SelectedItem == null & (string)ComboBoxHealth.SelectedItem == null)
+                    {
                         result = await repo.GetInfo(query, calories);
+                    }
 
-                        else if ((string)ComboBoxDiet.SelectedItem != null & (string)ComboBoxHealth.SelectedItem != null)
-                             result = await repo.GetInfo(query, calories, diet.DietLabel, health.HealthLabel);
+                    else 
+                    if ((string)ComboBoxDiet.SelectedItem != null & (string)ComboBoxHealth.SelectedItem != null)
+                    {
+                        result = await repo.GetInfo(query, calories, diet.DietLabel, health.HealthLabel);
+                    }
 
                     else
                     {
 
                         if ((string)ComboBoxDiet.SelectedItem != null & (string)ComboBoxHealth.SelectedItem == null)
+                        {
                             result = await repo.GetInfo(query, calories, diet.DietLabel);
-
-                        else // то есть ((string)ComboBoxDiet.SelectedItem == null & (string)ComboBoxHealth.SelectedItem != null)
+                        }
+                        else
+                        {// то есть ((string)ComboBoxDiet.SelectedItem == null & (string)ComboBoxHealth.SelectedItem != null)
                             result = await repo.GetInfoWithHealth(query, calories, health.HealthLabel);
+                        }
                     }
 
 
