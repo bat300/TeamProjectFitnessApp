@@ -51,7 +51,7 @@ namespace FitnessDietApp.UI
             using (Context cont = new Context())
             {
                 try
-                {
+                {                    
                     string query = TextBoxProductsForRecipe.Text;
                     PersonNorm p = cont.PersonNorms.LastOrDefault();
                     int from = (int)(Math.Round(p.CaloriesLow / 6));
@@ -104,16 +104,9 @@ namespace FitnessDietApp.UI
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var item = listBoxForRecepies.SelectedItem;
-            if (item != null)
-            {
-                var listOfRecipesProperties = item.ToString().Split('\n');
-                var linq = listOfRecipesProperties[2].Split(' ')[2];
-                Process.Start(linq);
-            }
-            else
-            {
-                MessageBox.Show("Вы ещё не выбрали рецепт!");
-            }
+            var listOfRecipesProperties = item.ToString().Split('\n');
+            var linq = listOfRecipesProperties[2].Split(' ')[2];
+            Process.Start(linq);
         }
     }
 }
