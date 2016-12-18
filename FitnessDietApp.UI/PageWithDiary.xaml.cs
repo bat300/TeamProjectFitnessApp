@@ -32,9 +32,9 @@ namespace FitnessDietApp.UI {
                     double fatsPerDay = infoProDaySummarising.FatsPerDay(diary.DiaryItems.ToList());
                     double carbohydratesPerDay = infoProDaySummarising.CarbohydratesPerDay(diary.DiaryItems.ToList());
 
-                    double deviationOfProteinsPerDay = deviations.DeviationOfProteinsPerDay(caloriesPerDay, diary.PersonNorm);
-                    double deviationOfFatsPerDay = deviations.DeviationOfFatsPerDay(caloriesPerDay, diary.PersonNorm);
-                    double deviationOfCarbohydratesPerDay = deviations.DeviationOfCarbohydratesPerDay(caloriesPerDay, diary.PersonNorm);
+                    double deviationOfProteinsPerDay = deviations.DeviationOfProteinsPerDay(proteinsPerDay, diary.PersonNorm);
+                    double deviationOfFatsPerDay = deviations.DeviationOfFatsPerDay(fatsPerDay, diary.PersonNorm);
+                    double deviationOfCarbohydratesPerDay = deviations.DeviationOfCarbohydratesPerDay(carbohydratesPerDay, diary.PersonNorm);
                     double deviationOfCalloriesPerDay = deviations.DeviationOfCalloriesPerDay(caloriesPerDay, diary.PersonNorm);
 
                     FullTableOfComponents.Items.Add(new {

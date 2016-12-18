@@ -80,8 +80,8 @@ namespace FitnessDietApp.Data
                 AveragePersentageOfFat = AveragePersentageOfFat / NumberOfDays;
                 AveragePersentageOfProteins = AveragePersentageOfProteins / NumberOfDays;
                 StringBuilder Message = new StringBuilder();
-                Message.Append(String.Format("Средние отклонения от нормы БЖУ: Белки {0}%, Жиры {1}%, Углеводы {2} %, Каллории {3}%. /n",
-                    AveragePersentageOfProteins, AveragePersentageOfFat, AveragePersentageOfCarbohydrates, AveragePersentageOfCallories));
+                Message.Append(String.Format("Средние отклонения от нормы БЖУ: Белки {0:F2}%, Жиры {1:F2}%, Углеводы {2:F2}% , Калории {3:F2}%. ",
+                    AveragePersentageOfProteins*100, AveragePersentageOfFat*100, AveragePersentageOfCarbohydrates*100, AveragePersentageOfCallories*100));
 
                 if ((AveragePersentageOfProteins > 0) && (AveragePersentageOfFat > 0) && (AveragePersentageOfCarbohydrates > 0))//Доделать!
                 {
