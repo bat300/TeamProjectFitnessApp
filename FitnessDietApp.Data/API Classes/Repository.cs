@@ -22,14 +22,12 @@ namespace FitnessDietApp.Data
             return $"https://api.edamam.com/search?q={query}&app_id={AppId}&app_key={AppKey}&calories={calories}";
         }
 
-        static string MakeQuery(string query, string calories, string diet)
+        static string MakeQuery(string query, string calories, string diet, string health, bool check)
         {
-            return $"https://api.edamam.com/search?q={query}&app_id={AppId}&app_key={AppKey}&calories={calories}&diet={diet}";
-        }
-
-        static string MakeQueryWithHealth(string query, string calories, string health)
-        {
-            return $"https://api.edamam.com/search?q={query}&app_id={AppId}&app_key={AppKey}&calories={calories}&health={health}";
+            if (check == true)
+                return $"https://api.edamam.com/search?q={query}&app_id={AppId}&app_key={AppKey}&calories={calories}&diet={diet}";
+            else
+                return $"https://api.edamam.com/search?q={query}&app_id={AppId}&app_key={AppKey}&calories={calories}&health={health}";
         }
 
         static string MakeQuery(string query, string calories, string diet, string health)
@@ -49,22 +47,11 @@ namespace FitnessDietApp.Data
             }
         }
 
-        public async Task<List<ResultRecipe>> GetInfo(string query, string calories, string diet)
+        public async Task<List<ResultRecipe>> GetInfo(string query, string calories, string diet, string health, bool check)
         {
             using (var client = new HttpClient())
             {
-                var getResponse = await client.GetStringAsync(MakeQuery(query, calories, diet));
-                var data = JsonConvert.DeserializeObject<Hits>(getResponse);
-
-                return ConvertFromDTOtoModel(data);
-            }
-        }
-
-        public async Task<List<ResultRecipe>> GetInfoWithHealth(string query, string calories, string health)
-        {
-            using (var client = new HttpClient())
-            {
-                var getResponse = await client.GetStringAsync(MakeQueryWithHealth(query, calories, health));
+                var getResponse = await client.GetStringAsync(MakeQuery(query, calories, diet, health, check));
                 var data = JsonConvert.DeserializeObject<Hits>(getResponse);
 
                 return ConvertFromDTOtoModel(data);
