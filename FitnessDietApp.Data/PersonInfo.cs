@@ -31,6 +31,21 @@ namespace FitnessDietApp.Data
              }
              return gender;
          }
+
+        public static string GetStringFromGender(PersonsGender gender)
+        {
+             string stringGender = "";
+             switch (gender)
+             {
+                 case PersonsGender.Male:
+                    stringGender = "Мужской";
+                     break;
+                 case PersonsGender.Female:
+                    stringGender = "Женский";
+                     break;
+             }
+             return stringGender;
+         }
                 
         public static StylesOfLife GetLifestyleFromString(string stringLifestyle)
         {
@@ -51,9 +66,30 @@ namespace FitnessDietApp.Data
                     break;
                 default:
                     throw new Exception("Passed string is not correct");
-                    
             }
             return lifestyle;
+        }
+
+        public static string GetStringFromLifestyle(StylesOfLife lifestyle)
+        {
+            string stringLifeStyle = "";
+
+            switch (lifestyle)
+            {
+                case StylesOfLife.NoSport:
+                    stringLifeStyle = "Сидячий образ жизни";
+                    break;
+                case StylesOfLife.LightSport:
+                    stringLifeStyle = "Легкие тренировки 1-3 раза в неделю";
+                    break;
+                case StylesOfLife.RegularSport:
+                    stringLifeStyle = "Умеренные тренировки 3-5 раз в неделю";
+                    break;
+                case StylesOfLife.EveryDaySport:
+                    stringLifeStyle = "Интенсивные тренировки 5-7 раз в неделю";
+                    break;
+            }
+            return stringLifeStyle;
         }
 
         public int Id { get; set; }

@@ -4,65 +4,48 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace FitnessDietApp.UI
-{
+namespace FitnessDietApp.UI {
     /// <summary>
     /// Логика взаимодействия для PageOfAnalysis.xaml
     /// </summary>
-    public partial class PageOfAnalysis : Page
-    {
-        public PageOfAnalysis()
-        {
+    public partial class PageOfAnalysis : Page {
+        public PageOfAnalysis() {
             InitializeComponent();
             IAnalysing analyse = Factory.Default.GetIAnalysing();
-            
 
-            analyse.RecomendationMessage += (a =>listBoxForRecommendations.Items.Add(a));
+
+            analyse.RecomendationMessage += (a => listBoxForRecommendations.Items.Add(a));
             double Max = 0;
             double Width = 0;
-            using (Context context = new Context())
-            {
-                foreach(var item in context.Diary)
-                {
+            using (Context context = new Context()) {
+                foreach (var item in context.Diary.Include("DiaryItems")) {
                     comboBoxDate.Items.Add(item.Date);//нужен ли toString?
                 }
                 InfoProDaySummarising inf = new InfoProDaySummarising();
-                foreach (var item in context.Diary)
-                {
+                foreach (var item in context.Diary.Include("DiaryItems").Include("DiaryItems.Product")) {
                     double CarbohydratesProDay = inf.CarbohydratesPerDay(item.DiaryItems.ToList());
-                   
+
                     double FatsProDay = inf.FatsPerDay(item.DiaryItems.ToList());
-                    
+
                     double ProteinsProDay = inf.ProteinsPerDay(item.DiaryItems.ToList());
-                    
+
                     double CalloriesProDay = inf.CalloriesPerDay(item.DiaryItems.ToList());
-                    
-                    if (CarbohydratesProDay > Max)
-                    {
+
+                    if (CarbohydratesProDay > Max) {
                         Max = CarbohydratesProDay;
                     }
-                    if (FatsProDay > Max)
-                    {
+                    if (FatsProDay > Max) {
                         Max = FatsProDay;
                     }
-                    if (ProteinsProDay > Max)
-                    {
+                    if (ProteinsProDay > Max) {
                         Max = ProteinsProDay;
                     }
-                    if (CalloriesProDay > Max)
-                    {
+                    if (CalloriesProDay > Max) {
                         Max = CalloriesProDay;
                     }
                     Width += 1;
@@ -71,13 +54,11 @@ namespace FitnessDietApp.UI
                 double Hight = Math.Round(Max) + 1;
                 DrawingGroup CallsDrawingGroup = new DrawingGroup();
                 IDeviationsCalculating dev = Factory.Default.GetDeviationsCalculating();
-                for (int Stages = 0; Stages < 10; Stages++)
-                {
+                for (int Stages = 0; Stages < 10; Stages++) {
                     GeometryDrawing GeoDrawing = new GeometryDrawing();
                     GeometryGroup GeoGroup = new GeometryGroup();
                     //Задний фон
-                    if (Stages == 0)
-                    {
+                    if (Stages == 0) {
                         GeoDrawing.Brush = Brushes.Beige;
                         GeoDrawing.Pen = new Pen(Brushes.Black, 3);
 
@@ -87,19 +68,16 @@ namespace FitnessDietApp.UI
                     }
                     //График протеинов
 
-                    if (Stages == 1)
-                    {
+                    if (Stages == 1) {
                         GeoDrawing.Brush = Brushes.White;
                         GeoDrawing.Pen = new Pen(Brushes.Green, 2);
 
                         int i = 0;
                         double last = 0;
                         GeoGroup = new GeometryGroup();
-                        foreach (var item in context.Diary)
-                        {
+                        foreach (var item in context.Diary.Include("DiaryItems")) {
                             double ProteinsProDay = inf.ProteinsPerDay(item.DiaryItems.ToList());
-                            if (i != 0)
-                            {
+                            if (i != 0) {
                                 LineGeometry lGeo = new LineGeometry(new Point((Math.Round(Max) + 1) * (i - 1) / Width,
                                     Hight - last), new Point((Math.Round(Max) + 1) * i / Width, Hight - ProteinsProDay));
                                 GeoGroup.Children.Add(lGeo);
@@ -109,19 +87,16 @@ namespace FitnessDietApp.UI
                         }
                     }
                     //График жиров
-                    if (Stages == 2)
-                    {
+                    if (Stages == 2) {
                         GeoDrawing.Brush = Brushes.DeepPink;
                         GeoDrawing.Pen = new Pen(Brushes.DeepPink, 2);
 
                         int i = 0;
                         double last = 0;
                         GeoGroup = new GeometryGroup();
-                        foreach (var item in context.Diary)
-                        {
+                        foreach (var item in context.Diary.Include("DiaryItems")) {
                             double FatsProDay = inf.FatsPerDay(item.DiaryItems.ToList());
-                            if (i != 0)
-                            {
+                            if (i != 0) {
                                 LineGeometry lGeo = new LineGeometry(new Point((Math.Round(Max) + 1) * (i - 1) / Width,
                                     Hight - last), new Point((Math.Round(Max) + 1) * i / Width, Hight - FatsProDay));
                                 GeoGroup.Children.Add(lGeo);
@@ -131,19 +106,16 @@ namespace FitnessDietApp.UI
                         }
                     }
                     //График углеводов
-                    if (Stages == 3)
-                    {
+                    if (Stages == 3) {
                         GeoDrawing.Brush = Brushes.White;
                         GeoDrawing.Pen = new Pen(Brushes.Blue, 2);
 
                         int i = 0;
                         double last = 0;
                         GeoGroup = new GeometryGroup();
-                        foreach (var item in context.Diary)
-                        {
+                        foreach (var item in context.Diary.Include("DiaryItems")) {
                             double CarbohydratesProDay = inf.CarbohydratesPerDay(item.DiaryItems.ToList());
-                            if (i != 0)
-                            {
+                            if (i != 0) {
                                 LineGeometry lGeo = new LineGeometry(new Point((Math.Round(Max) + 1) * (i - 1) / Width,
                                     Hight - last), new Point((Math.Round(Max) + 1) * i / Width, Hight - CarbohydratesProDay));
                                 GeoGroup.Children.Add(lGeo);
@@ -153,12 +125,10 @@ namespace FitnessDietApp.UI
                         }
                     }
                     //Все красные точки
-                    if (Stages == 4)
-                    {
+                    if (Stages == 4) {
                         GeoGroup = new GeometryGroup();
                         int i = 0;
-                        foreach (var item in context.Diary)
-                        {
+                        foreach (var item in context.Diary.Include("PersonNorm").Include("DiaryItems")) {
                             double CarbohydratesProDay = inf.CarbohydratesPerDay(item.DiaryItems.ToList());
                             double DeviationOfCarbohydratesProDay = dev.DeviationOfCarbohydratesPerDay(CarbohydratesProDay,
                                 item.PersonNorm);
@@ -171,30 +141,26 @@ namespace FitnessDietApp.UI
                                 item.PersonNorm);
                             GeoDrawing.Brush = Brushes.Red;
                             GeoDrawing.Pen = new Pen(Brushes.Red, 8);
-                            if (DeviationOfProteinsProDay > 0)
-                            {
+                            if (DeviationOfProteinsProDay > 0) {
                                 EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width,
                                     Hight - ProteinsProDay), 1, 1);
 
                                 GeoGroup.Children.Add(Dot);
                             }
-                           
-                                if (DeviationOfCarbohydratesProDay > 0)
-                            {
+
+                            if (DeviationOfCarbohydratesProDay > 0) {
                                 EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width,
                                     Hight - CarbohydratesProDay), 1, 1);
 
                                 GeoGroup.Children.Add(Dot);
                             }
-                            
-                                if (DeviationOfFatsProDay > 0)
-                            {
+
+                            if (DeviationOfFatsProDay > 0) {
                                 EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width,
                                     Hight - FatsProDay), 1, 1);
                                 GeoGroup.Children.Add(Dot);
                             }
-                            if (DeviationOfCalloriesProDay > 0)
-                            {
+                            if (DeviationOfCalloriesProDay > 0) {
                                 EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width,
                                     Hight - CalloriesProDay), 1, 1);
                                 GeoGroup.Children.Add(Dot);
@@ -203,12 +169,10 @@ namespace FitnessDietApp.UI
                         }
                     }
                     //Все жёлтые точки
-                    if (Stages == 5)
-                    {
+                    if (Stages == 5) {
                         GeoGroup = new GeometryGroup();
                         int i = 0;
-                        foreach (var item in context.Diary)
-                        {
+                        foreach (var item in context.Diary.Include("PersonNorm").Include("DiaryItems")) {
                             double CarbohydratesProDay = inf.CarbohydratesPerDay(item.DiaryItems.ToList());
                             double DeviationOfCarbohydratesProDay = dev.DeviationOfCarbohydratesPerDay(CarbohydratesProDay,
                                 item.PersonNorm);
@@ -221,30 +185,26 @@ namespace FitnessDietApp.UI
                                 item.PersonNorm);
                             GeoDrawing.Brush = Brushes.Orange;
                             GeoDrawing.Pen = new Pen(Brushes.Orange, 8);
-                            if (DeviationOfProteinsProDay < 0)
-                            {
+                            if (DeviationOfProteinsProDay < 0) {
                                 EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width,
                                     Hight - ProteinsProDay), 1, 1);
 
                                 GeoGroup.Children.Add(Dot);
                             }
-                            
-                                if (DeviationOfCarbohydratesProDay < 0)
-                            {
+
+                            if (DeviationOfCarbohydratesProDay < 0) {
                                 EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width,
                                     Hight - CarbohydratesProDay), 1, 1);
 
                                 GeoGroup.Children.Add(Dot);
                             }
-                            
-                                if (DeviationOfFatsProDay < 0)
-                            {
+
+                            if (DeviationOfFatsProDay < 0) {
                                 EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width,
                                     Hight - FatsProDay), 1, 1);
                                 GeoGroup.Children.Add(Dot);
                             }
-                            if (DeviationOfCalloriesProDay < 0)
-                            {
+                            if (DeviationOfCalloriesProDay < 0) {
                                 EllipseGeometry Dot = new EllipseGeometry(new Point((Math.Round(Max) + 1) * i / Width,
                                     Hight - CalloriesProDay), 1, 1);
                                 GeoGroup.Children.Add(Dot);
@@ -253,12 +213,10 @@ namespace FitnessDietApp.UI
                         }
                     }
                     //Надписи
-                    if (Stages == 6)
-                    {
+                    if (Stages == 6) {
                         GeoDrawing.Brush = Brushes.Black;
                         GeoDrawing.Pen = new Pen(Brushes.Black, 2);
-                        for (int i = 0; i < Max + 2; i += 50)
-                        {
+                        for (int i = 0; i < Max + 2; i += 50) {
                             FormattedText formText = new FormattedText(
                                 i.ToString(),
                                 CultureInfo.GetCultureInfo("en-us"),
@@ -272,40 +230,34 @@ namespace FitnessDietApp.UI
                         }
                     }
                     //Сетка
-                    if (Stages == 7)
-                    {
+                    if (Stages == 7) {
                         GeoDrawing.Brush = Brushes.Beige;
                         GeoDrawing.Pen = new Pen(Brushes.Gray, 1);
                         //DoubleCollection dashes = new DoubleCollection();
                         List<double> dashes = new List<double>();
-                        for (int i = 0; i < Math.Round(Max) + 1; i += 50)
-                        {
+                        for (int i = 0; i < Math.Round(Max) + 1; i += 50) {
                             dashes.Add(0.8);
                         }
                         GeoDrawing.Pen.DashStyle = new DashStyle(dashes, 0);
 
 
-                        for (int i = 0; i < Math.Round(Max) + 1; i += 50)
-                        {
+                        for (int i = 0; i < Math.Round(Max) + 1; i += 50) {
                             LineGeometry LGeo = new LineGeometry(new Point(0, i), new Point((Math.Round(Max) + 1) * Width2, i));
                             GeoGroup.Children.Add(LGeo);
                         }
                     }
                     //Каллории
-                    if (Stages == 8)
-                    {
+                    if (Stages == 8) {
                         GeoDrawing.Brush = Brushes.Black;
                         GeoDrawing.Pen = new Pen(Brushes.Black, 2);
 
                         int i = 0;
                         double last = 0;
                         GeoGroup = new GeometryGroup();
-                        foreach (var item in context.Diary)
-                        {
+                        foreach (var item in context.Diary.Include("DiaryItems")) {
                             double CalloriesProDay = inf.CalloriesPerDay(item.DiaryItems.ToList());
- 
-                            if (i != 0)
-                            {
+
+                            if (i != 0) {
                                 LineGeometry lGeo = new LineGeometry(new Point((Math.Round(Max) + 1) * (i - 1) / Width,
                                     Hight - last), new Point((Math.Round(Max) + 1) * i / Width, Hight - CalloriesProDay));
                                 GeoGroup.Children.Add(lGeo);
@@ -315,13 +267,11 @@ namespace FitnessDietApp.UI
                         }
                     }
                     //Надписи снизу
-                    if (Stages == 9)
-                    {
+                    if (Stages == 9) {
                         GeoDrawing.Brush = Brushes.Black;
                         GeoDrawing.Pen = new Pen(Brushes.Black, 2);
                         int i = 0;
-                        foreach (var item in context.Diary)
-                        {
+                        foreach (var item in context.Diary) {
                             FormattedText formText = new FormattedText(
                                 item.Date.ToString(),
                                 CultureInfo.GetCultureInfo("en-us"),
@@ -343,22 +293,17 @@ namespace FitnessDietApp.UI
             }
         }
 
-        private void comboBoxDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        private void comboBoxDate_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             IAnalysing analyse = Factory.Default.GetIAnalysing();
-            if (comboBoxDate.SelectedIndex==0)
-            {
-                analyse.Recomendations(new DateTime(01,01,1800));
-            }
-            else
-            {
+            if (comboBoxDate.SelectedIndex == 0) {
+                analyse.Recomendations(new DateTime(01, 01, 1800));
+            } else {
                 analyse.Recomendations((DateTime)comboBoxDate.SelectedItem);
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("PageForRecepies.xaml",UriKind.Relative));
+        private void Button_Click(object sender, RoutedEventArgs e) {
+            NavigationService.Navigate(new Uri("PageForRecepies.xaml", UriKind.Relative));
         }
     }
 }

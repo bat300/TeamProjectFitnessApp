@@ -56,14 +56,14 @@
                 </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        
+
         <Grid Grid.Row="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Content="Показать дневник с рассчетом КБЖУ" Margin="5" Name="GoToPageWithDiary"/>
-            <Button Content="Анализ дневника питания" Grid.Column="1" Margin="5" Name="GoToPageOfAnalysis"/>
+            <Button Content="Показать дневник с рассчетом КБЖУ" Margin="5" Name="GoToPageWithDiary" Click="GoToOtherPage_Click"/>
+            <Button Content="Анализ дневника питания" Grid.Column="1" Margin="5" Name="GoToPageOfAnalysis" Click="GoToOtherPage_Click"/>
         </Grid>
     </Grid>
 </Page>
