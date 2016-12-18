@@ -303,10 +303,13 @@ namespace FitnessDietApp.UI {
 
         private void comboBoxDate_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             IAnalysing analyse = Factory.Default.GetIAnalysing();
-            if (comboBoxDate.SelectedIndex == 0) {
+            if (comboBoxDate.SelectedIndex == -1) {
                 analyse.Recomendations(new DateTime(1800, 01, 01));
             } else {
-                analyse.Recomendations((DateTime)comboBoxDate.SelectedItem);
+                var dateStrings = comboBoxDate.SelectedItem.ToString().Split('.');
+                DateTime date = new DateTime(int.Parse(dateStrings[2]),int.Parse(dateStrings[1]),
+                    int.Parse(dateStrings[0]));
+                analyse.Recomendations(date);
             }
         }
 
