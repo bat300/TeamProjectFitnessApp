@@ -24,24 +24,34 @@ namespace FitnessDietApp.UI {
         }
 
         public void Init() {
-            using (var context = new Context()) {
-                if (context.PersonInfo.Count() != 0) {
-                    person = context.PersonInfo.ToList().Last();
-                    norm = context.PersonNorms.ToList().Last();
+            try
+            {
+                using (var context = new Context())
+                {
+                    if (context.PersonInfo.Count() != 0)
+                    {
+                        person = context.PersonInfo.ToList().Last();
+                        norm = context.PersonNorms.ToList().Last();
 
-                    Age.Text = person.Age.ToString();
-                    Weight.Text = person.Weight.ToString();
-                    Height.Text = person.Height.ToString();
-                    ChooseGender.SelectedIndex = ChooseGender.Items.IndexOf(PersonInfo.GetStringFromGender(person.Gender));
-                    ChooseLifestyle.SelectedIndex = ChooseLifestyle.Items.IndexOf(PersonInfo.GetStringFromLifestyle(person.Lifestyle));
-                    Norma.Content = norm.Calories.ToString();
+                        Age.Text = person.Age.ToString();
+                        Weight.Text = person.Weight.ToString();
+                        Height.Text = person.Height.ToString();
+                        ChooseGender.SelectedIndex = ChooseGender.Items.IndexOf(PersonInfo.GetStringFromGender(person.Gender));
+                        ChooseLifestyle.SelectedIndex = ChooseLifestyle.Items.IndexOf(PersonInfo.GetStringFromLifestyle(person.Lifestyle));
+                        Norma.Content = norm.Calories.ToString();
 
-                    GoToPageWithRation.IsEnabled = true;
-                } else {
-                    person = new PersonInfo();
-                    norm = new PersonNorm();
-                    GoToPageWithRation.IsEnabled = false;
+                        GoToPageWithRation.IsEnabled = true;
+                    }
+                    else
+                    {
+                        person = new PersonInfo();
+                        norm = new PersonNorm();
+                        GoToPageWithRation.IsEnabled = false;
+                    }
                 }
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Ошибка!", ex.Message);
             }
         }
 
@@ -75,12 +85,20 @@ namespace FitnessDietApp.UI {
         }
 
         private void GoToPageWithRation_Click(object sender, RoutedEventArgs e) {
-            using (var context = new Context()) {
-                context.PersonInfo.Add(person);
-                context.PersonNorms.Add(norm);
+            try
+            {
+                using (var context = new Context())
+                {
+                    context.PersonInfo.Add(person);
+                    context.PersonNorms.Add(norm);
 
-                context.SaveChanges();
+                    context.SaveChanges();
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Ошибка!", ex.Message);
             }
-        }
+            }
+            
     }
 }
