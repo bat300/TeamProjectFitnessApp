@@ -12,7 +12,7 @@ namespace FitnessDietApp.Data
         
     {
 
-        public Diary DaysDiary { get; set; }
+   
 
         public double ProteinsPerDay(List<DiaryItem> diaryItem)
         {
