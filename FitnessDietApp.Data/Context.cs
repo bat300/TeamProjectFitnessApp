@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 
 namespace FitnessDietApp.Data
 {
@@ -14,7 +9,6 @@ namespace FitnessDietApp.Data
         public DbSet<DiaryItem> DiaryItems { get; set; }
         public DbSet<PersonInfo> PersonInfo { get; set; }
         public DbSet<PersonNorm> PersonNorms { get; set; }
-       // public DbSet<InfoProDaySummarising> InfoProDaySummarisings { get; set; }
 
         public Context() : base("localsql")
         {

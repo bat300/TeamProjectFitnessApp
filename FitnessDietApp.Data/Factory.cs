@@ -1,9 +1,4 @@
 ﻿using FitnessDietApp.Data.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FitnessDietApp.Data
 {
@@ -24,31 +19,32 @@ namespace FitnessDietApp.Data
         }
 
         private ICalculateNorm _calculateNorm;
-        private IDeviationsCalculating _ideviationsCalculating;  
-                  
-        
+        private IDeviationsCalculating _deviationsCalculating;
+        private IAnalysing _analysing;
+
+
         public ICalculateNorm GetCalculateNorm()
         {
             if (_calculateNorm == null)
                 _calculateNorm = new CalculateNorm();
             return _calculateNorm;
-        }       
-               
-                
+        }
+
+
         public IDeviationsCalculating GetDeviationsCalculating()
         {
-            if (_ideviationsCalculating == null)
-                _ideviationsCalculating = new DeviationsCalculating();
-            return _ideviationsCalculating;
+            if (_deviationsCalculating == null)
+                _deviationsCalculating = new DeviationsCalculating();
+            return _deviationsCalculating;
         }
-        private IAnalysing _ianalysing;
+        
 
         public IAnalysing GetIAnalysing()
         {
-            if (_ianalysing == null)
-                _ianalysing = new Analysing();
-            return _ianalysing;
-        }  
+            if (_analysing == null)
+                _analysing = new Analysing();
+            return _analysing;
+        }
 
     }
 }

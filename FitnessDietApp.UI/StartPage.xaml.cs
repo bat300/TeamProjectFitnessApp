@@ -15,7 +15,8 @@ namespace FitnessDietApp.UI {
             }
         }
 
-        private void ChooseNewUser_Click(object sender, System.Windows.RoutedEventArgs e) {
+        private void ChooseNewUser_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
             using (var context = new Context()) {
                 context.Database.ExecuteSqlCommand("DELETE FROM DiaryItems");
                 context.Database.ExecuteSqlCommand("DELETE FROM PersonInfo");

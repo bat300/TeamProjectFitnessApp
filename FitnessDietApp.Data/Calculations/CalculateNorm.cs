@@ -1,27 +1,23 @@
 ﻿using FitnessDietApp.Data.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FitnessDietApp.Data
 {
-    public class CalculateNorm: ICalculateNorm
+    public class CalculateNorm : ICalculateNorm
     {
-        
+
         public void CalculateNorms(PersonInfo personInfo, PersonNorm personNorm)
         {
+
             if (personInfo.Gender == PersonInfo.PersonsGender.Female) // female            
                 personNorm.Calories = (655 + (9.6 * personInfo.Weight) + (1.8 * personInfo.Height) - (4.7 * personInfo.Age));
             else //male
                 personNorm.Calories = (66 + (13.7 * personInfo.Weight) + (5 * personInfo.Height) - (6.8 * personInfo.Age));
 
-
             switch (personInfo.Lifestyle)
             {
                 case PersonInfo.StylesOfLife.NoSport: //низкая активность
-                    personNorm.Calories = personNorm.Calories * 1.20;// Магические числа - это плохо
+                    personNorm.Calories = personNorm.Calories * 1.20;
                     break;
                 case PersonInfo.StylesOfLife.LightSport: // малая активность
                     personNorm.Calories = personNorm.Calories * 1.38;
@@ -49,8 +45,7 @@ namespace FitnessDietApp.Data
             personNorm.CarbohydratesUp = personNorm.CaloriesUp * 0.5 / 4;
 
         }
-    }  
+    }
 }
 
 
-        

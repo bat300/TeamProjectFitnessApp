@@ -136,7 +136,7 @@
         <Label Content="Ваша норма КБЖУ в пределах нормы (зеленым)" Background="Green" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <Label Content="Ваша норма КБЖУ занижена (жёлтым)" Grid.Row="5" Background="Yellow" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-        <Button Name="GoToPageOfAnalysis" Grid.Row="6" Content="Перейти к анализу питания" Margin="5"/>
+        <Button Name="GoToPageOfAnalysis" Grid.Row="6" Content="Перейти к анализу питания" Margin="5" />
         <Button Name="GoToPageWithRation" Grid.Row="7" Content="Перейти к заполнению рациона" Margin="5"/>
         <Button Name="GoToPageForRecepies" Grid.Row="8" Content="Найти рецепты (find recepies)" Margin="5" Click="GoToPageForRecepies_Click"/>
     </Grid>

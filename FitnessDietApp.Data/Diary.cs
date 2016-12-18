@@ -2,7 +2,8 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FitnessDietApp.Data {
+namespace FitnessDietApp.Data
+{
     [Table("Diary")]
     public class Diary
     {
