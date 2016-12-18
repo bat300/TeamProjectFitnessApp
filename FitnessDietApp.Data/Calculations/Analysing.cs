@@ -1,6 +1,7 @@
 ﻿using FitnessDietApp.Data.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace FitnessDietApp.Data
 
             using (var cont = new Context())
             {
-                foreach (var item in cont.Diary)
+                foreach (var item in cont.Diary.Include("DiaryItems").Include("PersonNorm").Include("DiaryItems.Product"))//!!!!!!!!!!!!!!
                 {
                     double CarbohydratesProDay = inf.CarbohydratesPerDay(item.DiaryItems.ToList());
                     double DeviationOfCarbohydratesProDay = dev.DeviationOfCarbohydratesPerDay(CarbohydratesProDay, item.PersonNorm);
@@ -117,7 +118,7 @@ namespace FitnessDietApp.Data
                         {
                             Message.Append(" углеводов,");
                         }
-                        Message.Remove(Message.Length, 1);
+                        Message.Remove(Message.Length-1, 1);
                         Message.Append(".");
                         RecomendationMessage(Message.ToString());
                     }
