@@ -66,7 +66,9 @@ namespace FitnessDietApp.UI {
         }
 
         private void GoToPageOfAnalysis_Click(object sender, RoutedEventArgs e) {
-            MainFrame.Content = new PageOfAnalysis();// Analysis;
+            MainFrame.Content = new PageOfAnalysis();
+
+            // Analysis;
         }
 
         private void GoToPageWithRation_Click(object sender, RoutedEventArgs e) {
