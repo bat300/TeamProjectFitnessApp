@@ -36,7 +36,7 @@ namespace FitnessDietApp.UI
             {
                 foreach(var item in context.Diary)
                 {
-                    comboBoxDate.Items.Add(item.Date);//нужен ли toString?
+                    comboBoxDate.Items.Add(item.Date.ToString("dd.MM.yyyy"));
                 }
                 InfoProDaySummarising inf = new InfoProDaySummarising();
                 foreach (var item in context.Diary)
@@ -339,7 +339,7 @@ namespace FitnessDietApp.UI
                 }
 
                 //FIXME
-                //image.Source = new DrawingImage(CallsDrawingGroup);
+                image.Source = new DrawingImage(CallsDrawingGroup);
             }
         }
 
