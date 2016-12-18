@@ -72,7 +72,7 @@ namespace FitnessDietApp.UI
                     try
                     {
                         string query = TextBoxProductsForRecipe.Text;
-                        PersonNorm p = cont.PersonNorms.LastOrDefault();
+                        PersonNorm p = cont.PersonNorms.ToList().LastOrDefault();
                         int from = (int)(Math.Round(p.CaloriesLow / 6));
                         int to = (int)(Math.Round(p.CaloriesUp / 3));
                         string calories = String.Format($"gte {from}, lte {to}");
