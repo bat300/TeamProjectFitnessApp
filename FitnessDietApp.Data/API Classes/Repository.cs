@@ -8,8 +8,8 @@ namespace FitnessDietApp.Data
 {
     public class Repository
     {
-        const string AppKey = "e62225700467dd10431ad8c55b6a2ca3";
-        const string AppId = "ab576e02";
+        const string AppKey = "";
+        const string AppId = "";
 
         List<ResultRecipe> recipes = new List<ResultRecipe>();
 
