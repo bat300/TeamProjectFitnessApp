@@ -23,7 +23,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Label Content="Enter products to search a recepe" VerticalAlignment="Bottom" FontSize="10.5" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" />
+            <Label Content="Enter products to search a recipe" VerticalAlignment="Bottom" FontSize="10.5" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" />
             <Label Content="Choose a diet" FontSize="10.5" VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center"/>
             <Label Content="Health requirements" VerticalAlignment="Bottom" FontSize="10.5" Grid.Column="2" HorizontalAlignment="Center"/>
         </Grid>
