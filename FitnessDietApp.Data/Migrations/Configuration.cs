@@ -26,7 +26,7 @@ namespace FitnessDietApp.Data.Migrations
 
             Dictionary<string, Products> products = new Dictionary<string, Products>();
 
-            using (var reader = new StreamReader(@"productsInfo.csv"))
+            using (var reader = new StreamReader(@"F:\Документы ТБ\Загрузки\Программирование\TeamProjectResult\productsInfo.csv"))
             {
                 string line;
                 while (!reader.EndOfStream)
