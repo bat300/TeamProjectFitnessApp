@@ -9,7 +9,7 @@ namespace FitnessDietApp.UI {
         StartPage Start = new StartPage();
         PageWithDiary Diary = new PageWithDiary();
         PageWithPersonalData PersonalData = new PageWithPersonalData();
-        PageOfAnalysis Analysis = new PageOfAnalysis();
+        //PageOfAnalysis Analysis = new PageOfAnalysis();
         PageWithRation Ration = new PageWithRation();
 
         public MainWindow() {
@@ -33,7 +33,7 @@ namespace FitnessDietApp.UI {
         }
 
         private void GoToPageOfAnalysis_Click(object sender, RoutedEventArgs e) {
-            MainFrame.Content = Analysis;
+            MainFrame.Content = new PageOfAnalysis();// Analysis;
         }
 
         private void GoToPageWithRation_Click(object sender, RoutedEventArgs e) {

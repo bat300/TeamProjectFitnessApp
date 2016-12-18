@@ -50,7 +50,10 @@ namespace FitnessDietApp.UI {
                     ChosenProductsGrid.Items.Refresh();
                 } else {
                     using (var context = new Context()) {
-                        ChoosenDiary.DiaryItems.Add(new DiaryItem() { Product = context.Products.First(product => product.Name == ProductName.Text), Quantity = int.Parse(ProductWeight.Text) });
+                        if (!ProductNames.Contains(ProductName.Text))
+                            throw new Exception();
+
+                        ChoosenDiary.DiaryItems.Add(new DiaryItem() { Product = new Products() { Name = ProductName.Text }, Quantity = int.Parse(ProductWeight.Text) });
                     }
                 }
                 ProductName.Text = "";
@@ -69,6 +72,8 @@ namespace FitnessDietApp.UI {
                     context.Diary.Remove(context.Diary.ToList().Last());
                 }
 
+                foreach (var diaryItem in ChoosenDiary.DiaryItems)
+                    diaryItem.Product = context.Products.First(product => product.Name == diaryItem.Product.Name);
                 context.Diary.Add(ChoosenDiary);
                 context.DiaryItems.AddRange(ChoosenDiary.DiaryItems);
 
