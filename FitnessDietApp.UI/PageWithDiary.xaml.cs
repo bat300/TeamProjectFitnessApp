@@ -1,30 +1,14 @@
 ﻿using FitnessDietApp.Data;
-using FitnessDietApp.Data.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace FitnessDietApp.UI {
     /// <summary>
     /// Логика взаимодействия для PageWithDiary.xaml
     /// </summary>
-    public partial class PageWithDiary : Page
-    //белки, жиры, углеводы, калории за день расчитываются в методах класса infoProDaySummarising
-    //для вывода в любом случае нужно писать цикл по элементам DBSet Diary, для каждого элемента нужно использовать 
-    //эти методы (а все методы для рассчитывания отклонений находятся в классе DeviationsCalculating, 
-    //его экземпляр нужно создавать через интерфейс и Factory
-    {
+    public partial class PageWithDiary : Page {
         public PageWithDiary() {
             InitializeComponent();
         }
@@ -34,6 +18,7 @@ namespace FitnessDietApp.UI {
                 StringBuilder intervals = new StringBuilder();
                 var infoProDaySummarising = new InfoProDaySummarising();
                 var deviations = Factory.Default.GetDeviationsCalculating();
+                FullTableOfComponents.Items.Clear();
                 foreach (var diary in context.Diary.Include("PersonNorm").Include("DiaryItems").Include("DiaryItems.Product")) {
                     intervals.Append(string.Format("{0}/{1}/{2}/{3} ",
                         ((diary.PersonNorm.CaloriesUp + diary.PersonNorm.CaloriesLow) / 2).ToString("F2"),
@@ -61,7 +46,7 @@ namespace FitnessDietApp.UI {
                         CarbohydratesPerDay = carbohydratesPerDay,
                         CarbohydratesColor = GetBrushFromDouble(deviationOfCarbohydratesPerDay),
                         Date = diary.Date.ToString("dd.MM.yyyy"),
-                        Products = string.Concat(from diaryItem in diary.DiaryItems select diaryItem.Product.Name)
+                        Products = string.Join("; ",from diaryItem in diary.DiaryItems select diaryItem.Product.Name)
                     });
                 }
 
