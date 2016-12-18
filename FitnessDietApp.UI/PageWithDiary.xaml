@@ -138,6 +138,6 @@
 
         <Button Name="GoToPageOfAnalysis" Grid.Row="6" Content="Перейти к анализу питания" Margin="5"/>
         <Button Name="GoToPageWithRation" Grid.Row="7" Content="Перейти к заполнению рациона" Margin="5"/>
-        <Button Name="GoToPageForRecepies" Grid.Row="8" Content="Найти рецепты (find recepies)" Margin="5"/>
+        <Button Name="GoToPageForRecepies" Grid.Row="8" Content="Найти рецепты (find recepies)" Margin="5" Click="GoToPageForRecepies_Click"/>
     </Grid>
 </Page>
