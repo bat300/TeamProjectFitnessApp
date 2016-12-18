@@ -1,4 +1,5 @@
 ﻿using FitnessDietApp.Data;
+using FitnessDietApp.Data.Interfaces;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -52,7 +53,7 @@ namespace FitnessDietApp.UI {
                 person.Height = int.Parse(Height.Text);
                 person.Gender = PersonInfo.GetGenderFromString((string)ChooseGender.SelectedItem);
                 person.Lifestyle = PersonInfo.GetLifestyleFromString((string)ChooseLifestyle.SelectedItem);
-                CalculateNorm calc = new CalculateNorm();
+                var calc = Factory.Default.GetCalculateNorm();
                 calc.CalculateNorms(person, norm);
                 Norma.Content = norm.Calories.ToString();
 

@@ -28,6 +28,7 @@ namespace FitnessDietApp.UI {
         }
 
         private void GoToPageWithDiary_Click(object sender, RoutedEventArgs e) {
+            Diary.Init();
             MainFrame.Content = Diary;
         }
 
