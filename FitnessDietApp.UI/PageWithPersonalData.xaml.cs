@@ -1,21 +1,19 @@
 ﻿using FitnessDietApp.Data;
+using FitnessDietApp.Data.Interfaces;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System;
 
-namespace FitnessDietApp.UI
-{
+namespace FitnessDietApp.UI {
     /// <summary>
     /// Логика взаимодействия для PageWithPersonalData.xaml
     /// </summary>
-    public partial class PageWithPersonalData : Page
-    {
+    public partial class PageWithPersonalData : Page {
         protected PersonInfo person;
         protected PersonNorm norm;
 
-        public PageWithPersonalData()
-        {
+        public PageWithPersonalData() {
             InitializeComponent();
             ChooseGender.Items.Add("Мужской");
             ChooseGender.Items.Add("Женский");
@@ -25,39 +23,40 @@ namespace FitnessDietApp.UI
             ChooseLifestyle.Items.Add("Интенсивные тренировки 5-7 раз в неделю");
         }
 
-
-        public void Init()
-        {
-            using (var context = new Context())
+        public void Init() {
+            try
             {
-                if (context.PersonInfo.Count() != 0)
+                using (var context = new Context())
                 {
-                    person = context.PersonInfo.ToList().Last();
-                    norm = context.PersonNorms.ToList().Last();
+                    if (context.PersonInfo.Count() != 0)
+                    {
+                        person = context.PersonInfo.ToList().Last();
+                        norm = context.PersonNorms.ToList().Last();
 
-                    Age.Text = person.Age.ToString();
-                    Weight.Text = person.Weight.ToString();
-                    Height.Text = person.Height.ToString();
-                    ChooseGender.SelectedIndex = ChooseGender.Items.IndexOf(PersonInfo.GetStringFromGender(person.Gender));
-                    ChooseLifestyle.SelectedIndex = ChooseLifestyle.Items.IndexOf(PersonInfo.GetStringFromLifestyle(person.Lifestyle));
-                    Norma.Content = norm.Calories.ToString();
+                        Age.Text = person.Age.ToString();
+                        Weight.Text = person.Weight.ToString();
+                        Height.Text = person.Height.ToString();
+                        ChooseGender.SelectedIndex = ChooseGender.Items.IndexOf(PersonInfo.GetStringFromGender(person.Gender));
+                        ChooseLifestyle.SelectedIndex = ChooseLifestyle.Items.IndexOf(PersonInfo.GetStringFromLifestyle(person.Lifestyle));
+                        Norma.Content = norm.Calories.ToString();
 
-                    GoToPageWithRation.IsEnabled = true;
+                        GoToPageWithRation.IsEnabled = true;
+                    }
+                    else
+                    {
+                        person = new PersonInfo();
+                        norm = new PersonNorm();
+                        GoToPageWithRation.IsEnabled = false;
+                    }
                 }
-                else
-                {
-                    person = new PersonInfo();
-                    norm = new PersonNorm();
-                    GoToPageWithRation.IsEnabled = false;
-                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Ошибка!", ex.Message);
             }
         }
 
-
-        private void Count_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
+        private void Count_Click(object sender, RoutedEventArgs e) {
+            try {
                 GoToPageWithRation.IsEnabled = false;
 
                 person.Age = int.Parse(Age.Text);
@@ -71,30 +70,35 @@ namespace FitnessDietApp.UI
 
                 GoToPageWithRation.IsEnabled = true;
             }
-
             catch (Exception ex)
             {
                 int n;
                 if (!int.TryParse(Age.Text, out n))
                     MessageBox.Show("Введён некорректный возраст :(");
-                if (!int.TryParse(Weight.Text, out n))
+               if (!int.TryParse(Weight.Text, out n))
                     MessageBox.Show("Введён некорректный вес :(");
-                if (!int.TryParse(Height.Text, out n))
+                 if (!int.TryParse(Height.Text, out n))
                     MessageBox.Show("Введён некорректный рост :(");
                 else
                     MessageBox.Show("Что-то пошло не так :(");
             }
         }
 
-
-        private void GoToPageWithRation_Click(object sender, RoutedEventArgs e)
-        {
-            using (var context = new Context())
+        private void GoToPageWithRation_Click(object sender, RoutedEventArgs e) {
+            try
             {
-                context.PersonInfo.Add(person);
-                context.PersonNorms.Add(norm);
-                context.SaveChanges();
+                using (var context = new Context())
+                {
+                    context.PersonInfo.Add(person);
+                    context.PersonNorms.Add(norm);
+
+                    context.SaveChanges();
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Ошибка!", ex.Message);
             }
-        }
+            }
+            
     }
 }

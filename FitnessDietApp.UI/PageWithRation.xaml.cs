@@ -32,8 +32,11 @@ namespace FitnessDietApp.UI {
                 ChoosenDiary.PersonNorm = context.PersonNorms.ToList().Last();
 
                 if (context.Diary.Count() == 0) {
-                    GoToPageOfAnalysis.IsEnabled = false;
                     GoToPageWithDiary.IsEnabled = false;
+                }
+                if (context.Diary.Count()<2)
+                {
+                    GoToPageOfAnalysis.IsEnabled = false;
                 }
             }
 
@@ -61,7 +64,7 @@ namespace FitnessDietApp.UI {
 
                 ProductName.Text = "";
                 ProductWeight.Text = "";
-                GoToPageOfAnalysis.IsEnabled = true;
+                //GoToPageOfAnalysis.IsEnabled = true;
                 GoToPageWithDiary.IsEnabled = true;
             } catch (Exception ex) {
                 int n;
@@ -85,6 +88,10 @@ namespace FitnessDietApp.UI {
                     diaryItem.Product = context.Products.First(product => product.Name == diaryItem.Product.Name);
                 context.Diary.Add(ChoosenDiary);
                 context.DiaryItems.AddRange(ChoosenDiary.DiaryItems);
+                if (context.Diary.Count()>=2)
+                {
+                    GoToPageOfAnalysis.IsEnabled = true;
+                }
 
                 context.SaveChanges();
             }

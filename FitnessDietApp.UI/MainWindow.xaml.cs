@@ -38,7 +38,7 @@ namespace FitnessDietApp.UI {
                 Ration.ProductWeight.TextChanged += ValidatePositiveInt;
             }catch(Exception ex)
             {
-                MessageBox.Show("Ошибка!");
+                MessageBox.Show("Ошибка!",ex.Message);
             }
         }
 
