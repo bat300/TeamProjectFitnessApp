@@ -57,54 +57,61 @@ namespace FitnessDietApp.UI
         {
             using (Context cont = new Context())
             {
-                try
+                if (TextBoxProductsForRecipe.Text != null& TextBoxProductsForRecipe.Text.Length!=0)
                 {
-                    string query = TextBoxProductsForRecipe.Text;
-                    PersonNorm p = cont.PersonNorms.ToList().LastOrDefault();
-                    int from = (int)(Math.Round(p.CaloriesLow / 6));
-                    int to = (int)(Math.Round(p.CaloriesUp / 3));
-                    string calories = String.Format($"gte {from}, lte {to}");
-
-                    List<ResultRecipe> result;
-
-                    diet.DietLabel = (string)ComboBoxDiet.SelectedItem;
-                    health.HealthLabel = (string)ComboBoxHealth.SelectedItem;
-
-                    if ((string)ComboBoxDiet.SelectedItem == null & (string)ComboBoxHealth.SelectedItem == null) // оба выбраны
+                    try
                     {
-                        result = await repo.GetInfo(query, calories);
-                    }
+                        string query = TextBoxProductsForRecipe.Text;
+                        PersonNorm p = cont.PersonNorms.ToList().LastOrDefault();
+                        int from = (int)(Math.Round(p.CaloriesLow / 6));
+                        int to = (int)(Math.Round(p.CaloriesUp / 3));
+                        string calories = String.Format($"gte {from}, lte {to}");
 
-                    else if ((string)ComboBoxDiet.SelectedItem != null & (string)ComboBoxHealth.SelectedItem != null) // оба не выбраны
-                    {
-                        result = await repo.GetInfo(query, calories, diet.DietLabel, health.HealthLabel);
-                    }
+                        List<ResultRecipe> result;
 
-                    else // хотя бы один выбран
-                    {
-                        if ((string)ComboBoxDiet.SelectedItem != null) // т.е. выбран diet
-                            result = await repo.GetInfo(query, calories, diet.DietLabel, health.HealthLabel, true);
+                        diet.DietLabel = (string)ComboBoxDiet.SelectedItem;
+                        health.HealthLabel = (string)ComboBoxHealth.SelectedItem;
 
-                        else // т.е. выбран health ((string)ComboBoxDiet.SelectedItem == null) 
-                            result = await repo.GetInfo(query, calories, diet.DietLabel, health.HealthLabel, false);
-                    }
-
-                    if (result != null && result.Count != 0)
-                    {
-                        listBoxForRecepies.Items.Clear();
-                        foreach (var i in result)
+                        if ((string)ComboBoxDiet.SelectedItem == null & (string)ComboBoxHealth.SelectedItem == null) // оба выбраны
                         {
-                            listBoxForRecepies.Items.Add($"\nRecipe: {i.RecipeTitle} \n linq: { i.RecipeURL} \n calories per serving: { i.Calories / i.Servings:F2} \n weight per serving: { i.Weight / i.Servings:F2} ");
+                            result = await repo.GetInfo(query, calories);
                         }
-                        result.Clear();
-                    }
-                    else
-                        MessageBox.Show("No information was found");
-                }
 
-                catch (Exception ex)
+                        else if ((string)ComboBoxDiet.SelectedItem != null & (string)ComboBoxHealth.SelectedItem != null) // оба не выбраны
+                        {
+                            result = await repo.GetInfo(query, calories, diet.DietLabel, health.HealthLabel);
+                        }
+
+                        else // хотя бы один выбран
+                        {
+                            if ((string)ComboBoxDiet.SelectedItem != null) // т.е. выбран diet
+                                result = await repo.GetInfo(query, calories, diet.DietLabel, health.HealthLabel, true);
+
+                            else // т.е. выбран health ((string)ComboBoxDiet.SelectedItem == null) 
+                                result = await repo.GetInfo(query, calories, diet.DietLabel, health.HealthLabel, false);
+                        }
+
+                        if (result != null && result.Count != 0)
+                        {
+                            listBoxForRecepies.Items.Clear();
+                            foreach (var i in result)
+                            {
+                                listBoxForRecepies.Items.Add($"\nRecipe: {i.RecipeTitle} \n linq: { i.RecipeURL} \n calories per serving: { i.Calories / i.Servings:F2} \n weight per serving: { i.Weight / i.Servings:F2} ");
+                            }
+                            result.Clear();
+                        }
+                        else
+                            MessageBox.Show("No information was found");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("No ingridients was written.", ex.Message);
+                    }
+
+                }
+                else
                 {
-                    MessageBox.Show("Enter correct info");
+                    MessageBox.Show("No ingridients were written.");
                 }
             }
         }
