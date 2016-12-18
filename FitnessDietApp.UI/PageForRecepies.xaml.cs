@@ -104,9 +104,16 @@ namespace FitnessDietApp.UI
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var item = listBoxForRecepies.SelectedItem;
-            var listOfRecipesProperties = item.ToString().Split('\n');
-            var linq = listOfRecipesProperties[2].Split(' ')[2];
-            Process.Start(linq);
+            if (item != null)
+            {
+                var listOfRecipesProperties = item.ToString().Split('\n');
+                var linq = listOfRecipesProperties[2].Split(' ')[2];
+                Process.Start(linq);
+            }
+            else
+            {
+                MessageBox.Show("Вы ещё не выбрали рецепт!");
+            }
         }
     }
 }

@@ -50,7 +50,15 @@ namespace FitnessDietApp.UI {
                     }
                     Width += 1;
                 }
-                double Width2 = (Width - 1) / Width;
+                double Width2;
+                if (Width==1)
+                {
+                     Width2 = 1;
+                }
+                else
+                {
+                    Width2 = (Width - 1) / Width;
+                }
                 double Hight = Math.Round(Max) + 1;
                 DrawingGroup CallsDrawingGroup = new DrawingGroup();
                 IDeviationsCalculating dev = Factory.Default.GetDeviationsCalculating();
@@ -63,7 +71,7 @@ namespace FitnessDietApp.UI {
                         GeoDrawing.Pen = new Pen(Brushes.Black, 3);
 
                         RectangleGeometry Background = new RectangleGeometry();
-                        //Background.Rect = new Rect(0, 0, (Math.Round(Max) + 1) * Width2, Math.Round(Max) + 1);
+                        Background.Rect = new Rect(0, 0, (Math.Round(Max) + 1) * Width2, Math.Round(Max) + 1);
                         GeoGroup.Children.Add(Background);
                     }
                     //График протеинов
@@ -273,7 +281,7 @@ namespace FitnessDietApp.UI {
                         int i = 0;
                         foreach (var item in context.Diary) {
                             FormattedText formText = new FormattedText(
-                                item.Date.ToString(),
+                                item.Date.ToString("dd.MM.yyyy"),
                                 CultureInfo.GetCultureInfo("en-us"),
                                 FlowDirection.LeftToRight,
                                 new Typeface("Arial"),
@@ -296,7 +304,7 @@ namespace FitnessDietApp.UI {
         private void comboBoxDate_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             IAnalysing analyse = Factory.Default.GetIAnalysing();
             if (comboBoxDate.SelectedIndex == 0) {
-                analyse.Recomendations(new DateTime(01, 01, 1800));
+                analyse.Recomendations(new DateTime(1800, 01, 01));
             } else {
                 analyse.Recomendations((DateTime)comboBoxDate.SelectedItem);
             }
