@@ -63,11 +63,11 @@ namespace FitnessDietApp.UI {
             catch (Exception ex)
             {
                 int n;
-                 if (!int.TryParse(Age.Text, out n))
+                if (!int.TryParse(Age.Text, out n))
                     MessageBox.Show("Введён некорректный возраст :(");
-                if (!int.TryParse(Weight.Text, out n))
+               if (!int.TryParse(Weight.Text, out n))
                     MessageBox.Show("Введён некорректный вес :(");
-                if (!int.TryParse(Height.Text, out n))
+                 if (!int.TryParse(Height.Text, out n))
                     MessageBox.Show("Введён некорректный рост :(");
                 else
                     MessageBox.Show("Что-то пошло не так :(");
