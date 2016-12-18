@@ -23,7 +23,7 @@ namespace FitnessDietApp.Data
 
             using (var cont = new Context())
             {
-                foreach (var item in cont.Diary.Include("DiaryItems").Include("PersonNorm").Include("DiaryItems.Product"))//!!!!!!!!!!!!!!
+                foreach (var item in cont.Diary.Include("DiaryItems").Include("PersonNorm").Include("DiaryItems.Product"))
                 {
                     double CarbohydratesProDay = inf.CarbohydratesPerDay(item.DiaryItems.ToList());
                     double DeviationOfCarbohydratesProDay = dev.DeviationOfCarbohydratesPerDay(CarbohydratesProDay, item.PersonNorm);
