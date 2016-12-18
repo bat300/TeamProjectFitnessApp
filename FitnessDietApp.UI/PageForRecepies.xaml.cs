@@ -59,15 +59,26 @@ namespace FitnessDietApp.UI
                     string calories = String.Format($"gte {from}, lte {to}");
                     List<ResultRecipe> result;
 
-                    if ((string)ComboBoxDiet.SelectedItem != null)
-                    {
-                        diet.DietLabel = (string)ComboBoxDiet.SelectedItem;
-                        health.HealthLabel = (string)ComboBoxHealth.SelectedItem;
+                    diet.DietLabel = (string)ComboBoxDiet.SelectedItem;
+                    health.HealthLabel = (string)ComboBoxHealth.SelectedItem;
 
-                        result = await repo.GetInfo(query, calories, diet.DietLabel, health.HealthLabel);
-                    }
-                    else
+
+                    if ((string)ComboBoxDiet.SelectedItem == null & (string)ComboBoxHealth.SelectedItem == null)
                         result = await repo.GetInfo(query, calories);
+
+                        else if ((string)ComboBoxDiet.SelectedItem != null & (string)ComboBoxHealth.SelectedItem != null)
+                             result = await repo.GetInfo(query, calories, diet.DietLabel, health.HealthLabel);
+
+                    else
+                    {
+
+                        if ((string)ComboBoxDiet.SelectedItem != null & (string)ComboBoxHealth.SelectedItem == null)
+                            result = await repo.GetInfo(query, calories, diet.DietLabel);
+
+                        else // то есть ((string)ComboBoxDiet.SelectedItem == null & (string)ComboBoxHealth.SelectedItem != null)
+                            result = await repo.GetInfoWithHealth(query, calories, health.HealthLabel);
+                    }
+
 
                     if (result != null)
                     {

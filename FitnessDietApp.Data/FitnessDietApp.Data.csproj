@@ -61,7 +61,6 @@
     <Compile Include="DiaryItem.cs" />
     <Compile Include="DTO\Request\Diet.cs" />
     <Compile Include="DTO\Request\Health.cs" />
-    <Compile Include="DTO\Request\Search.cs" />
     <Compile Include="DTO\Request\SearchInfo.cs" />
     <Compile Include="DTO\Response\Hit.cs" />
     <Compile Include="DTO\Response\Hits.cs" />
